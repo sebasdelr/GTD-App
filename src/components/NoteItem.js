@@ -4,11 +4,11 @@ import "./Items.css";
 
 
 
-const NoteItem = () => {
+const NoteItem = (props) => {
 
     return(
     <div className='note-item-title'>
-        <p><span className="icon solid fa-book-open"></span>Title of note</p>
+        <p><span className="icon solid fa-book-open"></span>{props.title}</p>
     </div>
 
 

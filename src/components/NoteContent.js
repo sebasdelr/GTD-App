@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from 'dompurify';
-import { EditorState } from 'draft-js';
+import { convertFromRaw, EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './NoteContent.css';
