@@ -48,3 +48,7 @@ p {
   .icon.brands:before {
     font-family: 'Font Awesome 5 Brands';
   }
+
+  .note-item-selected {
+    background-color: beige;
+  }
