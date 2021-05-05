@@ -11,8 +11,9 @@ const NoteItem = (props) => {
     const[isSelected, setSelected] = useState('false');
 
     const toggleSelect = () => {
-        !isSelected ? setSelected(true) : setSelected(false); 
-    }
+        !isSelected ? setSelected(true) : setSelected(false);
+        props.selectedItem(props.title);
+    };
 
     return(
     <div onClick={toggleSelect} className={` ${isSelected ? 'note-item-selected' : ''} `} >

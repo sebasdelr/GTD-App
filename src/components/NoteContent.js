@@ -7,7 +7,9 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './NoteContent.css';
 
 
-const NoteContent = () => {
+const NoteContent = (props) => {
+
+  
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty(),
   );
@@ -30,7 +32,7 @@ const NoteContent = () => {
       
       <div className="right-pane">
         <header className="App-header">
-          Demo
+          {props.title}
         </header>
         <Editor 
           editorState={editorState}

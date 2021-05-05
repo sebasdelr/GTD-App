@@ -1,10 +1,12 @@
 import './App.css';
+import React, { useState } from 'react';
 import Items from './components/Items';
 import NoteContent from './components/NoteContent';
+import LoginForm from './components/LoginForm';
 
 
 const App = () => {
-
+   
   const notes = [
     {
       id: 'a1',
@@ -26,12 +28,23 @@ const App = () => {
     },
   ];
 
+  const [useTitle, setTitle] = useState(notes[0].title);
+
+  let noteTitle = notes[0].title;
+
+  const sendTitle = (title) => {
+    setTitle(title);
+  }
+
+
+
   return (
     <div className="App">
+      <LoginForm/>
       
-      <Items list={notes} />
+      <Items list={notes} getTitle={sendTitle} />
       
-      <NoteContent />
+      <NoteContent title={useTitle} />
       
     </div>
   );
