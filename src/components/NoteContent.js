@@ -1,10 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { convertToHTML } from 'draft-convert';
 import DOMPurify from 'dompurify';
-import { convertFromRaw, EditorState } from 'draft-js';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './NoteContent.css';
+
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+
+import ReactDOM from 'react-dom';
+
+
+class EditorConvertToHTML extends Component {
+  constructor(props) {
+    super(props);
+    const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
+    const contentBlock = htmlToDraft(html);
+    if (contentBlock) {
+      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+      const editorState = EditorState.createWithContent(contentState);
+      this.state = {
+        editorState,
+      };
+    }
+  }
+
+  onEditorStateChange: Function = (editorState) => {
+    this.setState({
+      editorState,
+    });
+  };
+
+  render() {
+    const { editorState } = this.state;
+    return (
+      <div>
+        <Editor
+          editorState={editorState}
+          wrapperClassName="demo-wrapper"
+          editorClassName="demo-editor"
+          onEditorStateChange={this.onEditorStateChange}
+        />
+        <textarea
+          disabled
+          value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+        />
+      </div>
+    );
+  }
+}
 
 
 const NoteContent = (props) => {
@@ -34,6 +79,7 @@ const NoteContent = (props) => {
         <header className="App-header">
           {props.title}
         </header>
+        <EditorConvertToHTML/>
         <Editor 
           editorState={editorState}
           onEditorStateChange={handleEditorChange}
@@ -41,7 +87,7 @@ const NoteContent = (props) => {
           editorClassName="editor-class"
           toolbarClassName="toolbar-class" 
         />
-        <div className="preview" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div>
+        
       </div>
       
     </div>
