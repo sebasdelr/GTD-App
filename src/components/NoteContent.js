@@ -15,7 +15,8 @@ import ReactDOM from 'react-dom';
 class EditorConvertToHTML extends Component {
   constructor(props) {
     super(props);
-    const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
+    //insert html below
+    const html = '';
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -42,10 +43,10 @@ class EditorConvertToHTML extends Component {
           editorClassName="demo-editor"
           onEditorStateChange={this.onEditorStateChange}
         />
-        <textarea
+        {/* <textarea
           disabled
           value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-        />
+        /> */}
       </div>
     );
   }
@@ -80,13 +81,7 @@ const NoteContent = (props) => {
           {props.title}
         </header>
         <EditorConvertToHTML/>
-        <Editor 
-          editorState={editorState}
-          onEditorStateChange={handleEditorChange}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class"
-          toolbarClassName="toolbar-class" 
-        />
+
         
       </div>
       
