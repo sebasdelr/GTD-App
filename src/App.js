@@ -29,11 +29,17 @@ const App = () => {
   ];
 
   const [useTitle, setTitle] = useState(notes[0].title);
+  const [useContent, setContent] = useState(notes[0].content);
 
   let noteTitle = notes[0].title;
 
   const sendTitle = (title) => {
     setTitle(title);
+  }
+
+  const sendContent = (content) => {
+    console.log(content);
+    setContent(content);
   }
 
 
@@ -42,9 +48,9 @@ const App = () => {
     <div className="App">
       <LoginForm/>
       
-      <Items list={notes} getTitle={sendTitle} />
+      <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
       
-      <NoteContent title={useTitle} />
+      <NoteContent title={useTitle} content={useContent}/>
       
     </div>
   );

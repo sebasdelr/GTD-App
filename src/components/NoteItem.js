@@ -10,9 +10,12 @@ const NoteItem = (props) => {
 
     const[isSelected, setSelected] = useState('false');
 
+    //let noteContent = props.content;
+
     const toggleSelect = () => {
         !isSelected ? setSelected(true) : setSelected(false);
         props.selectedItem(props.title);
+        props.selectedItemContent(props.content);
     };
 
     return(

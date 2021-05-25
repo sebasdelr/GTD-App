@@ -16,7 +16,7 @@ class EditorConvertToHTML extends Component {
   constructor(props) {
     super(props);
     //insert html below
-    const html = '';
+    const html = props.content;
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
@@ -80,7 +80,7 @@ const NoteContent = (props) => {
         <header className="App-header">
           {props.title}
         </header>
-        <EditorConvertToHTML/>
+        <EditorConvertToHTML content={props.content}/>z
 
         
       </div>
