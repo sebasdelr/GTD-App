@@ -33,6 +33,12 @@ class EditorConvertToHTML extends Component {
     });
   };
 
+  componentDidMount() {
+    // Runs after the first render() lifecycle
+    
+    console.log("yes");
+  }
+
   render() {
     const { editorState } = this.state;
     return (
@@ -80,7 +86,7 @@ const NoteContent = (props) => {
         <header className="App-header">
           {props.title}
         </header>
-        <EditorConvertToHTML content={props.content}/>z
+        <EditorConvertToHTML content={props.content}/>{props.content}
 
         
       </div>
