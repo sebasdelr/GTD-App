@@ -20,7 +20,7 @@ const NoteItem = (props) => {
 
     return(
     <div onClick={toggleSelect} className={` ${isSelected ? 'note-item-selected' : ''} `} >
-        <p><span className="icon solid fa-book-open"></span>{props.title}</p>
+        <p>{props.title}</p>
     </div>
 
 
