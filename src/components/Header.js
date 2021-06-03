@@ -16,7 +16,7 @@ const Header = (props) => {
                     </li>
 
                     <li>
-                        <button >Logout</button>
+                        <button onClick={props.onLogout}>Logout</button>
                     </li>
                 </ul>
             </nav>
