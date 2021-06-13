@@ -1,17 +1,49 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Items from './components/Items';
 import NoteContent from './components/NoteContent';
 import LoginForm from './components/LoginForm';
+import Header from './components/Header';
 
 
 const App = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	
+
+	useEffect(() => {
+		const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn')
+
+		if(storedUserLoggedInInformation === '1') {
+		setIsLoggedIn(true);
+		}
+	}, []);
+
+	const loginHandler = (userName, passWord) => {
+
+
+		if(userName === "user" && passWord ==="pass") {
+			localStorage.setItem('isLoggedIn', '1');
+			setIsLoggedIn(true);
+		}
+		else{
+		console.log("invalid credentials");
+		}
+
+
+	};
+
+	const logoutHandler = () => {
+		localStorage.removeItem('isLoggedIn');
+		setIsLoggedIn(false);
+	};
    
   const notes = [
     {
       id: 'a1',
       title: 'Meeting',
-      content: 'Have a meeting with shareholders about what is next',
+      content: '<p>Have a meeting with shareholders about what is next</p>',
       date: new Date(2020, 7, 14),
     },
     {
@@ -42,15 +74,24 @@ const App = () => {
     setContent(content);
   }
 
-
+//need to make so that either or show up not hide header
 
   return (
     <div className="App">
-      <LoginForm/>
       
-      <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
+      {!isLoggedIn && <LoginForm onLogin={loginHandler} />}
+      {isLoggedIn && 
+        <div>
+        <Header onLogout={logoutHandler}/>
+        
+        <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
+        
+        <NoteContent title={useTitle} content={useContent}/>
+
+        </div>
+      }
       
-      <NoteContent title={useTitle} content={useContent}/>
+      
       
     </div>
   );
