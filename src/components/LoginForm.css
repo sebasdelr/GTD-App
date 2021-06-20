@@ -22,6 +22,11 @@
     box-sizing: border-box;
 }
 
+.invalid-input {
+    border-color: red;
+    background: #fbdada;
+}
+
 .login-form button {
     background-color: #04AA6D;
     color: white;

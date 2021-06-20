@@ -1,11 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 
 import "./LoginForm.css";
 
 const LoginForm = (props) => {
-	// const [enteredEmail, setEnteredEmail] = useState('');
-	// const [enteredPassword, setEnteredPassword] = useState('');
-
 
 	const modalCloseHandler = (event) => {
 		event.preventDefault();
@@ -42,6 +39,7 @@ const LoginForm = (props) => {
 					placeholder="Enter Password"
 					ref={passInputRef}
 				></input>
+				<p>{props.resultMessage}</p>
 				<button type="submit">Login</button>
 			</form>
 		</div>

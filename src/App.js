@@ -9,6 +9,7 @@ import Header from './components/Header';
 const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isValidLogin, setIsValidLogin] = useState();
 
 	
 
@@ -26,9 +27,11 @@ const App = () => {
 		if(userName === "user" && passWord ==="pass") {
 			localStorage.setItem('isLoggedIn', '1');
 			setIsLoggedIn(true);
+      setIsValidLogin();
 		}
 		else{
 		console.log("invalid credentials");
+    setIsValidLogin("Invalid Credentials");
 		}
 
 
@@ -63,8 +66,6 @@ const App = () => {
   const [useTitle, setTitle] = useState(notes[0].title);
   const [useContent, setContent] = useState(notes[0].content);
 
-  let noteTitle = notes[0].title;
-
   const sendTitle = (title) => {
     setTitle(title);
   }
@@ -79,7 +80,7 @@ const App = () => {
   return (
     <div className="App">
       
-      {!isLoggedIn && <LoginForm onLogin={loginHandler} />}
+      {!isLoggedIn && <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />}
       {isLoggedIn && 
         <div>
         <Header onLogout={logoutHandler}/>

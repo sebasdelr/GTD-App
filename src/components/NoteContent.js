@@ -1,15 +1,10 @@
-import React, { useState, Component } from 'react';
-import { convertToHTML } from 'draft-convert';
-import DOMPurify from 'dompurify';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import React, { Component } from 'react';
+import { EditorState, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './NoteContent.css';
 
-import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-
-import ReactDOM from 'react-dom';
 
 
 class EditorConvertToHTML extends Component {
@@ -61,24 +56,6 @@ class EditorConvertToHTML extends Component {
 
 const NoteContent = (props) => {
 
-  
-  const [editorState, setEditorState] = useState(
-    () => EditorState.createEmpty(),
-  );
-  const [convertedContent, setConvertedContent] = useState(null);
-  const handleEditorChange = (state) => {
-    setEditorState(state);
-    convertContentToHTML();
-  }
-  const convertContentToHTML = () => {
-    let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-    setConvertedContent(currentContentAsHTML);
-  }
-  const createMarkup = (html) => {
-    return {
-      __html: DOMPurify.sanitize(html)
-    }
-  }
   return (
     <div>
       
