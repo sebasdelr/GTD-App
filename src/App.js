@@ -4,6 +4,7 @@ import Items from './components/Items';
 import NoteContent from './components/NoteContent';
 import LoginForm from './components/LoginForm';
 import Header from './components/Header';
+import Dashboard from './components/Dashboard';
 
 
 const App = () => {
@@ -83,14 +84,19 @@ const App = () => {
       {!isLoggedIn && <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />}
       {isLoggedIn && 
         <div>
+        
         <Header onLogout={logoutHandler}/>
         
         <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
         
-        <NoteContent title={useTitle} content={useContent}/>
+        {/* <NoteContent title={useTitle} content={useContent}/> */}
+
+        <Dashboard />
 
         </div>
+        
       }
+
       
       
       
