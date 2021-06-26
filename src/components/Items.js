@@ -1,6 +1,10 @@
-import "./Items.css";
+// import "./Items.css";
 // import "./fontawesome-all.min.css";
 import NoteItem from './NoteItem';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import ListGroup from 'react-bootstrap/ListGroup';
+
 
 function Items(props){
 
@@ -14,15 +18,16 @@ function Items(props){
     };
     
     return(
-        <div className="item-menu">
+        <ListGroup >
             {list.map(note => 
+                
                 <NoteItem title= {note.title} 
                 selectedItem={selectedTitle}
                 content = {note.content}
                 selectedItemContent={selectedContent}
             />)}
 
-        </div>
+        </ListGroup>
 
 
     );

@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+// import "./Dashboard.css";
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -6,15 +6,15 @@ import Card from 'react-bootstrap/Card';
 
 const Dashboard = () => {
 	return (
-		<div style={{padding: '15px'}}>
+		<div >
 
-			<div class="dashboard-primary">
+			<div >
 				<div class="panel-heading">
 					
 					<b>Dashboard</b>
 				</div>
 
-				<div class="panel-body">
+				{/* <div class="panel-body"> */}
 
 					<div class="row">
 						
@@ -61,7 +61,7 @@ const Dashboard = () => {
 					
 					</div>
 				</div>
-			</div>
+			{/* </div> */}
 		</div>
 	);
 };

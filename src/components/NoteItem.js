@@ -4,6 +4,9 @@ import React, { useState } from "react";
 
 // import "./fontawesome-all.min.css";
 
+import 'bootstrap/dist/css/bootstrap.css';
+import ListGroup from 'react-bootstrap/ListGroup';
+
 
 
 const NoteItem = (props) => {
@@ -19,9 +22,10 @@ const NoteItem = (props) => {
     };
 
     return(
-    <div onClick={toggleSelect} className={` ${isSelected ? 'note-item-selected' : ''} `} >
-        <p>{props.title}</p>
-    </div>
+        <ListGroup variant="flush">
+            <ListGroup.Item onClick={toggleSelect}>{props.title}</ListGroup.Item>
+        </ListGroup>
+
 
 
     );

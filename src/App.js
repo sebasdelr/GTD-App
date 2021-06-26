@@ -1,11 +1,18 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+
+// import axios from 'axios';
+import { Container, Row, Col } from 'react-bootstrap';
+
 import Items from './components/Items';
 import NoteContent from './components/NoteContent';
 import LoginForm from './components/LoginForm';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
+import ListGroup from 'react-bootstrap/ListGroup';
 
+import 'bootstrap/dist/css/bootstrap.css';
+// import Card from 'react-bootstrap/Card';
 
 const App = () => {
 
@@ -79,28 +86,75 @@ const App = () => {
 //need to make so that either or show up not hide header
 
   return (
-    <div className="App">
-      
-      {!isLoggedIn && <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />}
-      {isLoggedIn && 
-        <div>
-        
-        <Header onLogout={logoutHandler}/>
-        
-        <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
-        
-        {/* <NoteContent title={useTitle} content={useContent}/> */}
 
-        <Dashboard />
+    <Fragment>
+
+      {!isLoggedIn && <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />}
+ 
+      {isLoggedIn &&
+
+      
+        <div>
+
+          <Header onLogout={logoutHandler}/>
+
+          <main className="my-5 py-5">
+            <Container fluid >
+              <Row>
+                <Col xs={3} md={2}>
+                  <ListGroup>
+                    <ListGroup.Item>Test</ListGroup.Item>
+                    <ListGroup.Item>Test</ListGroup.Item>
+                    <ListGroup.Item>Test</ListGroup.Item>
+                  </ListGroup>
+                </Col>
+                <Col>
+                  <Row >
+                
+
+                    <Col xs={3} md={2}>
+                      <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
+                    </Col>
+                    
+                    
+                    <Col>
+                      <NoteContent title={useTitle} content={useContent}/>
+
+                      {/* <Dashboard /> */}
+                    </Col>
+                    
+                  </Row>
+                  <Row className="justify-content-md-center">
+                    <Col>
+                      {/* <NoteContent title={useTitle} content={useContent}/> */}
+
+                      <Dashboard />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+              
+            </Container>
+          </main>
+
 
         </div>
+
         
       }
+      
+     
+    
+    </Fragment>
+
+    // <div className="App">
+      
+
 
       
       
       
-    </div>
+    // </div>
   );
 }
 export default App;
