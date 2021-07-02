@@ -10,6 +10,7 @@ import LoginForm from './components/LoginForm';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Sidebar from './components/Sidebar';
 
 import 'bootstrap/dist/css/bootstrap.css';
 // import Card from 'react-bootstrap/Card';
@@ -102,11 +103,7 @@ const App = () => {
             <Container fluid >
               <Row>
                 <Col xs={3} md={2}>
-                  <ListGroup>
-                    <ListGroup.Item>Test</ListGroup.Item>
-                    <ListGroup.Item>Test</ListGroup.Item>
-                    <ListGroup.Item>Test</ListGroup.Item>
-                  </ListGroup>
+                  <Sidebar></Sidebar>
                 </Col>
                 <Col>
                   <Row >
