@@ -1,5 +1,8 @@
 import React, { useRef } from "react";
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
 import "./LoginForm.css";
 
 const LoginForm = (props) => {
@@ -21,29 +24,34 @@ const LoginForm = (props) => {
 
 
 	return (
-	<div>
-		<div className="backdrop"></div>
-		<div className="login-form">
-			<form onSubmit={modalCloseHandler}>
-				<label>Username</label>
-				<input
-					id="username"
-					type="text"
-					placeholder="Enter Username"
-					ref={userInputRef}
-				></input>
-				<label>Password</label>
-				<input
-					id="password"
-					type="password"
-					placeholder="Enter Password"
-					ref={passInputRef}
-				></input>
-				<p>{props.resultMessage}</p>
-				<button type="submit">Login</button>
-			</form>
-		</div>
-	</div>);
+		<Form onSubmit={modalCloseHandler}>
+
+			<div className="backdrop"></div>
+			<div className="login-form">
+				<Form.Group className="mb-3" >
+					<Form.Label>Username</Form.Label>
+					<input
+						id="username"
+						type="text"
+						placeholder="Enter Username"
+						ref={userInputRef}
+					></input>
+				</Form.Group>
+				<Form.Group className="mb-3" >
+					<Form.Label>Password</Form.Label>
+					<input
+						id="password"
+						type="password"
+						placeholder="Enter Password"
+						ref={passInputRef}
+					></input>
+					<Form.Text className="text-muted">{props.resultMessage}</Form.Text>
+				</Form.Group>
+				<Button type="submit">Login</Button>
+			</div>
+
+		</Form>
+	);
 };
 
 export default LoginForm;

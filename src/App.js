@@ -90,7 +90,16 @@ const App = () => {
 
     <Fragment>
 
-      {!isLoggedIn && <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />}
+      {!isLoggedIn &&
+        <Container>
+          <Row>
+            <Col md={{ span: 6, offset: 3 }}>
+            <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />
+            </Col>
+          </Row>
+        </Container>
+       
+      }
  
       {isLoggedIn &&
 
@@ -117,7 +126,6 @@ const App = () => {
                     <Col>
                       <NoteContent title={useTitle} content={useContent}/>
 
-                      {/* <Dashboard /> */}
                     </Col>
                     
                   </Row>
