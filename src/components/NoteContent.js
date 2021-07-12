@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
-import { EditorState, ContentState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-// import './NoteContent.css';
-
+import NoteViewer from './NoteViewer';
+import NoteEditor from './NoteEditor';
 import htmlToDraft from 'html-to-draftjs';
 
 
-class EditorConvertToHTML extends Component {
+class NoteContent extends Component {
   constructor(props) {
     super(props);
     //insert html below
-    const html = props.content;
+    const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
       const editorState = EditorState.createWithContent(contentState);
+      const viewerState = EditorState.createWithContent(contentState);
       this.state = {
         editorState,
+        viewerState,
       };
     }
   }
@@ -28,47 +29,22 @@ class EditorConvertToHTML extends Component {
     });
   };
 
-  componentDidMount() {
-    // Runs after the first render() lifecycle
-    
-    console.log("yes");
-  }
 
   render() {
     const { editorState } = this.state;
     return (
       <div>
-        <Editor
-          editorState={editorState}
-          wrapperClassName="demo-wrapper"
-          editorClassName="demo-editor"
+        <h2>{this.props.title}</h2>
+        <NoteEditor
+          editorState={this.state.editorState}
           onEditorStateChange={this.onEditorStateChange}
         />
-        {/* <textarea
-          disabled
-          value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-        /> */}
+        <NoteViewer
+          editorState={this.state.viewerState}
+        />
       </div>
     );
   }
 }
 
-
-const NoteContent = (props) => {
-
-  return (
-    <div>
-      
-      <div className="right-pane">
-        <header className="App-header">
-          {props.title}
-        </header>
-        <EditorConvertToHTML content={props.content}/>{props.content}
-
-        
-      </div>
-      
-    </div>
-  )
-}
 export default NoteContent;
