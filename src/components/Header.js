@@ -13,38 +13,29 @@ const Header = (props) => {
 
     return (
 
-        <Navbar className = "main-header">
-            <Container>
-                <h1>GTD App</h1>
+        <Navbar className = "main-header justify-content-between" expand="lg">
+
+            <Navbar.Brand href="#home">GTD App</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav  className="mr-auto"></Nav>
                 <Nav>
-                    <Row noGutters className="position-relative w-100 align-items-center">
-                        
-                        <Col className="d-none d-lg-flex justify-content-start">
-                        <Nav className="mrx-auto" navbar>
-                        
 
-                            
-                            <NavItem className="d-flex align-items-center">
-                            <NavLink className="font-weight-bold" href="/">Home</NavLink>
-                            </NavItem>
-                            
-                            <NavItem className="d-flex align-items-center">
-                            <NavLink className="font-weight-bold" href="/">Settings</NavLink>
-                            </NavItem>
+                    <NavItem className="d-flex align-items-center">
+                    <Nav.Link className="font-weight-bold" href="/">Home</Nav.Link>
+                    </NavItem>
+                    
+                    <NavItem className="d-flex align-items-center">
+                    <Nav.Link className="font-weight-bold" href="/">Settings</Nav.Link>
+                    </NavItem>
 
-                            <NavItem>
-                                <Button onClick={props.onLogout}>Logout</Button>
-                            </NavItem>
+                    <NavItem>
+                        <Button onClick={props.onLogout}>Logout</Button>
+                    </NavItem>
 
-                            
-                        </Nav>
-                        </Col>
-                        
-
-                        
-                    </Row>
                 </Nav>
-            </Container>
+            </Navbar.Collapse>
+
 
         </Navbar>
 
