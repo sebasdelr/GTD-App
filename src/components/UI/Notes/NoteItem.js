@@ -1,4 +1,4 @@
-import "./Items.css";
+import "../../Items/Items.css";
 
 import React, { useState } from "react";
 

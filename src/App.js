@@ -4,13 +4,17 @@ import React, { useState, useEffect, Fragment } from 'react';
 // import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import Items from './components/Items';
-import NoteContent from './components/NoteContent';
-import LoginForm from './components/LoginForm';
-import Header from './components/Header';
-import Dashboard from './components/Dashboard';
+import Items from './components//Items/Items';
+import NoteContent from './components/UI/Notes/NoteContent';
+import LoginForm from './components/Login/LoginForm';
+import Header from './components//UI/Header/Header';
+import Dashboard from './components/UI/Dashboard/Dashboard';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/UI/Sidebar/Sidebar';
+
+import { BrowserRouter as Router } from 'react-router-dom';
+
+
 
 import 'bootstrap/dist/css/bootstrap.css';
 // import Card from 'react-bootstrap/Card';
@@ -88,7 +92,7 @@ const App = () => {
 
   return (
 
-    <Fragment>
+    <Router>
 
       {!isLoggedIn &&
         <Container>
@@ -103,54 +107,45 @@ const App = () => {
  
       {isLoggedIn &&
 
-      
-        <div>
-
+        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
           <Header onLogout={logoutHandler}/>
+          <Row >
+            <Col xs={3} md={2}>
+              <Sidebar></Sidebar>
+            </Col>
+            <Col>
+              <Row >
+            
 
-          <main className="my-5 py-5">
-            <Container fluid >
-              <Row>
                 <Col xs={3} md={2}>
-                  <Sidebar></Sidebar>
+                  <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
                 </Col>
-                <Col>
-                  <Row >
                 
+                
+                <Col>
+                  <NoteContent title={useTitle} content={useContent}/>
 
-                    <Col xs={3} md={2}>
-                      <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
-                    </Col>
-                    
-                    
-                    <Col>
-                      <NoteContent title={useTitle} content={useContent}/>
 
-                    </Col>
-                    
-                  </Row>
-                  <Row className="justify-content-md-center">
-                    <Col>
-                      {/* <NoteContent title={useTitle} content={useContent}/> */}
-
-                      <Dashboard />
-                    </Col>
-                  </Row>
+                </Col>
+                
+              </Row>
+              <Row className="justify-content-md-center">
+                <Col>
+                  <Dashboard />
                 </Col>
               </Row>
-              
-            </Container>
-          </main>
+            </Col>
+          </Row>
+          
+        </Container>
 
-
-        </div>
 
         
       }
       
      
     
-    </Fragment>
+    </Router>
 
     // <div className="App">
       

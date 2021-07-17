@@ -1,6 +1,6 @@
 // import "./Items.css";
 // import "./fontawesome-all.min.css";
-import NoteItem from './NoteItem';
+import NoteItem from '../UI/Notes/NoteItem';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
