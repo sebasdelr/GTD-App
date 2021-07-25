@@ -24,11 +24,14 @@ import './Sidebar.css';
 //     return (
 //         <Nav defaultActiveKey="/home" className="flex-column" style={{ display: 'flex', height: '100vh', overflow: 'scroll initial', backgroundColor: "#333" }} >
 //             <Nav.Link href="/home"><Home/>Home</Nav.Link>
-//             <Nav.Link eventKey="link-1"><Create/>Capture</Nav.Link>
-//             <Nav.Link eventKey="link-2"><List/>Clarify</Nav.Link>
-//             <Nav.Link eventKey="link-3"><Folder/>Organize</Nav.Link>
-//             <Nav.Link eventKey="link-4"><MenuBook/>Review</Nav.Link>
-//             <Nav.Link eventKey="link-5"><DirectionsWalk/>Engage</Nav.Link>
+            
+//             <hr />
+
+//             <Nav.Link eventKey="link-1" style={{ padding: '20px' }}><Create/>Capture</Nav.Link>
+//             <Nav.Link eventKey="link-2" style={{ padding: '20px' }}><List/>Clarify</Nav.Link>
+//             <Nav.Link eventKey="link-3" style={{ padding: '20px' }}><Folder/>Organize</Nav.Link>
+//             <Nav.Link eventKey="link-4" style={{ padding: '20px' }}><MenuBook/>Review</Nav.Link>
+//             <Nav.Link eventKey="link-5" style={{ padding: '20px' }}><DirectionsWalk/>Engage</Nav.Link>
 
 //         </Nav>
 //     );
@@ -47,37 +50,32 @@ const Sidebar = () => {
               className="text-decoration-none"
               style={{ color: 'inherit' }}
             >
-              Sidebar
+              Home
             </a>
           </CDBSidebarHeader>
    
           <CDBSidebarContent className="sidebar-content">
             <CDBSidebarMenu>
-              <NavLink exact to="/" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
+              <NavLink exact to="/notes" activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon=""><Create/> Capture</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/tables" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
+              <NavLink exact to="/lists" activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon=""><List/> Clarify</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink exact to="/profile" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
+              <NavLink exact to="/groups" activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon=""><Folder/> Organize</CDBSidebarMenuItem>
               </NavLink>
               <NavLink exact to="/analytics" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="chart-line">
-                  Analytics
+                <CDBSidebarMenuItem icon="">
+                <MenuBook/> Review
+                </CDBSidebarMenuItem>
+              </NavLink>
+              <NavLink exact to="/todo" activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon="">
+                <DirectionsWalk/> Engage
                 </CDBSidebarMenuItem>
               </NavLink>
    
-              <NavLink
-                exact
-                to="/hero404"
-                target="_blank"
-                activeClassName="activeClicked"
-              >
-                <CDBSidebarMenuItem icon="exclamation-circle">
-                  404 page
-                </CDBSidebarMenuItem>
-              </NavLink>
             </CDBSidebarMenu>
           </CDBSidebarContent>
    
