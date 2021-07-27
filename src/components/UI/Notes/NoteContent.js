@@ -4,6 +4,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import NoteViewer from './NoteViewer';
 import NoteEditor from './NoteEditor';
 import htmlToDraft from 'html-to-draftjs';
+import NoteForm from './NoteForm';
 
 
 class NoteContent extends Component {
@@ -35,13 +36,14 @@ class NoteContent extends Component {
     return (
       <div>
         <h2>{this.props.title}</h2>
-        <NoteEditor
+        {/* <NoteEditor
           editorState={this.state.editorState}
           onEditorStateChange={this.onEditorStateChange}
         />
         <NoteViewer
           editorState={this.state.viewerState}
-        />
+        /> */}
+        <NoteForm />
       </div>
     );
   }
