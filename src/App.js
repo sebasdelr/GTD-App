@@ -6,11 +6,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import Items from './components//Items/Items';
 import NoteContent from './components/UI/Notes/NoteContent';
-import LoginForm from './components/Login/LoginForm';
-import Header from './components//UI/Header/Header';
+import LoginForm from './components/UI/Login/LoginForm';
+import Header from './components//Layout/Header/Header';
 import Dashboard from './components/UI/Dashboard/Dashboard';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Sidebar from './components/UI/Sidebar/Sidebar';
+import Sidebar from './components/Layout/Sidebar/Sidebar';
+
+import CaptureProvider from './capture/CaptureProvider';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
@@ -93,58 +95,54 @@ const App = () => {
   return (
 
     <Router>
-
-      {!isLoggedIn &&
-        <Container>
-          <Row>
-            <Col md={{ span: 6, offset: 3 }}>
-            <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />
-            </Col>
-          </Row>
-        </Container>
-       
-      }
- 
-      {isLoggedIn &&
-
-        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
-          <Header onLogout={logoutHandler}/>
-          <Row >
-            <Col xs={3} md={2}>
-              <Sidebar></Sidebar>
-            </Col>
-            <Col>
-              <Row >
-            
-
-                <Col xs={3} md={2}>
-                  <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
-                </Col>
-                
-                
-                <Col>
-                  <NoteContent title={useTitle} content={useContent}/>
-
-
-                </Col>
-                
-              </Row>
-              <Row className="justify-content-md-center">
-                <Col>
-                  <Dashboard />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          
-        </Container>
-
-
+      <CaptureProvider>
+        {!isLoggedIn &&
+          <Container>
+            <Row>
+              <Col md={{ span: 6, offset: 3 }}>
+              <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />
+              </Col>
+            </Row>
+          </Container>
         
-      }
-      
-     
-    
+        }
+  
+        {isLoggedIn &&
+
+          <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
+            <Header onLogout={logoutHandler}/>
+            <Row >
+              <Col xs={3} md={2}>
+                <Sidebar></Sidebar>
+              </Col>
+              <Col>
+                <Row >
+              
+
+                  <Col xs={3} md={2}>
+                    <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
+                  </Col>
+                  
+                  
+                  <Col>
+                    <NoteContent title={useTitle} content={useContent}/>
+
+
+                  </Col>
+                  
+                </Row>
+                {/* <Row className="justify-content-md-center">
+                  <Col>
+                    <Dashboard />
+                  </Col>
+                </Row> */}
+              </Col>
+            </Row>
+            
+          </Container>
+        }
+      </CaptureProvider>
+
     </Router>
 
     // <div className="App">
