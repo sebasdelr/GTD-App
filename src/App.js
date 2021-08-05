@@ -25,6 +25,7 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isValidLogin, setIsValidLogin] = useState();
+  
 
 	
 
@@ -61,7 +62,7 @@ const App = () => {
     {
       id: 'a1',
       title: 'Meeting',
-      content: '<p>Have a meeting with shareholders about what is next</p>',
+      content: 'Have a meeting with shareholders about what is next',
       date: new Date(2020, 7, 14),
     },
     {
@@ -78,6 +79,8 @@ const App = () => {
     },
   ];
 
+  const [noteCapture, setNoteCapture] = useState(notes);
+
   const [useTitle, setTitle] = useState(notes[0].title);
   const [useContent, setContent] = useState(notes[0].content);
 
@@ -89,6 +92,16 @@ const App = () => {
     console.log(content);
     setContent(content);
   }
+
+  const addNoteHandler = enteredText => {
+    setNoteCapture(prevNotes => {
+      const updatedNotes = [...prevNotes];
+      updatedNotes.unshift({ id: Math.random().toString(), title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) });
+      console.log('updated note');
+      return updatedNotes;
+    });
+  };
+
 
 //need to make so that either or show up not hide header
 
@@ -120,12 +133,12 @@ const App = () => {
               
 
                   <Col xs={3} md={2}>
-                    <Items list={notes} getTitle={sendTitle} getContent={sendContent}/>
+                    <Items list={noteCapture} getTitle={sendTitle} getContent={sendContent}/>
                   </Col>
                   
                   
                   <Col>
-                    <NoteContent title={useTitle} content={useContent}/>
+                    <NoteContent title={useTitle} content={useContent} onAddNote={addNoteHandler}/>
 
 
                   </Col>

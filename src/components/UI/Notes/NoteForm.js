@@ -3,14 +3,20 @@ import { useRef } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const NoteForm = () => {
+const NoteForm = (props) => {
 
     const titleRef = useRef();
+    const contentRef = useRef();
 
     const submitHandler = event => {
         event.preventDefault();
         
         const enteredTitle = titleRef.current.value;
+        const enteredContent = contentRef.current.value;
+
+        const enteredText = {title: enteredTitle, content: enteredContent};
+
+        props.passNoteHandler(enteredText);
 
     }
 
@@ -22,7 +28,7 @@ const NoteForm = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Note Content</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" ref={contentRef} rows={3} />
             </Form.Group>
             <Button  type="submit">Save Note</Button>
         </Form>

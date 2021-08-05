@@ -30,6 +30,10 @@ class NoteContent extends Component {
     });
   };
 
+  passNoteHandler: Function = (enteredText) => {
+    this.props.onAddNote(enteredText);
+  }
+
 
   render() {
     const { editorState } = this.state;
@@ -43,7 +47,7 @@ class NoteContent extends Component {
         <NoteViewer
           editorState={this.state.viewerState}
         /> */}
-        <NoteForm />
+        <NoteForm passNoteHandler={this.passNoteHandler}/>
       </div>
     );
   }
