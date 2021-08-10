@@ -16,15 +16,23 @@ function Items(props){
     const selectedContent = (content) => {
         props.getContent(content);
     };
+
+    const selectedId = (id) => {
+        props.onDeleteItem(id);
+    };
     
     return(
         <ListGroup >
             {list.map(note => 
                 
-                <NoteItem title= {note.title} 
-                selectedItem={selectedTitle}
-                content = {note.content}
-                selectedItemContent={selectedContent}
+                <NoteItem 
+                listItem={note}
+                // title={note.title} 
+                // selectedItem={selectedTitle}
+                // content = {note.content}
+                // selectedItemContent={selectedContent}
+                deleteItem={selectedId}
+                //add on click here to delete?
             />)}
 
         </ListGroup>

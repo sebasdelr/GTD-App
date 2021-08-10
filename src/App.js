@@ -102,6 +102,13 @@ const App = () => {
     });
   };
 
+  const deleteNoteHandler = noteId => {
+    setNoteCapture(prevNotes => {
+      const updatedNotes = prevNotes.filter(note => note.id !== noteId);
+      return updatedNotes;
+    });
+  };
+
 
 //need to make so that either or show up not hide header
 
@@ -133,12 +140,14 @@ const App = () => {
               
 
                   <Col xs={3} md={2}>
-                    <Items list={noteCapture} getTitle={sendTitle} getContent={sendContent}/>
+                    {/* <Items list={noteCapture} getTitle={sendTitle} getContent={sendContent}  onDeleteItem={deleteNoteHandler}/> */}
+                    <Items list={noteCapture} onDeleteItem={deleteNoteHandler}/>
                   </Col>
                   
                   
                   <Col>
-                    <NoteContent title={useTitle} content={useContent} onAddNote={addNoteHandler}/>
+                    {/* <NoteContent title={useTitle} content={useContent} onAddNote={addNoteHandler}/> */}
+                    <NoteContent content={useContent} onAddNote={addNoteHandler}/>
 
 
                   </Col>

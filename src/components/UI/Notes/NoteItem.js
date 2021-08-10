@@ -17,13 +17,17 @@ const NoteItem = (props) => {
 
     const toggleSelect = () => {
         !isSelected ? setSelected(true) : setSelected(false);
-        props.selectedItem(props.title);
-        props.selectedItemContent(props.content);
+        props.selectedItem(props.listItem.title);
+        props.selectedItemContent(props.listItem.content);
     };
+
+    const deleteItem = () => {
+        props.deleteItem(props.listItem.id);
+    }
 
     return(
         <ListGroup variant="flush">
-            <ListGroup.Item onClick={toggleSelect}>{props.title}</ListGroup.Item>
+            <ListGroup.Item onClick={deleteItem}>{props.listItem.title}</ListGroup.Item>
         </ListGroup>
 
 
