@@ -13,3 +13,14 @@
 p {
   font-size: 14px;
 }
+
+.xbutton {
+  visibility: hidden;
+  background-color: burlywood;
+}
+
+.xbutton:hover {
+  visibility:visible;
+  background-color: blueviolet;
+  
+}

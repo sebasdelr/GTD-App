@@ -4,6 +4,8 @@ import React, { useState } from "react";
 
 // import "./fontawesome-all.min.css";
 
+import Clear from '@material-ui/icons/Clear';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
@@ -12,6 +14,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 const NoteItem = (props) => {
 
     const[isSelected, setSelected] = useState('false');
+    const [style, setStyle] = useState({display: 'none'});
 
     //let noteContent = props.content;
 
@@ -26,8 +29,13 @@ const NoteItem = (props) => {
     }
 
     return(
-        <ListGroup variant="flush">
-            <ListGroup.Item onClick={deleteItem}>{props.listItem.title}</ListGroup.Item>
+        <ListGroup variant="flush" onMouseEnter={e => {
+            setStyle({display: 'inline'});
+        }}
+        onMouseLeave={e => {
+            setStyle({display: 'none'})
+        }}>
+            <ListGroup.Item>{props.listItem.title}<Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
         </ListGroup>
 
 
