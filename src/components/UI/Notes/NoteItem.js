@@ -19,9 +19,9 @@ const NoteItem = (props) => {
     //let noteContent = props.content;
 
     const toggleSelect = () => {
-        !isSelected ? setSelected(true) : setSelected(false);
-        props.selectedItem(props.listItem.title);
-        props.selectedItemContent(props.listItem.content);
+
+        props.selectedItem(props.listItem);
+
     };
 
     const deleteItem = () => {
@@ -35,7 +35,7 @@ const NoteItem = (props) => {
         onMouseLeave={e => {
             setStyle({display: 'none'})
         }}>
-            <ListGroup.Item>{props.listItem.title}<Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
+            <ListGroup.Item onClick={toggleSelect}>{props.listItem.title}</ListGroup.Item><Clear style={style}  onClick={deleteItem}/>
         </ListGroup>
 
 

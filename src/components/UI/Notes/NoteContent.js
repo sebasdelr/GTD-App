@@ -39,7 +39,8 @@ class NoteContent extends Component {
     const { editorState } = this.state;
     return (
       <div>
-        {/* <h2>{this.props.title}</h2> */}
+        <h2>{this.props.content.title}</h2>
+        <p>{this.props.content.content}</p>
         {/* <NoteEditor
           editorState={this.state.editorState}
           onEditorStateChange={this.onEditorStateChange}

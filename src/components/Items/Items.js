@@ -9,12 +9,12 @@ import ListGroup from 'react-bootstrap/ListGroup';
 function Items(props){
 
     const {list} = props;
-    const selectedTitle = (title) => {
-        props.getTitle(title);
+    const selectedItem = (item) => {
+        props.selectedItem(item);
     };
 
-    const selectedContent = (content) => {
-        props.getContent(content);
+    const selectedContent = (id) => {
+        props.getContent(id);
     };
 
     const selectedId = (id) => {
@@ -25,10 +25,11 @@ function Items(props){
         <ListGroup >
             {list.map(note => 
                 
-                <NoteItem 
+                <NoteItem
+
                 listItem={note}
                 // title={note.title} 
-                // selectedItem={selectedTitle}
+                selectedItem={selectedItem}
                 // content = {note.content}
                 // selectedItemContent={selectedContent}
                 deleteItem={selectedId}

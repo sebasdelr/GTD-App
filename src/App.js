@@ -82,13 +82,13 @@ const App = () => {
   const [noteCapture, setNoteCapture] = useState(notes);
 
   const [useTitle, setTitle] = useState(notes[0].title);
-  const [useContent, setContent] = useState(notes[0].content);
+  const [useContent, setContent] = useState(notes[0]);
 
   const sendTitle = (title) => {
     setTitle(title);
   }
 
-  const sendContent = (content) => {
+  const selectedItem = (content) => {
     console.log(content);
     setContent(content);
   }
@@ -141,7 +141,7 @@ const App = () => {
 
                   <Col xs={3} md={2}>
                     {/* <Items list={noteCapture} getTitle={sendTitle} getContent={sendContent}  onDeleteItem={deleteNoteHandler}/> */}
-                    <Items list={noteCapture} onDeleteItem={deleteNoteHandler}/>
+                    <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
                   </Col>
                   
                   
