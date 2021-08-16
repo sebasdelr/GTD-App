@@ -39,8 +39,6 @@ class NoteContent extends Component {
     const { editorState } = this.state;
     return (
       <div>
-        <h2>{this.props.content.title}</h2>
-        <p>{this.props.content.content}</p>
         {/* <NoteEditor
           editorState={this.state.editorState}
           onEditorStateChange={this.onEditorStateChange}
@@ -48,7 +46,7 @@ class NoteContent extends Component {
         <NoteViewer
           editorState={this.state.viewerState}
         /> */}
-        <NoteForm passNoteHandler={this.passNoteHandler}/>
+        <NoteForm selectedItem={this.props.content} passNoteHandler={this.passNoteHandler}/>
       </div>
     );
   }

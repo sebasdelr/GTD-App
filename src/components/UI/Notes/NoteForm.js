@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -9,7 +9,14 @@ const NoteForm = (props) => {
     const [showAlert, setShowAlert] = useState(false);
 
     const titleRef = useRef();
+    //usestate instead? useeffect does not rerender!
+    
     const contentRef = useRef();
+
+    useEffect(() => {
+        document.getElementById("note-title").value = props.selectedItem.title;
+        document.getElementById("note-content").value = props.selectedItem.content;
+    }, [props]);
 
     const newNote = () => { 
         //can use ref as well
@@ -28,11 +35,16 @@ const NoteForm = (props) => {
         }
     }
 
+    
+
+    
+
     const submitHandler = event => {
         event.preventDefault();
         
         const enteredTitle = titleRef.current.value;
         const enteredContent = contentRef.current.value;
+
 
         if(checkIfEmpty(enteredTitle)) {
             setShowAlert(false);
@@ -55,17 +67,17 @@ const NoteForm = (props) => {
         <Form  onSubmit={submitHandler} id="note-form">
             
             <Button variant="light" onClick={newNote}>New Note</Button>
+            <Button variant="light" onClick={newNote}>Edit Note</Button>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Note Title</Form.Label>
-                <Form.Control type="input" ref={titleRef} />
+                <Form.Control id="note-title" type="input" ref={titleRef} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Note Content</Form.Label>
-                <Form.Control as="textarea" ref={contentRef} rows={3} />
+                <Form.Control id="note-content" as="textarea" ref={contentRef} rows={3} />
             </Form.Group>
             {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
             <Button  type="submit" variant="light" >Save Note</Button>
-            
             
         </Form>
     );
