@@ -46,7 +46,7 @@ class NoteContent extends Component {
         <NoteViewer
           editorState={this.state.viewerState}
         /> */}
-        <NoteForm selectedItem={this.props.content} passNoteHandler={this.passNoteHandler}/>
+        <NoteForm indexOfNote={this.props.indexOfNote} selectedItem={this.props.content} passNoteHandler={this.passNoteHandler}/>
       </div>
     );
   }

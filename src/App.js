@@ -81,24 +81,32 @@ const App = () => {
 
   const [noteCapture, setNoteCapture] = useState(notes);
 
-  const [useTitle, setTitle] = useState(notes[0].title);
-  const [useContent, setContent] = useState(notes[0]);
+  const [useContent, setContent] = useState(noteCapture[0]);
+  const [useIndex, setIndex] = useState(0);
 
-  const sendTitle = (title) => {
-    setTitle(title);
-  }
+
 
   const selectedItem = (content) => {
     console.log(content);
     setContent(content);
+    setIndex(noteCapture.findIndex(element => element.id == content.id ));
   }
 
   const addNoteHandler = enteredText => {
     setNoteCapture(prevNotes => {
       const updatedNotes = [...prevNotes];
-      updatedNotes.unshift({ id: Math.random().toString(), title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) });
-      console.log('updated note');
-      return updatedNotes;
+      if(!enteredText.editable) {
+        updatedNotes.unshift({ id: Math.random().toString(), title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) });
+      
+        return updatedNotes;
+      } else {
+        updatedNotes[useIndex] = { id: Math.random().toString(), title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) }
+        return updatedNotes;
+        
+        
+        
+      }
+      
     });
   };
 
@@ -147,7 +155,7 @@ const App = () => {
                   
                   <Col>
                     {/* <NoteContent title={useTitle} content={useContent} onAddNote={addNoteHandler}/> */}
-                    <NoteContent content={useContent} onAddNote={addNoteHandler}/>
+                    <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler}/>
 
 
                   </Col>

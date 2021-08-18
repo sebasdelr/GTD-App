@@ -7,6 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 const NoteForm = (props) => {
 
     const [showAlert, setShowAlert] = useState(false);
+    const [useCanEdit, setCanEdit] = useState(true);
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
@@ -21,6 +22,11 @@ const NoteForm = (props) => {
     const newNote = () => { 
         //can use ref as well
         document.getElementById("note-form").reset();
+        setCanEdit(false);
+    }
+
+    const editNoteHandler = () => {
+        setCanEdit(true);
     }
 
     const checkIfEmpty = title => {
@@ -48,7 +54,7 @@ const NoteForm = (props) => {
 
         if(checkIfEmpty(enteredTitle)) {
             setShowAlert(false);
-            const enteredText = {title: enteredTitle, content: enteredContent};
+            const enteredText = {title: enteredTitle, content: enteredContent, editable: useCanEdit};
 
             props.passNoteHandler(enteredText);
 
@@ -57,7 +63,7 @@ const NoteForm = (props) => {
             console.log("title is empty");
         }
 
-        newNote();
+        // newNote();
 
 
 
@@ -67,17 +73,18 @@ const NoteForm = (props) => {
         <Form  onSubmit={submitHandler} id="note-form">
             
             <Button variant="light" onClick={newNote}>New Note</Button>
-            <Button variant="light" onClick={newNote}>Edit Note</Button>
+            <Button variant="light" onClick={editNoteHandler}>Edit Note</Button>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Note Title</Form.Label>
-                <Form.Control id="note-title" type="input" ref={titleRef} />
+                <Form.Control id="note-title" type="input" ref={titleRef} readOnly/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Note Content</Form.Label>
-                <Form.Control id="note-content" as="textarea" ref={contentRef} rows={3} />
+                <Form.Control id="note-content" as="textarea" ref={contentRef} rows={3} readOnly/>
             </Form.Group>
             {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
-            <Button  type="submit" variant="light" >Save Note</Button>
+            <Button  type="submit" variant="light" disabled>Save Note</Button>
+            <p>{props.indexOfNote}</p>
             
         </Form>
     );
