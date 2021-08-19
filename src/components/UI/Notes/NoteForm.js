@@ -13,15 +13,18 @@ const NoteForm = (props) => {
     //usestate instead? useeffect does not rerender!
     
     const contentRef = useRef();
+    const idRef = useRef();
 
     useEffect(() => {
         document.getElementById("note-title").value = props.selectedItem.title;
         document.getElementById("note-content").value = props.selectedItem.content;
+        document.getElementById("note-id").value = props.selectedItem.id;
     }, [props]);
 
     const newNote = () => { 
         //can use ref as well
         document.getElementById("note-form").reset();
+        document.getElementById("note-id").value = Math.random().toString();
         setCanEdit(false);
     }
 
@@ -50,11 +53,12 @@ const NoteForm = (props) => {
         
         const enteredTitle = titleRef.current.value;
         const enteredContent = contentRef.current.value;
+        const generatedId = idRef.current.value;
 
 
         if(checkIfEmpty(enteredTitle)) {
             setShowAlert(false);
-            const enteredText = {title: enteredTitle, content: enteredContent, editable: useCanEdit};
+            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, editable: useCanEdit};
 
             props.passNoteHandler(enteredText);
 
@@ -74,17 +78,23 @@ const NoteForm = (props) => {
             
             <Button variant="light" onClick={newNote}>New Note</Button>
             <Button variant="light" onClick={editNoteHandler}>Edit Note</Button>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+                <Form.Label>Note Id</Form.Label>
+                <Form.Control id="note-id" type="input" ref={idRef} readOnly/>
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Note Title</Form.Label>
-                <Form.Control id="note-title" type="input" ref={titleRef} readOnly/>
+                <Form.Control id="note-title" type="input" ref={titleRef} />
             </Form.Group>
+            
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Note Content</Form.Label>
-                <Form.Control id="note-content" as="textarea" ref={contentRef} rows={3} readOnly/>
+                <Form.Control id="note-content" as="textarea" ref={contentRef} rows={3} />
             </Form.Group>
             {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
-            <Button  type="submit" variant="light" disabled>Save Note</Button>
-            <p>{props.indexOfNote}</p>
+            <Button  type="submit" variant="light" >Save Note</Button>
+            
             
         </Form>
     );

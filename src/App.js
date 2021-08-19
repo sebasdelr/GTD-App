@@ -95,14 +95,17 @@ const App = () => {
   const addNoteHandler = enteredText => {
     setNoteCapture(prevNotes => {
       const updatedNotes = [...prevNotes];
-      if(!enteredText.editable) {
-        updatedNotes.unshift({ id: Math.random().toString(), title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) });
-      
-        return updatedNotes;
-      } else {
-        updatedNotes[useIndex] = { id: Math.random().toString(), title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) }
+      if(noteCapture.findIndex(element => element.id == enteredText.id ) >= 0) {
+        updatedNotes[useIndex] = { id: enteredText.id, title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) }
+        // setContent(noteCapture[0])
         return updatedNotes;
         
+        
+      } else {
+        
+        updatedNotes.unshift({ id: enteredText.id, title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) });
+        setContent(noteCapture[0]);
+        return updatedNotes;
         
         
       }
