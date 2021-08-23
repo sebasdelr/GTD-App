@@ -115,7 +115,20 @@ const App = () => {
   const deleteNoteHandler = noteId => {
     setNoteCapture(prevNotes => {
       const updatedNotes = prevNotes.filter(note => note.id !== noteId);
-      setContent(updatedNotes[useIndex])
+      if(useIndex == (updatedNotes.length)) {
+        setContent(updatedNotes[0])
+        console.log("out of bounds");
+
+      }
+      else {
+        setContent(useIndex);
+        console.log(updatedNotes.length);
+        console.log(useIndex);
+
+      }
+
+      
+      
       return updatedNotes;
     });
   };
