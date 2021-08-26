@@ -1,21 +1,96 @@
-.navbarside {
-    /* height: 100%;
-    background-color: "#18191A"; */
-}
+
 
 .sidebar{
+    
     /* display: flex;
     height: 100vh;
     overflow: scroll initial;
     background-color: #333; */
     display: flex;
     /* position: fixed; */
-    overflow: scroll initial;
+    /* overflow: scroll initial; */
     left: 0;
     top: 0;
     height: 100vh;
     width: 240px;
     background: #11101d;
-    padding: 6px 14px;
+    /* padding: 6px 14px; */
     transition: all 0.5s ease;
+}
+
+
+.home{
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    opacity: 1;
+    /* pointer-events: none;
+    transition: all 0.5 ease; */
+}
+
+.home .house{
+    font-size: 20px;
+    margin-right: 5px;
+
+}
+
+.home .homebtn{
+    position: absolute;
+    color: #fff;
+    left: 65%;
+    top: 10px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    line-height: 50px;
+    /* transform: translateX(-50%); */
+
+
+}
+
+.sideitems {
+    margin-top: 20px;
+}
+
+.sideitems .sidelink{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+}
+
+.sideitems .sidelink .search{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    /* border-radius: 12px; */
+    outline: none;
+    border: none;
+    background: #1d1b31;
+    padding-left: 50px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.sideitems .sidelink .magnifying{
+    margin-top: 15px;
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    font-size: 22px;
+    /* transition: all 0.5 ease; */
+}
+
+.sideitems .bxicon{
+    
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
 }

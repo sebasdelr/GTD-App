@@ -138,58 +138,58 @@ const App = () => {
 
   return (
 
-    <Router>
-      <CaptureProvider>
-        {!isLoggedIn &&
-          <Container>
-            <Row>
-              <Col md={{ span: 6, offset: 3 }}>
-              <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />
-              </Col>
-            </Row>
-          </Container>
-        
-        }
-  
-        {isLoggedIn &&
+    <React.Fragment>
 
-          <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
-            <Header onLogout={logoutHandler}/>
-            <Row >
-              <Col xs={3} md={2}>
-                <Sidebar></Sidebar>
-              </Col>
-              <Col>
-                <Row >
-              
+      {!isLoggedIn &&
+        <Container>
+          <Row>
+            <Col md={{ span: 6, offset: 3 }}>
+            <LoginForm onLogin={loginHandler} resultMessage={isValidLogin} />
+            </Col>
+          </Row>
+        </Container>
+      
+      }
 
-                  <Col xs={3} md={2}>
-                    {/* <Items list={noteCapture} getTitle={sendTitle} getContent={sendContent}  onDeleteItem={deleteNoteHandler}/> */}
-                    <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
-                  </Col>
-                  
-                  
-                  <Col>
-                    {/* <NoteContent title={useTitle} content={useContent} onAddNote={addNoteHandler}/> */}
-                    <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler}/>
+      {isLoggedIn &&
 
-
-                  </Col>
-                  
-                </Row>
-                {/* <Row className="justify-content-md-center">
-                  <Col>
-                    <Dashboard />
-                  </Col>
-                </Row> */}
-              </Col>
-            </Row>
+        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
+          <Header onLogout={logoutHandler}/>
+          <Row >
+            <Col xs={3} md={2}>
+              <Sidebar></Sidebar>
+            </Col>
+            <Col>
+              <Row >
             
-          </Container>
-        }
-      </CaptureProvider>
 
-    </Router>
+                <Col xs={3} md={2}>
+                  {/* <Items list={noteCapture} getTitle={sendTitle} getContent={sendContent}  onDeleteItem={deleteNoteHandler}/> */}
+                  <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
+                </Col>
+                
+                
+                <Col>
+                  {/* <NoteContent title={useTitle} content={useContent} onAddNote={addNoteHandler}/> */}
+                  <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler}/>
+
+
+                </Col>
+                
+              </Row>
+              {/* <Row className="justify-content-md-center">
+                <Col>
+                  <Dashboard />
+                </Col>
+              </Row> */}
+            </Col>
+          </Row>
+          
+        </Container>
+      }
+
+
+    </React.Fragment>
 
     // <div className="App">
       
