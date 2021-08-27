@@ -4,6 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
+import './NoteForm.css';
+
 const NoteForm = (props) => {
 
     const [showAlert, setShowAlert] = useState(false);

@@ -1,5 +1,3 @@
-
-
 .sidebar{
     
     /* display: flex;
@@ -17,7 +15,6 @@
     /* padding: 6px 14px; */
     transition: all 0.5s ease;
 }
-
 
 .home{
     color: #fff;
@@ -39,7 +36,7 @@
 .home .homebtn{
     position: absolute;
     color: #fff;
-    left: 65%;
+    left: 80%;
     top: 10px;
     height: 30px;
     width: 30px;
@@ -84,13 +81,18 @@
     z-index: 99;
     color: #fff;
     font-size: 22px;
+    min-width: 50px;
+
     /* transition: all 0.5 ease; */
 }
 
 .sideitems .bxicon{
-    
-    min-width: 50px;
+
     border-radius: 12px;
     line-height: 50px;
     text-align: center;
+}
+
+.sideitems .linkName{
+    padding-left: 10px;
 }

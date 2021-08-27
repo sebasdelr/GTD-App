@@ -34,11 +34,11 @@ const Sidebar = () => {
                     <BiSearch className="magnifying bxicon"/>
                     <Form.Control placeholder="Search..." className="search" />
                 </Form.Group>
-                <Nav.Link eventKey="link-1" className="sidelink" ><Create className="bxicon"/>Capture</Nav.Link>
-                <Nav.Link eventKey="link-2" className="sidelink"><List className="bxicon"/>Clarify</Nav.Link>
-                <Nav.Link eventKey="link-3" className="sidelink"><Folder className="bxicon"/>Organize</Nav.Link>
-                <Nav.Link eventKey="link-4" className="sidelink"><MenuBook className="bxicon"/>Review</Nav.Link>
-                <Nav.Link eventKey="link-5" className="sidelink"><DirectionsWalk className="bxicon"/>Engage</Nav.Link>
+                <Nav.Link eventKey="link-1" className="sidelink" ><Create className="bxicon"/><span className="linkName">Capture</span></Nav.Link>
+                <Nav.Link eventKey="link-2" className="sidelink"><List className="bxicon"/><span className="linkName">Clarify</span></Nav.Link>
+                <Nav.Link eventKey="link-3" className="sidelink"><Folder className="bxicon"/><span className="linkName">Organize</span></Nav.Link>
+                <Nav.Link eventKey="link-4" className="sidelink"><MenuBook className="bxicon"/><span className="linkName">Review</span></Nav.Link>
+                <Nav.Link eventKey="link-5" className="sidelink"><DirectionsWalk className="bxicon"/><span className="linkName">Engage</span></Nav.Link>
             </Container>
             
 

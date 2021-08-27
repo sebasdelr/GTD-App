@@ -115,6 +115,7 @@ const App = () => {
   const deleteNoteHandler = noteId => {
     setNoteCapture(prevNotes => {
       const updatedNotes = prevNotes.filter(note => note.id !== noteId);
+      //also need validation when its the last note that is deleted and selected, need validation when its the first note that is selected
       if(useIndex == (updatedNotes.length)) {
         setContent(updatedNotes[0])
         console.log("out of bounds");
@@ -156,8 +157,8 @@ const App = () => {
         <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
           <Header onLogout={logoutHandler}/>
           <Row >
-            <Col xs={3} md={2}>
-              <Sidebar></Sidebar>
+            <Col md="auto" className="sidebar">
+              <Sidebar/>
             </Col>
             <Col>
               <Row >
