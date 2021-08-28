@@ -30,12 +30,12 @@ const NoteItem = (props) => {
 
     return(
         <ListGroup variant="flush" onMouseEnter={e => {
-            setStyle({display: 'inline'});
+            setStyle({position: 'relative' , display: 'inline'});
         }}
         onMouseLeave={e => {
             setStyle({display: 'none'})
         }}>
-            <ListGroup.Item onClick={toggleSelect}>{props.listItem.title}</ListGroup.Item><Clear style={style}  onClick={deleteItem}/>
+            <ListGroup.Item onClick={toggleSelect}>{props.listItem.title}<Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
         </ListGroup>
 
 

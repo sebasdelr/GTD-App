@@ -31,7 +31,7 @@ const Dashboard = () => {
 							<Card.Text>
 							Capture anything that crosses your mind
 							</Card.Text>
-							<Button variant="primary">Capture</Button>
+							{/* <Button variant="primary">Capture</Button> */}
 						</Card.Body>
 					</Card>
 					<Card style={{ width: '18rem', padding: '5px'  }} >
@@ -41,7 +41,7 @@ const Dashboard = () => {
 							<Card.Text>
 							Process what you've captured.
 							</Card.Text>
-							<Button variant="primary">Clarify</Button>
+							{/* <Button variant="primary">Clarify</Button> */}
 						</Card.Body>
 					</Card>
 					<Card style={{ width: '18rem' }}>
@@ -51,7 +51,7 @@ const Dashboard = () => {
 							<Card.Text>
 							Put everything in the right place.
 							</Card.Text>
-							<Button variant="primary">Organize</Button>
+							{/* <Button variant="primary">Organize</Button> */}
 						</Card.Body>
 					</Card>
 					<Card style={{ padding: '5px', width: '18rem' }}>
@@ -61,7 +61,7 @@ const Dashboard = () => {
 							<Card.Text>
 							Go over your lists.
 							</Card.Text>
-							<Button variant="primary">Review</Button>
+							{/* <Button variant="primary">Review</Button> */}
 						</Card.Body>
 					</Card>
 					<Card style={{ width: '18rem' }}>
@@ -71,7 +71,7 @@ const Dashboard = () => {
 							<Card.Text>
 							Get to work on the important stuff.
 							</Card.Text>
-							<Button variant="primary">Engage</Button>
+							{/* <Button variant="primary">Engage</Button> */}
 						</Card.Body>
 					</Card>
 				
