@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Alert from 'react-bootstrap/Alert';
+
+import { Form, Button, Alert, Container, Row, Col} from 'react-bootstrap/'
+import { BiEdit, BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 import './NoteForm.css';
 
@@ -77,25 +77,38 @@ const NoteForm = (props) => {
 
     return (
         <Form  onSubmit={submitHandler} id="note-form">
-            
-            <Button variant="light" onClick={newNote}>New Note</Button>
-            <Button variant="light" onClick={editNoteHandler}>Edit Note</Button>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                <Form.Label>Note Id</Form.Label>
-                <Form.Control id="note-id" type="input" ref={idRef} readOnly/>
-            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Note Title</Form.Label>
-                <Form.Control id="note-title" type="input" ref={titleRef} />
-            </Form.Group>
+            <Row>
+                <Col></Col>
+                <Col xs={6}>
+                    <Button variant="light" onClick={newNote} className="notebutton"><BiFileBlank/> New Note</Button>{' '}
+                    <Button variant="light" onClick={editNoteHandler} className="notebutton"><BiEdit/> Edit Note</Button>{' '}
+                    <Button variant="light" className="notebutton"><BiTrash/> Delete Note</Button>{' '}
+                    <Button  type="submit" variant="light"  className="notebutton"><BiSave/> Save Note</Button>
+                </Col>
+            </Row>
+            <Row className="mb-3">
+                <Form.Group  controlId="exampleForm.ControlInput2">
+                    <Form.Control id="note-id" type="hidden" ref={idRef} readOnly/>
+                </Form.Group>
+                <Form.Group  controlId="exampleForm.ControlInput1">
+                    <Form.Label>Note Title</Form.Label>
+                    <Form.Control id="note-title" type="input" ref={titleRef} />
+                </Form.Group>
+            </Row>
+
+            
+            
+            
+
+
             
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Note Content</Form.Label>
                 <Form.Control id="note-content" as="textarea" ref={contentRef} rows={3} />
             </Form.Group>
             {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
-            <Button  type="submit" variant="light" >Save Note</Button>
+            
             
             
         </Form>

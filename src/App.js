@@ -161,28 +161,26 @@ const App = () => {
               <Sidebar/>
             </Col>
             <Col>
-              <Row >
+              {/* <Row >
             
 
                 <Col xs={3} md={2}>
-                  {/* <Items list={noteCapture} getTitle={sendTitle} getContent={sendContent}  onDeleteItem={deleteNoteHandler}/> */}
                   <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
                 </Col>
                 
                 
                 <Col>
-                  {/* <NoteContent title={useTitle} content={useContent} onAddNote={addNoteHandler}/> */}
                   <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler}/>
 
 
                 </Col>
                 
-              </Row>
-              {/* <Row className="justify-content-md-center">
-                <Col>
+              </Row> */}
+              <Row className="justify-content-md-center">
+                <Col style={{padding: '0px'}}>
                   <Dashboard />
                 </Col>
-              </Row> */}
+              </Row>
             </Col>
           </Row>
           
