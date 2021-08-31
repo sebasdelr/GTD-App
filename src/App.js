@@ -84,6 +84,8 @@ const App = () => {
   const [useContent, setContent] = useState(noteCapture[0]);
   const [useIndex, setIndex] = useState(0);
 
+  const [displaySection, setDisplaySection] = useState('dashboard');
+
 
 
   const selectedItem = (content) => {
@@ -134,6 +136,39 @@ const App = () => {
     });
   };
 
+  const sectionHandler = () => {
+    setDisplaySection('notes');
+  }
+
+  const renderSwitch = section => {
+    switch(section) {
+      case 'dashboard':
+        return (
+          <Row className="justify-content-md-center">
+            <Col style={{padding: '0px'}}>
+              <Dashboard />
+            </Col>
+          </Row>
+        );
+      case 'notes':
+        return(
+          <Row >
+            
+            <Col xs={3} md={2}>
+              <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
+            </Col>
+            <Col>
+              <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler}/>
+            </Col>
+          
+        </Row>
+        );
+      default:
+        return '';
+    }
+  }
+  
+
 
 //need to make so that either or show up not hide header
 
@@ -158,29 +193,11 @@ const App = () => {
           <Header onLogout={logoutHandler}/>
           <Row >
             <Col md="auto" className="sidebar">
-              <Sidebar/>
+              <Sidebar selectedSection={sectionHandler}/>
             </Col>
             <Col>
-              {/* <Row >
-            
+              {renderSwitch(displaySection)}
 
-                <Col xs={3} md={2}>
-                  <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
-                </Col>
-                
-                
-                <Col>
-                  <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler}/>
-
-
-                </Col>
-                
-              </Row> */}
-              <Row className="justify-content-md-center">
-                <Col style={{padding: '0px'}}>
-                  <Dashboard />
-                </Col>
-              </Row>
             </Col>
           </Row>
           

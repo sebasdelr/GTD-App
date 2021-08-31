@@ -1,4 +1,4 @@
-import React from 'react';
+import  React, { useState, useRef } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -24,11 +24,16 @@ import {
 
 import './Sidebar.css';
 
-const Sidebar = () => {
+
+
+const Sidebar = (props) => {
+
+
+
 
     return (
         <Nav defaultActiveKey="/home" className="flex-column sidebar" >
-            <Nav.Link href="/home"  className="home"><Home className="house"/>Home<BiMenu className="homebtn"/></Nav.Link>
+            <Nav.Link href="#"  className="home"><Home className="house" id="dashboard"/>Home<BiMenu className="homebtn"/></Nav.Link>
             <Container className="sideitems">
                 <Form.Group className="sidelink">
                     <BiSearch className="magnifying bxicon"/>
