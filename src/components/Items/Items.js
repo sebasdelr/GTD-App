@@ -9,6 +9,31 @@ import ListGroup from 'react-bootstrap/ListGroup';
 function Items(props){
 
     const {list} = props;
+
+    const listHandler = list => {
+        if(list.length > 0) {
+            return (
+                list.map(note => 
+                
+                    <NoteItem
+    
+                    listItem={note}
+                    // title={note.title} 
+                    selectedItem={selectedItem}
+                    // content = {note.content}
+                    // selectedItemContent={selectedContent}
+                    deleteItem={selectedId}
+                    //add on click here to delete?
+                />)
+            );
+        } else {
+            return (
+                <p>No Items Found</p>
+            );
+
+        }
+    }
+
     const selectedItem = (item) => {
         props.selectedItem(item);
     };
@@ -23,18 +48,7 @@ function Items(props){
     
     return(
         <ListGroup >
-            {list.map(note => 
-                
-                <NoteItem
-
-                listItem={note}
-                // title={note.title} 
-                selectedItem={selectedItem}
-                // content = {note.content}
-                // selectedItemContent={selectedContent}
-                deleteItem={selectedId}
-                //add on click here to delete?
-            />)}
+            {listHandler(list)}
 
         </ListGroup>
 

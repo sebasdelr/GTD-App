@@ -17,18 +17,26 @@ const NoteForm = (props) => {
     const contentRef = useRef();
     const idRef = useRef();
 
-    useEffect(() => {
-        document.getElementById("note-title").value = props.selectedItem.title;
-        document.getElementById("note-content").value = props.selectedItem.content;
-        document.getElementById("note-id").value = props.selectedItem.id;
-    }, [props]);
-
+    
     const newNote = () => { 
         //can use ref as well
         document.getElementById("note-form").reset();
         document.getElementById("note-id").value = Math.random().toString();
         setCanEdit(false);
     }
+
+    useEffect(() => {
+        if(typeof props.selectedItem == 'undefined') {
+            newNote();
+        } else {
+            document.getElementById("note-title").value = props.selectedItem.title;
+            document.getElementById("note-content").value = props.selectedItem.content;
+            document.getElementById("note-id").value = props.selectedItem.id;
+
+        }
+
+    }, [props]);
+
 
     const editNoteHandler = () => {
         setCanEdit(true);
