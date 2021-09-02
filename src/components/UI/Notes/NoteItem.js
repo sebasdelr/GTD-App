@@ -35,7 +35,7 @@ const NoteItem = (props) => {
         onMouseLeave={e => {
             setStyle({display: 'none'})
         }}>
-            <ListGroup.Item onClick={toggleSelect}>{props.listItem.title}<Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
+            <ListGroup.Item><span  onClick={toggleSelect}>{props.listItem.title}</span><Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
         </ListGroup>
 
 

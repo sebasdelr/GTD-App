@@ -15,7 +15,7 @@ function Items(props){
             return (
                 list.map(note => 
                 
-                    <NoteItem
+                    <NoteItem key={note.id}
     
                     listItem={note}
                     // title={note.title} 

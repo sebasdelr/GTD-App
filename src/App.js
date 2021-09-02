@@ -119,10 +119,7 @@ const App = () => {
       const updatedNotes = prevNotes.filter(note => note.id !== noteId);
       //also need validation when its the last note that is deleted and selected, need validation when its the first note that is selected
       console.log(updatedNotes.length);
-      if(updatedNotes.length === 0){
-        console.log("No items");
-        
-      }
+
       if(useIndex == (updatedNotes.length)) {
         
         setContent(updatedNotes[0]);

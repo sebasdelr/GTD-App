@@ -26,13 +26,16 @@ const NoteForm = (props) => {
     }
 
     useEffect(() => {
-        if(typeof props.selectedItem == 'undefined') {
+        if(typeof props.selectedItem != 'object') {
             newNote();
+            
+     
         } else {
+            console.log(typeof props.selectedItem);
             document.getElementById("note-title").value = props.selectedItem.title;
             document.getElementById("note-content").value = props.selectedItem.content;
             document.getElementById("note-id").value = props.selectedItem.id;
-
+            
         }
 
     }, [props]);
@@ -96,24 +99,18 @@ const NoteForm = (props) => {
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Form.Group  controlId="exampleForm.ControlInput2">
-                    <Form.Control id="note-id" type="hidden" ref={idRef} readOnly/>
+                <Form.Group  controlId="note-id">
+                    <Form.Control type="hidden" ref={idRef} readOnly/>
                 </Form.Group>
-                <Form.Group  controlId="exampleForm.ControlInput1">
+                <Form.Group  controlId="note-title">
                     <Form.Label>Note Title</Form.Label>
-                    <Form.Control id="note-title" type="input" ref={titleRef} />
+                    <Form.Control type="input" ref={titleRef} />
                 </Form.Group>
             </Row>
-
-            
-            
-            
-
-
-            
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+           
+            <Form.Group className="mb-3" controlId="note-content">
                 <Form.Label>Note Content</Form.Label>
-                <Form.Control id="note-content" as="textarea" ref={contentRef} rows={3} />
+                <Form.Control as="textarea" ref={contentRef} rows={3} />
             </Form.Group>
             {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
             
