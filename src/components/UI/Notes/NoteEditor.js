@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -11,7 +10,6 @@ class NoteEditor extends Component {
     };
 
     render() {
-
 
         return (
             <Editor

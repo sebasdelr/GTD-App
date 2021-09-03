@@ -2,7 +2,7 @@ import "./Dashboard.css";
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import {Card, Button, CardGroup, Image, Row, Col} from 'react-bootstrap/';
+import {Card, CardGroup, Image, Row, Col} from 'react-bootstrap/';
 
 import Create from '@material-ui/icons/Create';
 import List from '@material-ui/icons/List';

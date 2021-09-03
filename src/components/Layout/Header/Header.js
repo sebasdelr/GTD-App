@@ -3,10 +3,8 @@ import React from 'react';
 import "./Header.css";
 
 import {
-    Container, Row, Col, Form, Input, Button, Navbar, Nav,
-    NavbarBrand, NavLink, NavItem, DropdownButton,
-    DropdownToggle, Dropdown
-} from 'react-bootstrap';
+    Button, Navbar, Nav,
+    NavItem } from 'react-bootstrap';
 
 const Header = (props) => {
 

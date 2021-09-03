@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState, ContentState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import NoteViewer from './NoteViewer';
-import NoteEditor from './NoteEditor';
+// import NoteViewer from './NoteViewer';
+// import NoteEditor from './NoteEditor';
 import htmlToDraft from 'html-to-draftjs';
 import NoteForm from './NoteForm';
 
@@ -15,10 +15,10 @@ class NoteContent extends Component {
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
-      const editorState = EditorState.createWithContent(contentState);
+      // const editorState = EditorState.createWithContent(contentState);
       const viewerState = EditorState.createWithContent(contentState);
       this.state = {
-        editorState,
+        // editorState,
         viewerState,
       };
     }
@@ -34,9 +34,13 @@ class NoteContent extends Component {
     this.props.onAddNote(enteredText);
   }
 
+  deleteNoteHandler: Function = (id) => {
+    this.props.onDeleteItem(id);
+  }
+
 
   render() {
-    const { editorState } = this.state;
+    // const { editorState } = this.state;
     return (
       <div>
         {/* <NoteEditor
@@ -46,7 +50,7 @@ class NoteContent extends Component {
         <NoteViewer
           editorState={this.state.viewerState}
         /> */}
-        <NoteForm indexOfNote={this.props.indexOfNote} selectedItem={this.props.content} passNoteHandler={this.passNoteHandler}/>
+        <NoteForm indexOfNote={this.props.indexOfNote} selectedItem={this.props.content} passNoteHandler={this.passNoteHandler} deleteNoteHandler={this.deleteNoteHandler}/>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 
-import { Form, Button, Alert, Container, Row, Col} from 'react-bootstrap/'
+import { Form, Button, Alert, Row, Col} from 'react-bootstrap/'
 import { BiEdit, BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 import './NoteForm.css';
@@ -57,6 +57,12 @@ const NoteForm = (props) => {
         }
     }
 
+    const deleteNoteHandler = () => {
+        const generatedId = idRef.current.value;
+
+        props.deleteNoteHandler(generatedId);
+    }
+
     
 
     
@@ -94,7 +100,7 @@ const NoteForm = (props) => {
                 <Col xs={6}>
                     <Button variant="light" onClick={newNote} className="notebutton"><BiFileBlank/> New Note</Button>{' '}
                     <Button variant="light" onClick={editNoteHandler} className="notebutton"><BiEdit/> Edit Note</Button>{' '}
-                    <Button variant="light" className="notebutton"><BiTrash/> Delete Note</Button>{' '}
+                    <Button variant="light" onClick={deleteNoteHandler} className="notebutton"><BiTrash/> Delete Note</Button>{' '}
                     <Button  type="submit" variant="light"  className="notebutton"><BiSave/> Save Note</Button>
                 </Col>
             </Row>

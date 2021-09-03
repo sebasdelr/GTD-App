@@ -1,4 +1,4 @@
-// import "./Items.css";
+import "./Items.css";
 // import "./fontawesome-all.min.css";
 import NoteItem from '../UI/Notes/NoteItem';
 
@@ -15,7 +15,7 @@ function Items(props){
             return (
                 list.map(note => 
                 
-                    <NoteItem key={note.id}
+                    <NoteItem className="selected" key={note.id}
     
                     listItem={note}
                     // title={note.title} 
@@ -36,10 +36,6 @@ function Items(props){
 
     const selectedItem = (item) => {
         props.selectedItem(item);
-    };
-
-    const selectedContent = (id) => {
-        props.getContent(id);
     };
 
     const selectedId = (id) => {

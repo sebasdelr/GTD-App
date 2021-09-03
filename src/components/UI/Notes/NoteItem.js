@@ -13,7 +13,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 const NoteItem = (props) => {
 
-    const[isSelected, setSelected] = useState('false');
     const [style, setStyle] = useState({display: 'none'});
 
     //let noteContent = props.content;
@@ -35,7 +34,7 @@ const NoteItem = (props) => {
         onMouseLeave={e => {
             setStyle({display: 'none'})
         }}>
-            <ListGroup.Item><span  onClick={toggleSelect}>{props.listItem.title}</span><Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
+            <ListGroup.Item ><span  onClick={toggleSelect}>{props.listItem.title}</span><Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
         </ListGroup>
 
 

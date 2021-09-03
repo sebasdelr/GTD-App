@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -9,12 +9,7 @@ import NoteContent from './components/UI/Notes/NoteContent';
 import LoginForm from './components/UI/Login/LoginForm';
 import Header from './components//Layout/Header/Header';
 import Dashboard from './components/UI/Dashboard/Dashboard';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Sidebar from './components/Layout/Sidebar/Sidebar';
-
-import CaptureProvider from './capture/CaptureProvider';
-
-import { BrowserRouter as Router } from 'react-router-dom';
 
 
 
@@ -90,13 +85,13 @@ const App = () => {
 
   const selectedItem = (content) => {
     setContent(content);
-    setIndex(noteCapture.findIndex(element => element.id == content.id ));
+    setIndex(noteCapture.findIndex(element => element.id === content.id ));
   }
 
   const addNoteHandler = enteredText => {
     setNoteCapture(prevNotes => {
       const updatedNotes = [...prevNotes];
-      if(noteCapture.findIndex(element => element.id == enteredText.id ) >= 0) {
+      if(noteCapture.findIndex(element => element.id === enteredText.id ) >= 0) {
         updatedNotes[useIndex] = { id: enteredText.id, title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) }
         setContent(updatedNotes[useIndex])
         return updatedNotes;
@@ -120,7 +115,7 @@ const App = () => {
       //also need validation when its the last note that is deleted and selected, need validation when its the first note that is selected
       console.log(updatedNotes.length);
 
-      if(useIndex == (updatedNotes.length)) {
+      if(useIndex === (updatedNotes.length)) {
         
         setContent(updatedNotes[0]);
         console.log("out of bounds");
@@ -161,7 +156,7 @@ const App = () => {
               <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
             </Col>
             <Col>
-              <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler}/>
+              <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler} onDeleteItem={deleteNoteHandler}/>
             </Col>
           
         </Row>
