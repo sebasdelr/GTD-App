@@ -41,7 +41,6 @@ const App = () => {
       setIsValidLogin();
 		}
 		else{
-		console.log("invalid credentials");
     setIsValidLogin("Invalid Credentials");
 		}
 
@@ -113,18 +112,16 @@ const App = () => {
     setNoteCapture(prevNotes => {
       const updatedNotes = prevNotes.filter(note => note.id !== noteId);
       //also need validation when its the last note that is deleted and selected, need validation when its the first note that is selected
-      console.log(updatedNotes.length);
+     
 
       if(useIndex === (updatedNotes.length)) {
         
         setContent(updatedNotes[0]);
-        console.log("out of bounds");
+
 
       }
       else {
         setContent(useIndex);
-        console.log(updatedNotes.length);
-        console.log(useIndex);
 
       }
 
@@ -153,7 +150,7 @@ const App = () => {
           <Row >
             
             <Col xs={3} md={2}>
-              <Items list={noteCapture} onDeleteItem={deleteNoteHandler} selectedItem={selectedItem}/>
+              <Items list={noteCapture} onDeleteItem={deleteNoteHandler} indexOfNote={useIndex} selectedItem={selectedItem}/>
             </Col>
             <Col>
               <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler} onDeleteItem={deleteNoteHandler}/>

@@ -15,11 +15,10 @@ const NoteItem = (props) => {
 
     const [style, setStyle] = useState({display: 'none'});
 
-    //let noteContent = props.content;
-
     const toggleSelect = () => {
 
         props.selectedItem(props.listItem);
+ 
 
     };
 
@@ -28,13 +27,14 @@ const NoteItem = (props) => {
     }
 
     return(
-        <ListGroup variant="flush" onMouseEnter={e => {
+        <ListGroup  variant="flush" onMouseEnter={e => {
             setStyle({position: 'relative' , display: 'inline'});
         }}
         onMouseLeave={e => {
             setStyle({display: 'none'})
         }}>
-            <ListGroup.Item ><span  onClick={toggleSelect}>{props.listItem.title}</span><Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
+            <ListGroup.Item className={props.selectStyle}>
+            <span  onClick={toggleSelect}>{props.listItem.title}</span><Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
         </ListGroup>
 
 

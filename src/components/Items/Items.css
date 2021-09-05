@@ -8,9 +8,9 @@
 }
 
 .selected {
-  background: blue !important;
-  border: brown;
+  background: rgb(240, 240, 243) !important;
 }
+
 
 .item-menu p {
   margin: 1rem;

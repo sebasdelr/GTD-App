@@ -1,3 +1,5 @@
+import React from 'react';
+
 import "./Items.css";
 // import "./fontawesome-all.min.css";
 import NoteItem from '../UI/Notes/NoteItem';
@@ -10,21 +12,35 @@ function Items(props){
 
     const {list} = props;
 
+
     const listHandler = list => {
         if(list.length > 0) {
             return (
-                list.map(note => 
-                
-                    <NoteItem className="selected" key={note.id}
+                list.map((note, index) => {
+                    let isStyle = '';
+                    if(props.indexOfNote === index) {
+                        isStyle = 'selected';
+                        console.log(isStyle);
+                    }
+                    console.log(index);
+                    return (
+                        
+                        <NoteItem key={note.id}
+
+                        selectStyle={isStyle}
+        
+                        listItem={note}
     
-                    listItem={note}
-                    // title={note.title} 
-                    selectedItem={selectedItem}
-                    // content = {note.content}
-                    // selectedItemContent={selectedContent}
-                    deleteItem={selectedId}
-                    //add on click here to delete?
-                />)
+                        selectedItem={selectedItem}
+    
+                        deleteItem={selectedId}
+        
+                        />
+                    );
+
+                }
+                
+                )
             );
         } else {
             return (
