@@ -2,7 +2,7 @@ import "./Dashboard.css";
 
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import {Card, CardGroup, Image, Row, Col} from 'react-bootstrap/';
+import {Card, Image, Row, Col} from 'react-bootstrap/';
 
 import Create from '@material-ui/icons/Create';
 import List from '@material-ui/icons/List';
@@ -90,12 +90,6 @@ const Dashboard = () => {
 						</Card>
 					</Col>
 				</Row>
-				<CardGroup>
-
-
-
-				
-				</CardGroup>
 			</div>
 		</div>
 	);

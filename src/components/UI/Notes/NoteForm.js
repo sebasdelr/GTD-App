@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 
-import { Form, Button, Alert, Row, Col} from 'react-bootstrap/'
+import { Form, Button, Alert, Row, Col} from 'react-bootstrap/';
 import { BiEdit, BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 import './NoteForm.css';
@@ -31,7 +31,7 @@ const NoteForm = (props) => {
             
      
         } else {
-            console.log(typeof props.selectedItem);
+
             document.getElementById("note-title").value = props.selectedItem.title;
             document.getElementById("note-content").value = props.selectedItem.content;
             document.getElementById("note-id").value = props.selectedItem.id;
@@ -83,7 +83,7 @@ const NoteForm = (props) => {
 
         } else {
             setShowAlert(true);
-            console.log("title is empty");
+
         }
 
         // newNote();

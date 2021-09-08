@@ -9,6 +9,7 @@ import NoteContent from './components/UI/Notes/NoteContent';
 import LoginForm from './components/UI/Login/LoginForm';
 import Header from './components//Layout/Header/Header';
 import Dashboard from './components/UI/Dashboard/Dashboard';
+import Projects from './components/UI/Projects/Projects';
 import Sidebar from './components/Layout/Sidebar/Sidebar';
 
 
@@ -51,6 +52,20 @@ const App = () => {
 		localStorage.removeItem('isLoggedIn');
 		setIsLoggedIn(false);
 	};
+
+  const projects = [
+    {
+      id: 'p1',
+      title: 'Buy new car',
+      description: 'Need to find a new car',
+    },
+    {
+      id: 'p2',
+      title: 'Vacation',
+      description: 'Christmas vacation',
+
+    },
+  ];
    
   const notes = [
     {
@@ -78,7 +93,7 @@ const App = () => {
   const [useContent, setContent] = useState(noteCapture[0]);
   const [useIndex, setIndex] = useState(0);
 
-  const [displaySection, setDisplaySection] = useState('notes');
+  const [displaySection, setDisplaySection] = useState('projects');
 
 
 
@@ -132,7 +147,7 @@ const App = () => {
   };
 
   const sectionHandler = () => {
-    setDisplaySection('notes');
+    setDisplaySection('projects');
   }
 
   const renderSwitch = section => {
@@ -158,6 +173,15 @@ const App = () => {
           
         </Row>
         );
+        case 'projects':
+          return (
+            <Row className="justify-content-md-center">
+              <Col style={{padding: '0px'}}>
+                <Projects list={projects}/>
+              </Col>
+            </Row>
+          );
+
       default:
         return '';
     }
