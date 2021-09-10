@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 const ProjectForm = (props) => {
 
@@ -9,11 +8,6 @@ const ProjectForm = (props) => {
 		event.preventDefault();
 		
 		const projectName = projectInputRef.current.value;
-
-
-		props.onLogin(userName, passWord);
-
-
 
 	};
 
@@ -24,8 +18,7 @@ const ProjectForm = (props) => {
     return (
 		<Form onSubmit={modalCloseHandler}>
 
-			<div className="backdrop"></div>
-			<div className="project-form">
+
 				<Form.Group className="mb-3" >
 					<Form.Label>Project Name</Form.Label>
 					<input
@@ -35,8 +28,6 @@ const ProjectForm = (props) => {
 						ref={projectInputRef}
 					></input>
 				</Form.Group>
-				<Button type="submit">Login</Button>
-			</div>
 
 		</Form>
 	);
