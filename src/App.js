@@ -89,6 +89,7 @@ const App = () => {
   ];
 
   const [noteCapture, setNoteCapture] = useState(notes);
+  const [projectCapture, setProjectCapture] = useState(projects);
 
   const [useContent, setContent] = useState(noteCapture[0]);
   const [useIndex, setIndex] = useState(0);
@@ -100,6 +101,20 @@ const App = () => {
   const selectedItem = (content) => {
     setContent(content);
     setIndex(noteCapture.findIndex(element => element.id === content.id ));
+  }
+
+  const addProjectHandler = enteredContent => {
+    setProjectCapture(prevProjects => {
+      const updatedProjects = [...prevProjects];
+
+        
+      updatedProjects.unshift({ id: enteredContent.id, title: enteredContent.title, description: enteredContent.description });
+      setContent(updatedProjects[0])
+      return updatedProjects;
+
+      
+    });
+
   }
 
   const addNoteHandler = enteredText => {
@@ -177,7 +192,7 @@ const App = () => {
           return (
             <Row className="justify-content-md-center">
               <Col style={{padding: '0px'}}>
-                <Projects list={projects}/>
+                <Projects list={projectCapture} onAddProject={addProjectHandler}/>
               </Col>
             </Row>
           );

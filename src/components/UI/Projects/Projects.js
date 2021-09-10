@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import ProjectForm from './ProjectForm';
 
-import {Card, Row, Col, Button, Modal} from 'react-bootstrap/';
+import {Card, Row, Col, Button} from 'react-bootstrap/';
 import { BiEdit, BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 const Projects = (props) => {
@@ -46,6 +46,10 @@ const Projects = (props) => {
         }
     };
 
+    const passProjectHandler = (enteredText) => {
+        props.onAddProject(enteredText);
+    }
+
     return (
         <React.Fragment>
             <Row>
@@ -54,29 +58,15 @@ const Projects = (props) => {
                     <Button variant="light" className="" onClick={handleShow}><BiFileBlank/> New Project</Button>{' '}
                     <Button variant="light" className=""><BiEdit/> Edit Project</Button>{' '}
                     <Button variant="light" className=""><BiTrash/> Delete Project</Button>{' '}
-                    <Button  type="submit" className=""><BiSave/> Save Project</Button>
+                    <Button  variant="light" className=""><BiSave/> Save Project</Button>
                 </Col>
             </Row>
 
             <Row style={{ padding: '15px 15px'  }} >
                 {projectListHandler(list)}
             </Row>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                <Modal.Title>New project</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <ProjectForm/>
-                </Modal.Body>
-                <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                </Button>
-                </Modal.Footer>
-            </Modal>
+            <ProjectForm show={show} onHide={handleClose} passProjectHandler={passProjectHandler}/>
+
 
         </React.Fragment>
 
