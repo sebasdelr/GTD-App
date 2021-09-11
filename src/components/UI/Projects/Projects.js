@@ -1,36 +1,48 @@
 import React, { useState } from 'react';
 
 import ProjectForm from './ProjectForm';
+import Project from './Project';
 
 import {Card, Row, Col, Button} from 'react-bootstrap/';
 import { BiEdit, BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
+
+
 const Projects = (props) => {
     const [show, setShow] = useState(false);
+    const [isSelected, setIsSelected] = useState('');
+    
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const {list} = props;
 
+    const selectedProjectHandler = (id) => {
+        setIsSelected(id);
+    };
+
+    let pclass = "dashboard-card";
+
+
+
     
     const projectListHandler = list => {
         if(list.length > 0) {
             return (
                 list.map((note) => {
+                    if(isSelected === note.id) {
+                        
+                        pclass = "dashboard-card active";
+                    } else {
+                        pclass = "dashboard-card";
+                    }
+                    console.log(pclass);
 
                     return (
                         <Col>
-                            <Card className="dashboard-card">
-                                <Card.Body>
-                                    
-                                    <Card.Title>{note.title}</Card.Title>
-                                    <Card.Text>
-                                    {note.description}
-                                    </Card.Text>
+                            <Project content={note} selectedProject={selectedProjectHandler} selectedClass={pclass}/>
 
-                                </Card.Body>
-                            </Card>
                         </Col>
                     );
 
