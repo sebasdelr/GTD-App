@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 
 
@@ -9,6 +9,40 @@ const ProjectForm = (props) => {
 	const [showAlert, setShowAlert] = useState(false);
 
 	const projectInputRef = useRef();
+
+    let projectId = '';
+
+    const newProject = () => { 
+
+        if(props.show) {
+            document.getElementById("project-form").reset();
+            projectId = Math.random().toString();
+            
+
+        }
+        
+   
+    }
+
+    useEffect(() => {
+        if(typeof props.projectContent != 'object' && !props.canEdit) {
+            newProject();
+            
+     
+        } else {
+
+            if(props.show) {
+                
+                document.getElementById("project-title").value = props.projectContent.title;
+                // document.getElementById("note-content").value = props.selectedItem.content;
+                projectId = props.projectContent.id;
+
+            }
+
+            
+        }
+
+    }, [props]);
 
 	const checkIfEmpty = title => {
         if(title.trim().length === 0) {
@@ -28,14 +62,12 @@ const ProjectForm = (props) => {
     };
 
     const projectSaveHandler = (event) => {
-		event.preventDefault();
-
-        console.log('clicked');
-		
+		event.preventDefault();	
 		
 		const projectName = projectInputRef.current.value;
         const projectDescription = "Placeholder";
-        const projectId = Math.random().toString();
+        // const projectId = Math.random().toString();
+        // props.projectContent.id
 		
         if(checkIfEmpty(projectName)) {
             setShowAlert(false);
@@ -66,7 +98,7 @@ const ProjectForm = (props) => {
                     <Modal.Title>New project</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    <Form.Group className="mb-3" >
+                    <Form.Group className="mb-3" controlId="project-title">
                         <Form.Label>Project Name</Form.Label>
                         <Form.Control type="input" placeholder="Enter Project Name" ref={projectInputRef} />
                     </Form.Group>
