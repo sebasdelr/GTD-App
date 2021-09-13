@@ -117,6 +117,17 @@ const App = () => {
 
   }
 
+  const deleteProjectHandler = projectId => {
+
+    setProjectCapture(prevProjects => {
+      
+      const updatedProjects = prevProjects.filter(project => project.id !== projectId);
+          
+      return updatedProjects;
+    });
+
+  }
+
   const addNoteHandler = enteredText => {
     setNoteCapture(prevNotes => {
       const updatedNotes = [...prevNotes];
@@ -192,7 +203,7 @@ const App = () => {
           return (
             <Row className="justify-content-md-center">
               <Col style={{padding: '0px'}}>
-                <Projects list={projectCapture} onAddProject={addProjectHandler}/>
+                <Projects list={projectCapture} onAddProject={addProjectHandler} handleDeleteProject={deleteProjectHandler}/>
               </Col>
             </Row>
           );

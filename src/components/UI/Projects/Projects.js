@@ -24,6 +24,13 @@ const Projects = (props) => {
 
     let pclass = "dashboard-card";
 
+    const handleDelete = () => {
+        if(isSelected.trim !== '') {
+            props.handleDeleteProject(isSelected);
+        }
+        
+    }
+
 
 
     
@@ -69,7 +76,7 @@ const Projects = (props) => {
                 <Col xs={6}>
                     <Button variant="light" className="" onClick={handleShow}><BiFileBlank/> New Project</Button>{' '}
                     <Button variant="light" className=""><BiEdit/> Edit Project</Button>{' '}
-                    <Button variant="light" className=""><BiTrash/> Delete Project</Button>{' '}
+                    <Button variant="light" className="" onClick={handleDelete}><BiTrash/> Delete Project</Button>{' '}
                     <Button  variant="light" className=""><BiSave/> Save Project</Button>
                 </Col>
             </Row>
