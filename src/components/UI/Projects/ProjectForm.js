@@ -25,7 +25,7 @@ const ProjectForm = (props) => {
     }
 
     useEffect(() => {
-        if(typeof props.projectContent != 'object' && !props.canEdit) {
+        if(typeof props.projectContent != 'object' || !props.canEdit) {
             newProject();
             
      

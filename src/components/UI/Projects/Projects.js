@@ -27,6 +27,7 @@ const Projects = (props) => {
     let content = "";
 
     const handleNew = () => {
+        setIsSelected('');
         setIsEdit(false);
         handleShow();
 

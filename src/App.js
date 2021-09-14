@@ -106,12 +106,17 @@ const App = () => {
   const addProjectHandler = enteredContent => {
     setProjectCapture(prevProjects => {
       const updatedProjects = [...prevProjects];
+      const projectIndex = projectCapture.findIndex(element => element.id === enteredContent.id );
 
+      if(projectCapture.findIndex(element => element.id === enteredContent.id ) >= 0) {
+        updatedProjects[projectIndex] = { id: enteredContent.id, title: enteredContent.title, description: enteredContent.description }
         
-      updatedProjects.unshift({ id: enteredContent.id, title: enteredContent.title, description: enteredContent.description });
-      setContent(updatedProjects[0])
-      return updatedProjects;
+        return updatedProjects;
+      } else {
+        updatedProjects.unshift({ id: enteredContent.id, title: enteredContent.title, description: enteredContent.description });
 
+        return updatedProjects;
+      }
       
     });
 
