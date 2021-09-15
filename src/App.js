@@ -91,89 +91,100 @@ const App = () => {
   const [noteCapture, setNoteCapture] = useState(notes);
   const [projectCapture, setProjectCapture] = useState(projects);
 
+  //note setting content and index for displaying on note form
   const [useContent, setContent] = useState(noteCapture[0]);
   const [useIndex, setIndex] = useState(0);
 
-  const [displaySection, setDisplaySection] = useState('projects');
+  const [displaySection, setDisplaySection] = useState('notes');
 
 
-
+  //for notes
   const selectedItem = (content) => {
     setContent(content);
-    setIndex(noteCapture.findIndex(element => element.id === content.id ));
+    setIndex(getIndex(noteCapture, content)); 
+  }
+
+  const getIndex = (list, item) => {
+    return list.findIndex(element => element.id === item.id)
+  }
+
+  const addItem = (list, item) => {
+    const updatedList = [...list];
+    const itemIndex = getIndex(updatedList, item);
+    const itemSet = { 
+      id: item.id, 
+      title: item.title, 
+      description: item.description ? item.description : null,
+      content: item.content ? item.content: null,
+      date: item.date ? item.date: null
+    };
+
+    if(itemIndex >= 0) {
+      updatedList[itemIndex] = itemSet;
+      
+      return updatedList;
+
+    } else {
+      updatedList.unshift(itemSet);
+
+      return updatedList;
+    }
+    
+  }
+
+  const deleteItem = (list, id) => {     
+    const updatedProjects = list.filter(project => project.id !== id);         
+    return updatedProjects;
   }
 
   const addProjectHandler = enteredContent => {
     setProjectCapture(prevProjects => {
-      const updatedProjects = [...prevProjects];
-      const projectIndex = projectCapture.findIndex(element => element.id === enteredContent.id );
-
-      if(projectCapture.findIndex(element => element.id === enteredContent.id ) >= 0) {
-        updatedProjects[projectIndex] = { id: enteredContent.id, title: enteredContent.title, description: enteredContent.description }
-        
-        return updatedProjects;
-      } else {
-        updatedProjects.unshift({ id: enteredContent.id, title: enteredContent.title, description: enteredContent.description });
+      const updatedProjects = addItem(prevProjects, enteredContent);
 
         return updatedProjects;
       }
       
-    });
+    );
 
   }
 
   const deleteProjectHandler = projectId => {
 
     setProjectCapture(prevProjects => {
-      
-      const updatedProjects = prevProjects.filter(project => project.id !== projectId);
-          
-      return updatedProjects;
+      return deleteItem(prevProjects, projectId);
     });
 
   }
 
   const addNoteHandler = enteredText => {
     setNoteCapture(prevNotes => {
-      const updatedNotes = [...prevNotes];
-      if(noteCapture.findIndex(element => element.id === enteredText.id ) >= 0) {
-        updatedNotes[useIndex] = { id: enteredText.id, title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) }
-        setContent(updatedNotes[useIndex])
-        return updatedNotes;
+      const updatedNotes = addItem(prevNotes, enteredText);
+      const noteIndex = getIndex(noteCapture, enteredText);
+
+      if (noteIndex >= 0) {
         
-        
+        setContent(updatedNotes[noteIndex]);
+
       } else {
-        
-        updatedNotes.unshift({ id: enteredText.id, title: enteredText.title, content: enteredText.content, date: new Date(2021, 5, 12) });
-        setContent(updatedNotes[0])
+        setContent(updatedNotes[0]);
+      }
+      
         return updatedNotes;
-        
         
       }
       
-    });
+    );
   };
 
   const deleteNoteHandler = noteId => {
     setNoteCapture(prevNotes => {
-      const updatedNotes = prevNotes.filter(note => note.id !== noteId);
-      //also need validation when its the last note that is deleted and selected, need validation when its the first note that is selected
-     
+      if(useIndex === (prevNotes.length)) {
+        setContent(prevNotes[0]);
 
-      if(useIndex === (updatedNotes.length)) {
-        
-        setContent(updatedNotes[0]);
-
-
-      }
-      else {
+      }else {
         setContent(useIndex);
-
       }
-
-      
-      
-      return updatedNotes;
+      return deleteItem(prevNotes, noteId);
     });
   };
 
