@@ -4,15 +4,13 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import Items from './components//Items/Items';
+import Items from './components/Items/Items';
 import NoteContent from './components/UI/Notes/NoteContent';
 import LoginForm from './components/UI/Login/LoginForm';
 import Header from './components//Layout/Header/Header';
 import Dashboard from './components/UI/Dashboard/Dashboard';
 import Projects from './components/UI/Projects/Projects';
 import Sidebar from './components/Layout/Sidebar/Sidebar';
-
-
 
 import 'bootstrap/dist/css/bootstrap.css';
 // import Card from 'react-bootstrap/Card';
@@ -21,9 +19,6 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isValidLogin, setIsValidLogin] = useState();
-  
-
-	
 
 	useEffect(() => {
 		const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn')
@@ -35,7 +30,6 @@ const App = () => {
 
 	const loginHandler = (userName, passWord) => {
 
-
 		if(userName === "user" && passWord ==="pass") {
 			localStorage.setItem('isLoggedIn', '1');
 			setIsLoggedIn(true);
@@ -44,8 +38,6 @@ const App = () => {
 		else{
     setIsValidLogin("Invalid Credentials");
 		}
-
-
 	};
 
 	const logoutHandler = () => {
@@ -91,12 +83,11 @@ const App = () => {
   const [noteCapture, setNoteCapture] = useState(notes);
   const [projectCapture, setProjectCapture] = useState(projects);
 
-  //note setting content and index for displaying on note form
   const [useContent, setContent] = useState(noteCapture[0]);
+
   const [useIndex, setIndex] = useState(0);
 
   const [displaySection, setDisplaySection] = useState('notes');
-
 
   //for notes
   const selectedItem = (content) => {
@@ -121,14 +112,11 @@ const App = () => {
 
     if(itemIndex >= 0) {
       updatedList[itemIndex] = itemSet;
-      
-      return updatedList;
-
     } else {
       updatedList.unshift(itemSet);
-
-      return updatedList;
     }
+
+    return updatedList;
     
   }
 
@@ -162,22 +150,20 @@ const App = () => {
       const noteIndex = getIndex(noteCapture, enteredText);
 
       if (noteIndex >= 0) {
-        
         setContent(updatedNotes[noteIndex]);
 
       } else {
         setContent(updatedNotes[0]);
       }
-      
         return updatedNotes;
         
-      }
-      
+      }     
     );
   };
 
   const deleteNoteHandler = noteId => {
     setNoteCapture(prevNotes => {
+      //only place using useIndex, need to refactor
       if(useIndex === (prevNotes.length)) {
         setContent(prevNotes[0]);
 
@@ -207,10 +193,11 @@ const App = () => {
           <Row >
             
             <Col xs={3} md={2}>
-              <Items list={noteCapture} onDeleteItem={deleteNoteHandler} indexOfNote={useIndex} selectedItem={selectedItem}/>
+              <Items list={noteCapture} onDeleteItem={deleteNoteHandler} content={useContent} selectedItem={selectedItem}/>
             </Col>
             <Col>
-              <NoteContent indexOfNote={useIndex} content={useContent} onAddNote={addNoteHandler} onDeleteItem={deleteNoteHandler}/>
+            
+              <NoteContent content={useContent} onAddNote={addNoteHandler} onDeleteItem={deleteNoteHandler}/>
             </Col>
           
         </Row>
@@ -264,18 +251,8 @@ const App = () => {
           
         </Container>
       }
-
-
     </React.Fragment>
 
-    // <div className="App">
-      
-
-
-      
-      
-      
-    // </div>
   );
 }
 export default App;

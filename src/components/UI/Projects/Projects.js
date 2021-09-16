@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import ProjectForm from './ProjectForm';
 import Project from './Project';
 
-import {Card, Row, Col, Button} from 'react-bootstrap/';
-import { BiEdit, BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
+import { Row, Col, Button} from 'react-bootstrap/';
+import { BiEdit, BiFileBlank, BiTrash } from "react-icons/bi";
 
 
 

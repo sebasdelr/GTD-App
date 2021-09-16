@@ -13,6 +13,7 @@ import { BiMenu, BiSearch } from "react-icons/bi";
 
 
 import './Sidebar.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 
 

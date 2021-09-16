@@ -1,8 +1,7 @@
-import "../../Items/Items.css";
+import "./Items.css";
 
 import React, { useState } from "react";
 
-// import "./fontawesome-all.min.css";
 
 import Clear from '@material-ui/icons/Clear';
 
@@ -16,9 +15,7 @@ const NoteItem = (props) => {
     const [style, setStyle] = useState({display: 'none'});
 
     const toggleSelect = () => {
-
         props.selectedItem(props.listItem);
- 
 
     };
 

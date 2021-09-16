@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import {Card, Row, Col, Button} from 'react-bootstrap/';
+import {Card} from 'react-bootstrap/';
 
 import './Projects.css';
 

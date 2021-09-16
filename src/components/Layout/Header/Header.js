@@ -1,6 +1,7 @@
 import React from 'react';
 
 import "./Header.css";
+import 'bootstrap/dist/css/bootstrap.css';
 
 import {
     Button, Navbar, Nav,
@@ -11,19 +12,19 @@ const Header = (props) => {
 
     return (
 
-        <Navbar className = "main-header justify-content-between" expand="lg">
+        <Navbar className = "main-header" expand="lg">
 
-            <Navbar.Brand href="#home">GTD App</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav  className="mr-auto"></Nav>
-                <Nav>
+            <Navbar.Brand  className="me-auto" href="#home">GTD App</Navbar.Brand>
+          
+            
+                
+                <Nav className="justify-content-end">
 
-                    <NavItem className="d-flex align-items-center">
+                    <NavItem >
                     <Nav.Link className="font-weight-bold" href="/">Home</Nav.Link>
                     </NavItem>
                     
-                    <NavItem className="d-flex align-items-center">
+                    <NavItem >
                     <Nav.Link className="font-weight-bold" href="/">Settings</Nav.Link>
                     </NavItem>
 
@@ -31,8 +32,10 @@ const Header = (props) => {
                         <Button onClick={props.onLogout}>Logout</Button>
                     </NavItem>
 
+                    
+
                 </Nav>
-            </Navbar.Collapse>
+            
 
 
         </Navbar>

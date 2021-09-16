@@ -34,7 +34,7 @@
 }
 
 .home .homebtn{
-    position: absolute;
+    /* position: absolute; */
     color: #fff;
     left: 80%;
     top: 10px;

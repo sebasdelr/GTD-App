@@ -17,20 +17,16 @@ const ProjectForm = (props) => {
         if(props.show) {
             document.getElementById("project-form").reset();
             projectId = Math.random().toString();
-            
 
         }
-        
-   
+
     }
 
     useEffect(() => {
         if(typeof props.projectContent != 'object' || !props.canEdit) {
             newProject();
-            
-     
-        } else {
 
+        } else {
             if(props.show) {
                 
                 document.getElementById("project-title").value = props.projectContent.title;
@@ -38,15 +34,13 @@ const ProjectForm = (props) => {
                 projectId = props.projectContent.id;
 
             }
-
             
         }
 
     }, [props]);
 
 	const checkIfEmpty = title => {
-        if(title.trim().length === 0) {
-            
+        if(title.trim().length === 0) { 
             return false;
             
         }
