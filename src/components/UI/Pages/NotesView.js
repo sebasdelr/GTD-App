@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import Items from '../../Items/Items';
 import NoteContent from '../Notes/NoteContent';
@@ -12,18 +12,21 @@ const notes = [
     title: 'Meeting',
     content: 'Have a meeting with shareholders about what is next',
     date: new Date(2020, 7, 14),
+    type: ''
   },
   {
     id: 'a2',
     title: 'Phone Call',
     content: 'Call Mark about new designs for living room',
     date: new Date(2021, 2, 28),
+    type: ''
   },
   {
     id: 'a3',
     title: 'Groceries',
     content: 'Remember to buy milk',
     date: new Date(2021, 5, 12),
+    type: ''
   },
 ];
 
@@ -52,7 +55,8 @@ const NotesView = (props) => {
       title: item.title, 
       description: item.description ? item.description : null,
       content: item.content ? item.content: null,
-      date: item.date ? item.date: null
+      date: item.date ? item.date: null,
+      type: item.type ? item.type: null,
     };
 
     if(itemIndex >= 0) {

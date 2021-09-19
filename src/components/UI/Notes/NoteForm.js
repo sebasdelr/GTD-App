@@ -113,6 +113,17 @@ const NoteForm = (props) => {
                     <Form.Control type="input" ref={titleRef} />
                 </Form.Group>
             </Row>
+            <Row>
+                
+            <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect">
+        <option value="0">Choose Type...</option>
+        <option value="1">note</option>
+        <option value="2">project</option>
+        <option value="3">idea</option>
+      </Form.Control >
+
+
+            </Row>
            
             <Form.Group className="mb-3" controlId="note-content">
                 <Form.Label>Note Content</Form.Label>

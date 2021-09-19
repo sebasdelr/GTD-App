@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // libraries;
 import { Container, Row, Col } from 'react-bootstrap';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 //layout components
 import Header from './components/Layout/Header/Header';
