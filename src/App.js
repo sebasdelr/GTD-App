@@ -12,6 +12,7 @@ import Sidebar from './components/Layout/Sidebar/Sidebar';
 import NotesView from './components/UI/Pages/NotesView';
 import ProjectsView from './components/UI/Pages/ProjectsView';
 import DashboardView from './components/UI/Pages/DashboardView';
+import ActionView from './components/UI/Pages/ActionView';
 
 import LoginForm from './components/UI/Login/LoginForm';
 
@@ -80,6 +81,7 @@ const App = () => {
                 <Route path="/" component={DashboardView} exact />
                 <Route path="/capture" component={NotesView} />
                 <Route path="/projects" component={ProjectsView} />
+                <Route path="/actions" component={ActionView} />
                
               </Switch>
 

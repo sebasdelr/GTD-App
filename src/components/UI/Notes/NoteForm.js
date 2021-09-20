@@ -2,27 +2,28 @@ import { useState, useRef, useEffect } from 'react';
 
 
 import { Form, Button, Alert, Row, Col} from 'react-bootstrap/';
-import { BiEdit, BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
+import { BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 import './NoteForm.css';
 
 const NoteForm = (props) => {
 
     const [showAlert, setShowAlert] = useState(false);
-    const [useCanEdit, setCanEdit] = useState(true);
+   
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
     
     const contentRef = useRef();
     const idRef = useRef();
+    const typeRef = useRef();
 
     
     const newNote = () => { 
         //can use ref as well
         document.getElementById("note-form").reset();
         document.getElementById("note-id").value = Math.random().toString();
-        setCanEdit(false);
+        
     }
 
     useEffect(() => {
@@ -35,15 +36,19 @@ const NoteForm = (props) => {
             document.getElementById("note-title").value = props.selectedItem.title;
             document.getElementById("note-content").value = props.selectedItem.content;
             document.getElementById("note-id").value = props.selectedItem.id;
+
+            if(props.selectedItem.type === "") {
+                document.getElementById("inlineFormCustomSelect").value = "1";
+            } else {
+                document.getElementById("inlineFormCustomSelect").value = props.selectedItem.type;
+            }
             
         }
 
     }, [props]);
 
 
-    const editNoteHandler = () => {
-        setCanEdit(true);
-    }
+ 
 
     const checkIfEmpty = title => {
         if(title.trim().length === 0) {
@@ -73,11 +78,12 @@ const NoteForm = (props) => {
         const enteredTitle = titleRef.current.value;
         const enteredContent = contentRef.current.value;
         const generatedId = idRef.current.value;
+        const selectedType = typeRef.current.value;
 
 
         if(checkIfEmpty(enteredTitle)) {
             setShowAlert(false);
-            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, editable: useCanEdit};
+            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, type: selectedType};
 
             props.passNoteHandler(enteredText);
 
@@ -99,7 +105,7 @@ const NoteForm = (props) => {
                 <Col></Col>
                 <Col xs={6}>
                     <Button variant="light" onClick={newNote} className="notebutton"><BiFileBlank/> New Note</Button>{' '}
-                    <Button variant="light" onClick={editNoteHandler} className="notebutton"><BiEdit/> Edit Note</Button>{' '}
+                    {/* <Button variant="light" onClick={editNoteHandler} className="notebutton"><BiEdit/> Edit Note</Button>{' '} */}
                     <Button variant="light" onClick={deleteNoteHandler} className="notebutton"><BiTrash/> Delete Note</Button>{' '}
                     <Button  type="submit" variant="light"  className="notebutton"><BiSave/> Save Note</Button>
                 </Col>
@@ -115,12 +121,13 @@ const NoteForm = (props) => {
             </Row>
             <Row>
                 
-            <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect">
-        <option value="0">Choose Type...</option>
-        <option value="1">note</option>
-        <option value="2">project</option>
-        <option value="3">idea</option>
-      </Form.Control >
+            <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef}>
+                <option value="0">Choose Type...</option>
+                <option value="1">note-reference</option>
+                <option value="2">project</option>
+                <option value="3">idea</option>
+                <option value="3">action</option>
+            </Form.Control >
 
 
             </Row>

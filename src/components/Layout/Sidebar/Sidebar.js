@@ -34,7 +34,7 @@ const Sidebar = (props) => {
                 <Nav.Link eventKey="link-2" className="sidelink"><List className="bxicon"/><span className="linkName">Clarify</span></Nav.Link>
                 <Nav.Link eventKey="link-3" className="sidelink"  href="/projects"><Folder className="bxicon"/><span className="linkName">Organize</span></Nav.Link>
                 <Nav.Link eventKey="link-4" className="sidelink"><MenuBook className="bxicon"/><span className="linkName">Review</span></Nav.Link>
-                <Nav.Link eventKey="link-5" className="sidelink"><DirectionsWalk className="bxicon"/><span className="linkName">Engage</span></Nav.Link>
+                <Nav.Link eventKey="link-5" className="sidelink"  href="/actions"><DirectionsWalk className="bxicon"/><span className="linkName">Engage</span></Nav.Link>
             </Container>
             
 
