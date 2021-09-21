@@ -1,8 +1,8 @@
-import ActionItem from "../Actions/ActionItem";
+import ActionList from "../Actions/ActionList";
 
 const ActionView = (props) => {
     return (
-        <ActionItem/>
+        <ActionList notes={props.notes}/>
     );
 }
 

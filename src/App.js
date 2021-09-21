@@ -20,6 +20,30 @@ import LoginForm from './components/UI/Login/LoginForm';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
+const notes = [
+  {
+    id: 'a1',
+    title: 'Meeting',
+    content: 'Have a meeting with shareholders about what is next',
+    date: new Date(2020, 7, 14),
+    type: ''
+  },
+  {
+    id: 'a2',
+    title: 'Phone Call',
+    content: 'Call Mark about new designs for living room',
+    date: new Date(2021, 2, 28),
+    type: ''
+  },
+  {
+    id: 'a3',
+    title: 'Groceries',
+    content: 'Remember to buy milk',
+    date: new Date(2021, 5, 12),
+    type: ''
+  },
+];
+
 
 const App = () => {
 
@@ -79,9 +103,13 @@ const App = () => {
             <Col>
               <Switch>
                 <Route path="/" component={DashboardView} exact />
-                <Route path="/capture" component={NotesView} />
+                <Route path="/capture">
+                  <NotesView notes={notes}/>
+                </Route>
                 <Route path="/projects" component={ProjectsView} />
-                <Route path="/actions" component={ActionView} />
+                <Route path="/actions">
+                  <ActionView notes={notes} />
+                </Route>
                
               </Switch>
 

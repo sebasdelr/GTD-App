@@ -126,7 +126,7 @@ const NoteForm = (props) => {
                 <option value="1">note-reference</option>
                 <option value="2">project</option>
                 <option value="3">idea</option>
-                <option value="3">action</option>
+                <option value="4">action</option>
             </Form.Control >
 
 

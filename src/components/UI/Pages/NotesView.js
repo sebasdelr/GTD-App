@@ -6,31 +6,10 @@ import { Row, Col } from 'react-bootstrap';
 import Items from '../../Items/Items';
 import NoteContent from '../Notes/NoteContent';
 
-const notes = [
-  {
-    id: 'a1',
-    title: 'Meeting',
-    content: 'Have a meeting with shareholders about what is next',
-    date: new Date(2020, 7, 14),
-    type: ''
-  },
-  {
-    id: 'a2',
-    title: 'Phone Call',
-    content: 'Call Mark about new designs for living room',
-    date: new Date(2021, 2, 28),
-    type: ''
-  },
-  {
-    id: 'a3',
-    title: 'Groceries',
-    content: 'Remember to buy milk',
-    date: new Date(2021, 5, 12),
-    type: ''
-  },
-];
 
 const NotesView = (props) => {
+
+  const {notes} = props;
 
   const [noteCapture, setNoteCapture] = useState(notes);
 
