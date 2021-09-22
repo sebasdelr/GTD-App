@@ -33,7 +33,7 @@ const notes = [
     title: 'Phone Call',
     content: 'Call Mark about new designs for living room',
     date: new Date(2021, 2, 28),
-    type: ''
+    type: '4'
   },
   {
     id: 'a3',
