@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import "./Items.css";
 // import "./fontawesome-all.min.css";
@@ -7,11 +7,26 @@ import NoteItem from './NoteItem';
 import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
+import CaptureContext from '../../capture/capture-context'
+
+
+
 
 function Items(props){
 
-
+    const notesCtx = useContext(CaptureContext);
     const {list} = props;
+
+    const deleteID = id => {
+        notesCtx.deleteItem(id);
+    }
+
+    const notesList = notesCtx.items.map(note => <NoteItem
+      listItem={note}
+      deleteItem={deleteID}  
+    />);
+
+    // we add notes to context list, context list is then accessed by others and other methods
 
     const selectedItem = (item) => {
         props.selectedItem(item);
@@ -58,7 +73,8 @@ function Items(props){
     
     return(
         <ListGroup >
-            {listHandler(list)}
+            {/* {listHandler(list)} */}
+            {notesList}
 
         </ListGroup>
 

@@ -2,9 +2,32 @@ import { useReducer } from 'react';
 
 import CaptureContext from './capture-context';
 
+const DUMMY_NOTES = [
+    {
+      id: 'a1',
+      title: 'Meeting',
+      content: 'Have a meeting with shareholders about what is next',
+      date: new Date(2020, 7, 14),
+      type: ''
+    },
+    {
+      id: 'a2',
+      title: 'Phone Callersas',
+      content: 'Call Mark about new designs for living room',
+      date: new Date(2021, 2, 28),
+      type: '4'
+    },
+    {
+      id: 'a3',
+      title: 'Groceries',
+      content: 'Remember to buy milk',
+      date: new Date(2021, 5, 12),
+      type: ''
+    },
+  ];
+
 const defaultCaptureState = {
-    items: [],
-    selectedIndex: 0
+    items: DUMMY_NOTES,
 };
 
 const captureReducer = (state, action) => {
@@ -20,31 +43,70 @@ const captureReducer = (state, action) => {
         const existingNoteItem = state.items[existingNoteIndex];
 
         const itemSet = {
-            // id: item.id, 
-            // title: item.title, 
-            // description: item.description ? item.description : null,
-            // content: item.content ? item.content: null,
-            // date: item.date ? item.date: null,
-            // type: item.type ? item.type: null,
+            id: action.item.id, 
+            title: action.item.title, 
+            content: action.item.content ? action.item.content : null,
+            date: action.item.date,
+            type: action.item.type,
+
+            
         }
 
         let updatedItems;
 
+        if(existingNoteItem) {
+            updatedItems = [...state.items];
+            updatedItems[existingNoteIndex] = itemSet;
+        } else {
+            updatedItems.unshift(itemSet);
+        }
+
+        return updatedItems;
        
     } 
     if(action.type === 'SELECT') {
        
     }
     if(action.type === 'DELETE') {
+        // const existingNoteIndex = state.items.findIndex((item) => item.id === action.id);
+
+        console.log('attempting to delete...' + action.id);
+
+        // const existingNoteItem = state.items[existingNoteIndex];
+
+        let updatedItems;
+
+        updatedItems = state.items.filter(item => item.id !== action.id);
+
+        return {items: updatedItems};
+
+
         
     }
+    return defaultCaptureState;
 
-}
+};
 
 const CaptureProvider = props => {
 
+    const [captureState, dispatchCaptureAction] = useReducer(captureReducer, defaultCaptureState);
+
+    const addNoteHandler = item => {
+        dispatchCaptureAction({type: 'ADD', item: item});
+    };
+
+    const deleteNoteHandler = id => {
+        dispatchCaptureAction({type: 'DELETE', id: id});
+    }
+
+    const captureContext = {
+        items: captureState.items,
+        addItem: addNoteHandler,
+        deleteItem: deleteNoteHandler
+    };
+
     return(
-        <CaptureContext.Provider>
+        <CaptureContext.Provider value={captureContext}>
             {props.children}
         </CaptureContext.Provider>
     );
