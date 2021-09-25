@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 
 
 import { Form, Button, Alert, Row, Col} from 'react-bootstrap/';
@@ -6,7 +6,11 @@ import { BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 import './NoteForm.css';
 
+import CaptureContext from '../../../capture/capture-context'
+
 const NoteForm = (props) => {
+
+    const captureCtx = useContext(CaptureContext);
 
     const [showAlert, setShowAlert] = useState(false);
    
@@ -24,7 +28,11 @@ const NoteForm = (props) => {
         document.getElementById("note-form").reset();
         document.getElementById("note-id").value = Math.random().toString();
         
-    }
+    };
+
+    const addNote = item => {
+        captureCtx.addItem(item);
+    };
 
     useEffect(() => {
         if(typeof props.selectedItem != 'object') {
@@ -36,6 +44,18 @@ const NoteForm = (props) => {
             document.getElementById("note-title").value = props.selectedItem.title;
             document.getElementById("note-content").value = props.selectedItem.content;
             document.getElementById("note-id").value = props.selectedItem.id;
+
+            let itemSet = {
+                id: props.selectedItem.id, 
+                title: props.selectedItem.title, 
+                content: props.selectedItem.content ? props.selectedItem.content : null,
+                date: 'today',
+                type: props.selectedItem.type,
+    
+                
+            }
+
+            addNote(itemSet);
 
             if(props.selectedItem.type === "") {
                 document.getElementById("inlineFormCustomSelect").value = "1";
@@ -66,7 +86,11 @@ const NoteForm = (props) => {
         const generatedId = idRef.current.value;
 
         props.deleteNoteHandler(generatedId);
-    }
+    };
+
+    const captureItemHandler = item => {
+
+    };
 
     
 
@@ -83,7 +107,7 @@ const NoteForm = (props) => {
 
         if(checkIfEmpty(enteredTitle)) {
             setShowAlert(false);
-            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, type: selectedType};
+            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, date: 'today', type: selectedType};
 
             props.passNoteHandler(enteredText);
 

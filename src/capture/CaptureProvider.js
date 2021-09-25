@@ -58,10 +58,11 @@ const captureReducer = (state, action) => {
             updatedItems = [...state.items];
             updatedItems[existingNoteIndex] = itemSet;
         } else {
+            updatedItems = Array.prototype.slice.call(state.items)
             updatedItems.unshift(itemSet);
         }
 
-        return updatedItems;
+        return {items: updatedItems};
        
     } 
     if(action.type === 'SELECT') {
