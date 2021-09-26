@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // libraries;
 import { Container, Row, Col } from 'react-bootstrap';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //layout components
 import Header from './components/Layout/Header/Header';
@@ -15,6 +15,9 @@ import DashboardView from './components/UI/Pages/DashboardView';
 import ActionView from './components/UI/Pages/ActionView';
 
 import LoginForm from './components/UI/Login/LoginForm';
+
+import CaptureProvider from './capture/CaptureProvider';
+
 
 //styling
 import './App.css';
@@ -93,30 +96,36 @@ const App = () => {
       }
 
       {isLoggedIn &&
+        <CaptureProvider>
+          <BrowserRouter>
+            <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
+              <Header onLogout={logoutHandler}/>
+              <Row >
+                <Col md="auto" className="sidebar">
+                  <Sidebar/>
+                </Col>
+                <Col>
+                  <Switch>
+                    <Route path="/" component={DashboardView} exact />
+                    <Route path="/capture">
+                      <NotesView />
+                    </Route>
+                    <Route path="/projects" component={ProjectsView} />
+                    <Route path="/actions">
+                      <ActionView />
+                    </Route>
+                  
+                  </Switch>
 
-        <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
-          <Header onLogout={logoutHandler}/>
-          <Row >
-            <Col md="auto" className="sidebar">
-              <Sidebar/>
-            </Col>
-            <Col>
-              <Switch>
-                <Route path="/" component={DashboardView} exact />
-                <Route path="/capture">
-                  <NotesView notes={notes}/>
-                </Route>
-                <Route path="/projects" component={ProjectsView} />
-                <Route path="/actions">
-                  <ActionView notes={notes} />
-                </Route>
-               
-              </Switch>
+                </Col>
+              </Row>
+              
+            </Container>
 
-            </Col>
-          </Row>
-          
-        </Container>
+          </BrowserRouter>
+           
+        </CaptureProvider>
+       
       }
     </React.Fragment>
 

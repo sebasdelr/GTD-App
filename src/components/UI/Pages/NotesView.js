@@ -113,20 +113,18 @@ const NotesView = (props) => {
   
 
   return (
-    <CaptureProvider>
-        <Row >
-          
-          <Col xs={3} md={2}>
-            <Items list={noteCapture} onDeleteItem={deleteNoteHandler} content={useContent} selectedItem={selectedItem}/>
-          </Col>
-          <Col>
-          
-            <NoteContent content={useContent} onAddNote={addNoteHandler} onDeleteItem={deleteNoteHandler}/>
-          </Col>
+      <Row >
         
-        </Row>
+        <Col xs={3} md={2}>
+          <Items list={noteCapture} onDeleteItem={deleteNoteHandler} content={useContent} selectedItem={selectedItem}/>
+        </Col>
+        <Col>
+        
+          <NoteContent content={useContent} onAddNote={addNoteHandler} onDeleteItem={deleteNoteHandler}/>
+        </Col>
+      
+      </Row>
 
-    </CaptureProvider>
 
   );
 }

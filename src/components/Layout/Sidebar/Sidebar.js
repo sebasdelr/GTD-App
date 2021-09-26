@@ -9,6 +9,8 @@ import MenuBook from '@material-ui/icons/MenuBook';
 import DirectionsWalk from '@material-ui/icons/DirectionsWalk';
 import Home from '@material-ui/icons/Home';
 
+import { Link } from 'react-router-dom';
+
 import { BiMenu, BiSearch } from "react-icons/bi";
 
 
@@ -30,11 +32,11 @@ const Sidebar = (props) => {
                     <BiSearch className="magnifying bxicon"/>
                     <Form.Control placeholder="Search..." className="search" />
                 </Form.Group>
-                <Nav.Link eventKey="link-1" className="sidelink"  href="/capture"><Create className="bxicon"/><span className="linkName">Capture</span></Nav.Link>
+                <Nav.Link eventKey="link-1" className="sidelink"  ><Link to="/capture"><Create className="bxicon"/><span className="linkName">Capture</span></Link></Nav.Link>
                 <Nav.Link eventKey="link-2" className="sidelink"><List className="bxicon"/><span className="linkName">Clarify</span></Nav.Link>
                 <Nav.Link eventKey="link-3" className="sidelink"  href="/projects"><Folder className="bxicon"/><span className="linkName">Organize</span></Nav.Link>
                 <Nav.Link eventKey="link-4" className="sidelink"><MenuBook className="bxicon"/><span className="linkName">Review</span></Nav.Link>
-                <Nav.Link eventKey="link-5" className="sidelink"  href="/actions"><DirectionsWalk className="bxicon"/><span className="linkName">Engage</span></Nav.Link>
+                <Nav.Link eventKey="link-5" className="sidelink" ><Link to="/actions"><DirectionsWalk className="bxicon"/><span className="linkName">Engage</span></Link></Nav.Link>
             </Container>
             
 

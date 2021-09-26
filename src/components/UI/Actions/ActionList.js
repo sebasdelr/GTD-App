@@ -1,29 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 
 import ActionItem from './ActionItem';
 
+import CaptureContext from '../../../capture/capture-context'
+
 const ActionList = (props) => {
+
+    const notesCtx = useContext(CaptureContext);
     
     const {notes} = props;
 
     const listHandler = notes => {
-        const actionOnlyList = notes.filter(item => item.type === "4");
+        const actionOnlyList = notesCtx.items.filter(item => item.type === "4");
 
         if(actionOnlyList.length > 0) {
             return (
                 actionOnlyList.map((action) => {
                    
-                    // if(notes.type === "4"){
-                        return (
-                            <ActionItem key={action.id}
-                                
-                            actionItem={action}
 
+                    return (
+                        <ActionItem key={action.id}
                             
-                        />);
+                        actionItem={action}
 
-                    // }
-                    
+                        
+                    />);
+
+
                     
 
                 })
