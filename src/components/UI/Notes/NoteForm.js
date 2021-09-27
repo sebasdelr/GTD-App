@@ -10,7 +10,7 @@ import CaptureContext from '../../../capture/capture-context'
 
 const NoteForm = (props) => {
 
-    const captureCtx = useContext(CaptureContext);
+    const notesCtx = useContext(CaptureContext);
 
     const [showAlert, setShowAlert] = useState(false);
    
@@ -31,36 +31,45 @@ const NoteForm = (props) => {
     };
 
     const addNote = item => {
-        captureCtx.addItem(item);
+        notesCtx.addItem(item);
     };
 
+    let selectedItem = notesCtx.items[notesCtx.itemIndex];
+
+    document.getElementById("note-title").value = selectedItem.title;
+    document.getElementById("note-content").value = selectedItem.content;
+    document.getElementById("note-id").value = selectedItem.id;
+
     useEffect(() => {
-        if(typeof props.selectedItem != 'object') {
+        if(notesCtx.itemIndex < 0) {
             newNote();
             
      
         } else {
+            console.log('itemfound')
 
-            document.getElementById("note-title").value = props.selectedItem.title;
-            document.getElementById("note-content").value = props.selectedItem.content;
-            document.getElementById("note-id").value = props.selectedItem.id;
+            let selectedItem = notesCtx.items[notesCtx.itemIndex];
+
+            document.getElementById("note-title").value = selectedItem.title;
+            document.getElementById("note-content").value = selectedItem.content;
+            document.getElementById("note-id").value = selectedItem.id;
 
             let itemSet = {
-                id: props.selectedItem.id, 
-                title: props.selectedItem.title, 
-                content: props.selectedItem.content ? props.selectedItem.content : null,
+                id: selectedItem.id, 
+                title: selectedItem.title, 
+                content: selectedItem.content ? selectedItem.content : null,
                 date: 'today',
-                type: props.selectedItem.type,
+                type: selectedItem.type,
     
                 
             }
 
             addNote(itemSet);
 
-            if(props.selectedItem.type === "") {
+            if(selectedItem.type === "") {
                 document.getElementById("inlineFormCustomSelect").value = "1";
             } else {
-                document.getElementById("inlineFormCustomSelect").value = props.selectedItem.type;
+                document.getElementById("inlineFormCustomSelect").value = selectedItem.type;
             }
             
         }

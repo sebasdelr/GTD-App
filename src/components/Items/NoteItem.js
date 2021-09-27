@@ -1,6 +1,6 @@
 import "./Items.css";
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 
 import Clear from '@material-ui/icons/Clear';
@@ -8,14 +8,18 @@ import Clear from '@material-ui/icons/Clear';
 import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
+import CaptureContext from '../../capture/capture-context'
+
 
 
 const NoteItem = (props) => {
 
+    const notesCtx = useContext(CaptureContext);
+
     const [style, setStyle] = useState({display: 'none'});
 
     const toggleSelect = () => {
-        props.selectedItem(props.listItem);
+        notesCtx.selectedItem(props.listItem);
 
     };
 

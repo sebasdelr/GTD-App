@@ -28,6 +28,7 @@ const DUMMY_NOTES = [
 
 const defaultCaptureState = {
     items: DUMMY_NOTES,
+    itemIndex: 0,
 };
 
 const captureReducer = (state, action) => {
@@ -57,21 +58,35 @@ const captureReducer = (state, action) => {
         if(existingNoteItem) {
             updatedItems = [...state.items];
             updatedItems[existingNoteIndex] = itemSet;
+            
         } else {
             updatedItems = Array.prototype.slice.call(state.items)
             updatedItems.unshift(itemSet);
+            existingNoteIndex = 0;
         }
 
-        return {items: updatedItems};
+        return {
+            items: updatedItems,
+            itemIndex: existingNoteIndex
+        };
        
     } 
     if(action.type === 'SELECT') {
+        const existingNoteIndex = state.items.findIndex(item => item.id === action.item.id);
+
+        // const existingNoteItem = state.items[existingNoteIndex];
+
+        let updatedItems = [...state.items];
        
+        return  {
+            // itemIndex: existingNoteIndex
+            items: updatedItems,
+            itemIndex: existingNoteIndex
+
+        };
     }
     if(action.type === 'DELETE') {
         // const existingNoteIndex = state.items.findIndex((item) => item.id === action.id);
-
-        console.log('attempting to delete...' + action.id);
 
         // const existingNoteItem = state.items[existingNoteIndex];
 
@@ -79,7 +94,10 @@ const captureReducer = (state, action) => {
 
         updatedItems = state.items.filter(item => item.id !== action.id);
 
-        return {items: updatedItems};
+        return {
+            items: updatedItems,
+            itemIndex: 0
+        };
 
 
         
@@ -92,17 +110,25 @@ const CaptureProvider = props => {
 
     const [captureState, dispatchCaptureAction] = useReducer(captureReducer, defaultCaptureState);
 
+
+
     const addNoteHandler = item => {
         dispatchCaptureAction({type: 'ADD', item: item});
     };
 
+    const selectedItemHandler = item => {
+        dispatchCaptureAction({type: 'SELECT', item: item});
+    }
+
     const deleteNoteHandler = id => {
         dispatchCaptureAction({type: 'DELETE', id: id});
-    }
+    };
 
     const captureContext = {
         items: captureState.items,
+        itemIndex: captureState.itemIndex,
         addItem: addNoteHandler,
+        selectedItem: selectedItemHandler,
         deleteItem: deleteNoteHandler
     };
 

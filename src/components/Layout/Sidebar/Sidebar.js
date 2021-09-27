@@ -26,13 +26,13 @@ const Sidebar = (props) => {
 
     return (
         <Nav defaultActiveKey="/home" className="flex-column sidebar" >
-            <Nav.Link href="/"  className="home"><Home className="house" id="dashboard"/>Home<BiMenu className="homebtn"/></Nav.Link>
+            <Nav.Link  className="home"><Home className="house" id="dashboard"/><Link to="/">Home<BiMenu className="homebtn"/></Link></Nav.Link>
             <Container className="sideitems">
                 <Form.Group className="sidelink">
                     <BiSearch className="magnifying bxicon"/>
                     <Form.Control placeholder="Search..." className="search" />
                 </Form.Group>
-                <Nav.Link eventKey="link-1" className="sidelink"  ><Link to="/capture"><Create className="bxicon"/><span className="linkName">Capture</span></Link></Nav.Link>
+                <Nav.Link eventKey="link-1" className="sidelink" ><Link to="/capture"><Create className="bxicon"/><span className="linkName">Capture</span></Link></Nav.Link>
                 <Nav.Link eventKey="link-2" className="sidelink"><List className="bxicon"/><span className="linkName">Clarify</span></Nav.Link>
                 <Nav.Link eventKey="link-3" className="sidelink"  href="/projects"><Folder className="bxicon"/><span className="linkName">Organize</span></Nav.Link>
                 <Nav.Link eventKey="link-4" className="sidelink"><MenuBook className="bxicon"/><span className="linkName">Review</span></Nav.Link>

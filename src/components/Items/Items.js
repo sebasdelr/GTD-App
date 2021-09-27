@@ -15,6 +15,7 @@ import CaptureContext from '../../capture/capture-context'
 function Items(props){
 
     const notesCtx = useContext(CaptureContext);
+
     const {list} = props;
 
     const deleteID = id => {
@@ -39,25 +40,31 @@ function Items(props){
     const listHandler = list => {
         if(list.length > 0) {
             return (
-                list.map((note) => {
+                list.map((note, index) => {
                     let isStyle = '';
-                    if(props.content.id === note.id) {
+                    if(notesCtx.itemIndex === index) {
                         isStyle = 'selected';
-                        console.log(props.content.id);
+                        console.log(notesCtx.itemIndex);
 
 
                     }
                     
                     return (
-                        
-                        <NoteItem key={note.id}
-                        selectStyle={isStyle}       
-                        listItem={note}
 
-                        selectedItem={selectedItem}   
-                        deleteItem={selectedId}
+                        <NoteItem key={note.id}
+                        listItem={note}
+                        deleteItem={deleteID}
+                        selectStyle={isStyle}   
+                        />
                         
-                    />);
+                        // <NoteItem key={note.id}
+                        // selectStyle={isStyle}       
+                        // listItem={note}
+
+                        // selectedItem={selectedItem}   
+                        // deleteItem={selectedId}
+                        // />
+                    );
 
                 })
             );
@@ -73,8 +80,8 @@ function Items(props){
     
     return(
         <ListGroup >
-            {/* {listHandler(list)} */}
-            {notesList}
+            {listHandler(notesCtx.items)}
+            {/* {notesList} */}
 
         </ListGroup>
 
