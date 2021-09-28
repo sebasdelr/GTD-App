@@ -39,7 +39,7 @@ const captureReducer = (state, action) => {
     //note content view should be able to save changes and add items
 
     if(action.type === 'ADD') {
-        const existingNoteIndex = state.items.findIndex(item => item.id === action.item.id);
+        let existingNoteIndex = state.items.findIndex(item => item.id === action.item.id);
 
         const existingNoteItem = state.items[existingNoteIndex];
 

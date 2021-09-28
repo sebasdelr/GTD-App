@@ -8,7 +8,7 @@ import './NoteForm.css';
 
 import CaptureContext from '../../../capture/capture-context'
 
-const NoteForm = (props) => {
+const NoteForm = () => {
 
     const notesCtx = useContext(CaptureContext);
 
@@ -30,18 +30,9 @@ const NoteForm = (props) => {
         
     };
 
-    const addNote = item => {
-        notesCtx.addItem(item);
-    };
-
-    let selectedItem = notesCtx.items[notesCtx.itemIndex];
-
-    document.getElementById("note-title").value = selectedItem.title;
-    document.getElementById("note-content").value = selectedItem.content;
-    document.getElementById("note-id").value = selectedItem.id;
 
     useEffect(() => {
-        if(notesCtx.itemIndex < 0) {
+        if(notesCtx.itemIndex === null) {
             newNote();
             
      
@@ -54,17 +45,7 @@ const NoteForm = (props) => {
             document.getElementById("note-content").value = selectedItem.content;
             document.getElementById("note-id").value = selectedItem.id;
 
-            let itemSet = {
-                id: selectedItem.id, 
-                title: selectedItem.title, 
-                content: selectedItem.content ? selectedItem.content : null,
-                date: 'today',
-                type: selectedItem.type,
-    
-                
-            }
-
-            addNote(itemSet);
+            
 
             if(selectedItem.type === "") {
                 document.getElementById("inlineFormCustomSelect").value = "1";
@@ -74,7 +55,7 @@ const NoteForm = (props) => {
             
         }
 
-    }, [props]);
+    }, [notesCtx.itemIndex]);
 
 
  
@@ -94,16 +75,8 @@ const NoteForm = (props) => {
     const deleteNoteHandler = () => {
         const generatedId = idRef.current.value;
 
-        props.deleteNoteHandler(generatedId);
+        notesCtx.deleteItem(generatedId);
     };
-
-    const captureItemHandler = item => {
-
-    };
-
-    
-
-    
 
     const submitHandler = event => {
         event.preventDefault();
@@ -115,18 +88,17 @@ const NoteForm = (props) => {
 
 
         if(checkIfEmpty(enteredTitle)) {
+
+
             setShowAlert(false);
             const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, date: 'today', type: selectedType};
 
-            props.passNoteHandler(enteredText);
+            notesCtx.addItem(enteredText);
 
         } else {
             setShowAlert(true);
 
         }
-
-        // newNote();
-
 
 
     }
