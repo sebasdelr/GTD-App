@@ -1,10 +1,22 @@
 import ActionList from "../Actions/ActionList";
 
-import CaptureProvider from '../../../capture/CaptureProvider';
+import { Container } from 'react-bootstrap';
+
 
 const ActionView = (props) => {
     return (
-        <ActionList notes={props.notes}/>
+       <Container>
+            <h1>Next Actions</h1>
+
+            <ActionList notes={props.notes}/>
+
+
+       </Container>
+            
+
+      
+
+        
         
     );
 }

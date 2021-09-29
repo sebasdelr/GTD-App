@@ -116,31 +116,39 @@ const NoteForm = () => {
                 </Col>
             </Row>
             <Row className="mb-3">
-                <Form.Group  controlId="note-id">
-                    <Form.Control type="hidden" ref={idRef} readOnly/>
-                </Form.Group>
+
                 <Form.Group  controlId="note-title">
                     <Form.Label>Note Title</Form.Label>
                     <Form.Control type="input" ref={titleRef} />
                 </Form.Group>
             </Row>
-            <Row>
-                
-            <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef}>
-                <option value="0">Choose Type...</option>
-                <option value="1">note-reference</option>
-                <option value="2">project</option>
-                <option value="3">idea</option>
-                <option value="4">action</option>
-            </Form.Control >
+            <Row className="mb-3">
+                <Form.Group controlId="item-type">
+                    <Form.Label>Item Type</Form.Label>
+                    <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef}>
+                        <option value="0">Choose Type...</option>
+                        <option value="1">note-reference</option>
+                        <option value="2">project</option>
+                        <option value="3">idea</option>
+                        <option value="4">action</option>
+                    </Form.Control >
+                    <Form.Group  controlId="note-id">
+                        <Form.Control type="hidden" ref={idRef} readOnly/>
+                    </Form.Group>
+
+                </Form.Group>
 
 
             </Row>
-           
-            <Form.Group className="mb-3" controlId="note-content">
-                <Form.Label>Note Content</Form.Label>
-                <Form.Control as="textarea" ref={contentRef} rows={3} />
-            </Form.Group>
+            <Row>
+                           
+                <Form.Group className="mb-3" controlId="note-content">
+                    <Form.Label>Note Content</Form.Label>
+                    <Form.Control as="textarea" ref={contentRef} rows={3} />
+                </Form.Group>
+
+            </Row>
+
             {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
             
             

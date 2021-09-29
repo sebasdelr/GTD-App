@@ -3,7 +3,9 @@ import React, { useContext } from 'react';
 
 import ActionItem from './ActionItem';
 
-import CaptureContext from '../../../capture/capture-context'
+import CaptureContext from '../../../capture/capture-context';
+
+import { Row, Container, Col } from 'react-bootstrap';
 
 const ActionList = (props) => {
 
@@ -42,9 +44,33 @@ const ActionList = (props) => {
 
     return (
         <React.Fragment>
-            {listHandler(notes)}
-        </React.Fragment>
+            <Row>
+                <Col>
+                    <h5>Today</h5>
+                    {listHandler(notes)}
+                </Col>
 
+                
+            </Row>
+            <Row>
+
+                <Col>
+                    <h5>This Week</h5>
+                    {listHandler(notes)}
+                </Col>
+
+                
+            </Row>
+            <Row>
+
+                <Col>
+                    <h5>This Month</h5>
+                    {listHandler(notes)}
+                </Col>
+                
+            </Row>
+
+        </React.Fragment>
 
     );
 };

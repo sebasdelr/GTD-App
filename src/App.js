@@ -13,6 +13,7 @@ import NotesView from './components/UI/Pages/NotesView';
 import ProjectsView from './components/UI/Pages/ProjectsView';
 import DashboardView from './components/UI/Pages/DashboardView';
 import ActionView from './components/UI/Pages/ActionView';
+import PlanningView from './components/UI/Pages/PlanningView';
 
 import LoginForm from './components/UI/Login/LoginForm';
 
@@ -87,6 +88,7 @@ const App = () => {
                     <Route path="/capture">
                       <NotesView />
                     </Route>
+                    <Route path="/clarify" component={PlanningView} />
                     <Route path="/projects" component={ProjectsView} />
                     <Route path="/actions">
                       <ActionView />

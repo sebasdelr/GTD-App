@@ -1,11 +1,14 @@
 import { InputGroup, Form } from 'react-bootstrap/';
 
+import { Row, Container, Col } from 'react-bootstrap';
+
 const ActionItem = (props) => {
     return (
-        <InputGroup className="mb-3">
-            <InputGroup.Checkbox aria-label="Checkbox for following text input"/>
-            <Form.Control aria-label="Text input with checkbox"  placeholder={props.actionItem.title} readOnly />
-        </InputGroup>
+        <Row>
+            <Col md="auto"><InputGroup.Checkbox aria-label="Checkbox for following text input"/></Col>
+            <Col><p>{props.actionItem.title} </p></Col>
+        </Row>
+
     );
 }
 

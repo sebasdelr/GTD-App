@@ -33,8 +33,8 @@ const Sidebar = (props) => {
                     <Form.Control placeholder="Search..." className="search" />
                 </Form.Group>
                 <Nav.Link eventKey="link-1" className="sidelink" ><Link to="/capture"><Create className="bxicon"/><span className="linkName">Capture</span></Link></Nav.Link>
-                <Nav.Link eventKey="link-2" className="sidelink"><List className="bxicon"/><span className="linkName">Clarify</span></Nav.Link>
-                <Nav.Link eventKey="link-3" className="sidelink"  href="/projects"><Folder className="bxicon"/><span className="linkName">Organize</span></Nav.Link>
+                <Nav.Link eventKey="link-2" className="sidelink"><Link to="/clarify"><List className="bxicon"/><span className="linkName">Clarify</span></Link></Nav.Link>
+                <Nav.Link eventKey="link-3" className="sidelink" ><Link to="/projects"><Folder className="bxicon"/><span className="linkName">Organize</span></Link></Nav.Link>
                 <Nav.Link eventKey="link-4" className="sidelink"><MenuBook className="bxicon"/><span className="linkName">Review</span></Nav.Link>
                 <Nav.Link eventKey="link-5" className="sidelink" ><Link to="/actions"><DirectionsWalk className="bxicon"/><span className="linkName">Engage</span></Link></Nav.Link>
             </Container>
