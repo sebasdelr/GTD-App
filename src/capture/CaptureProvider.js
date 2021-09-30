@@ -7,21 +7,24 @@ const DUMMY_NOTES = [
       id: 'a1',
       title: 'Meeting',
       content: 'Have a meeting with shareholders about what is next',
-      date: new Date(2020, 7, 14),
+      dateCreated: new Date(2020, 7, 14),
+      dateDue: new Date(2020, 7, 14),
       type: ''
     },
     {
       id: 'a2',
       title: 'Phone Callersas',
       content: 'Call Mark about new designs for living room',
-      date: new Date(2021, 2, 28),
+      dateCreated: new Date(2021, 2, 28),
+      dateDue: new Date(2021, 2, 28),
       type: '4'
     },
     {
       id: 'a3',
       title: 'Groceries',
       content: 'Remember to buy milk',
-      date: new Date(2021, 5, 12),
+      dateCreated: new Date(2021, 5, 12),
+      dateDue: new Date(2021, 5, 12),
       type: ''
     },
   ];
@@ -39,6 +42,8 @@ const captureReducer = (state, action) => {
     //note content view should be able to save changes and add items
 
     if(action.type === 'ADD') {
+        
+
         let existingNoteIndex = state.items.findIndex(item => item.id === action.item.id);
 
         const existingNoteItem = state.items[existingNoteIndex];
@@ -47,7 +52,8 @@ const captureReducer = (state, action) => {
             id: action.item.id, 
             title: action.item.title, 
             content: action.item.content ? action.item.content : null,
-            date: action.item.date,
+            dateCreated: action.item.date,
+            dateDue: action.item.dateDue,
             type: action.item.type,
 
             

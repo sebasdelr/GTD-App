@@ -6,13 +6,19 @@ import { BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 import './NoteForm.css';
 
-import CaptureContext from '../../../capture/capture-context'
+import CaptureContext from '../../../capture/capture-context';
+
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const NoteForm = () => {
 
     const notesCtx = useContext(CaptureContext);
 
     const [showAlert, setShowAlert] = useState(false);
+
+    const [startDate, setStartDate] = useState(new Date());
    
 
     const titleRef = useRef();
@@ -21,6 +27,8 @@ const NoteForm = () => {
     const contentRef = useRef();
     const idRef = useRef();
     const typeRef = useRef();
+
+    const dueRef = useRef();
 
     
     const newNote = () => { 
@@ -44,6 +52,10 @@ const NoteForm = () => {
             document.getElementById("note-title").value = selectedItem.title;
             document.getElementById("note-content").value = selectedItem.content;
             document.getElementById("note-id").value = selectedItem.id;
+
+            setStartDate(selectedItem.dateDue);
+
+            console.log(selectedItem.dateCreated);
 
             
 
@@ -80,18 +92,35 @@ const NoteForm = () => {
 
     const submitHandler = event => {
         event.preventDefault();
+
+        let today = new Date();
+
+        let dd = today.getDate();
+        let mm = today.getMonth() + 1;
+  
+        let yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        let dateCreatedToday = new Date(yyyy, mm, dd);
         
         const enteredTitle = titleRef.current.value;
         const enteredContent = contentRef.current.value;
         const generatedId = idRef.current.value;
         const selectedType = typeRef.current.value;
+        // const dueDate = dueRef.current.value;
 
 
         if(checkIfEmpty(enteredTitle)) {
 
 
             setShowAlert(false);
-            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, date: 'today', type: selectedType};
+            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, dateCreated: today, dateDue: startDate, type: selectedType};
 
             notesCtx.addItem(enteredText);
 
@@ -123,20 +152,32 @@ const NoteForm = () => {
                 </Form.Group>
             </Row>
             <Row className="mb-3">
-                <Form.Group controlId="item-type">
-                    <Form.Label>Item Type</Form.Label>
-                    <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef}>
-                        <option value="0">Choose Type...</option>
-                        <option value="1">note-reference</option>
-                        <option value="2">project</option>
-                        <option value="3">idea</option>
-                        <option value="4">action</option>
-                    </Form.Control >
-                    <Form.Group  controlId="note-id">
-                        <Form.Control type="hidden" ref={idRef} readOnly/>
-                    </Form.Group>
+                <Col>
+                    <Form.Group controlId="item-type">
+                        <Form.Label>Item Type</Form.Label>
+                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef}>
+                            <option value="0">Choose Type...</option>
+                            <option value="1">note-reference</option>
+                            <option value="2">project</option>
+                            <option value="3">idea</option>
+                            <option value="4">action</option>
+                        </Form.Control >
+                        <Form.Group  controlId="note-id">
+                            <Form.Control type="hidden" ref={idRef} readOnly/>
+                        </Form.Group>
 
-                </Form.Group>
+                    </Form.Group>
+                
+                </Col>
+                <Col>
+                    <Form.Group controlId="due-date">
+                        <Form.Label>Date Due</Form.Label>
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                    
+
+                    </Form.Group>
+                
+                </Col>
 
 
             </Row>
