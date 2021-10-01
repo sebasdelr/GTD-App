@@ -34,6 +34,7 @@ const NoteForm = () => {
     const newNote = () => { 
         //can use ref as well
         document.getElementById("note-form").reset();
+        setStartDate(new Date());
         document.getElementById("note-id").value = Math.random().toString();
         
     };
@@ -120,7 +121,7 @@ const NoteForm = () => {
 
 
             setShowAlert(false);
-            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, dateCreated: today, dateDue: startDate, type: selectedType};
+            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, dateCreated: new Date(), dateDue: startDate, type: selectedType};
 
             notesCtx.addItem(enteredText);
 

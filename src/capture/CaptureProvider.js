@@ -52,7 +52,7 @@ const captureReducer = (state, action) => {
             id: action.item.id, 
             title: action.item.title, 
             content: action.item.content ? action.item.content : null,
-            dateCreated: action.item.date,
+            dateCreated: action.item.dateCreated,
             dateDue: action.item.dateDue,
             type: action.item.type,
 
