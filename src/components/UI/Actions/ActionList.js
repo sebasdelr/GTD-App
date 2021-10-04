@@ -5,70 +5,61 @@ import ActionItem from './ActionItem';
 
 import CaptureContext from '../../../capture/capture-context';
 
-import { Row, Container, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 const ActionList = () => {
 
     const notesCtx = useContext(CaptureContext);
     
     
-
-
-    const compareDateToday = newDate => {
-        const today = new Date();
-
-        return (
-            newDate.getDate() === today.getDate() &&
-            newDate.getMonth() === today.getMonth() &&
-            newDate.getFullYear() === today.getFullYear()
-        );
-    };
-
-    const compareDateWeek = newDate => {
-
+    const compareDate = (newDate, dateFilter = 'DAY') => {
+        const MONTH = 1;
         const WEEK = 7;
         const DAY = 1;
-        const today = new Date();
-        // const thisWeek = new Date(today);
-        const thisWeek = new Date();
-        thisWeek.setDate(thisWeek.getDate() + WEEK);
-
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + DAY);
-
-
-        return (
-            newDate >= today &&
-            newDate < thisWeek
-        );
-    };
-
-    const compareDateMonth = newDate => {
-
-        const MONTH = 1;
-        const DAY = 1;
-        const today = new Date();
-        // const thisWeek = new Date(today);
+        
         const thisMonth = new Date();
-        thisMonth.setMonth(thisMonth.getMonth() + MONTH); 
-
+        const thisWeek = new Date();
         const tomorrow = new Date();
+        const today = new Date();
+
+        thisMonth.setMonth(thisMonth.getMonth() + MONTH); 
+        thisWeek.setDate(thisWeek.getDate() + WEEK);
         tomorrow.setDate(tomorrow.getDate() + DAY);
 
+        if(dateFilter === 'DAY') {
+            return (
+                newDate.getDate() === today.getDate() &&
+                newDate.getMonth() === today.getMonth() &&
+                newDate.getFullYear() === today.getFullYear()
+            );
+        }
+        if(dateFilter === 'WEEK') {
+            return (
+                newDate >= today &&
+                newDate < thisWeek
+            );
+        }
+        if(dateFilter === 'MONTH') {
+            return (
+                newDate >= today && 
+                newDate < thisMonth
+            );
+        }
 
-        return (
-            newDate >= today &&
-            newDate < thisMonth
-        );
     };
 
-    const listHandlerToday = () => {
-        const actionOnlyList = notesCtx.items.filter(item => (item.type === "4" && compareDateToday(item.dateDue)));
+    const actionOnlyList = notesCtx.items.filter(item => (item.type === "4"));
+
+    const actionListDay = actionOnlyList.filter(item => compareDate(item.dateDue, 'DAY'));
+    const actionListWeek = actionOnlyList.filter(item => compareDate(item.dateDue, 'WEEK'));
+    const actionListMonth = actionOnlyList.filter(item => compareDate(item.dateDue, 'MONTH'));
+
+    const listHandler = (list) => {
 
 
-        if(actionOnlyList.length > 0) {
+        if(list.length > 0) {
             return (
-                actionOnlyList.map((action) => {
+                list.map(action => {
                    
 
                     return (
@@ -78,9 +69,6 @@ const ActionList = () => {
 
                         
                     />);
-
-
-                    
 
                 })
             );
@@ -92,72 +80,14 @@ const ActionList = () => {
         }
     };
 
-    const listHandlerWeek = () => {
-        const actionOnlyList = notesCtx.items.filter(item => (item.type === "4" && compareDateWeek(item.dateDue)));
-
-
-        if(actionOnlyList.length > 0) {
-            return (
-                actionOnlyList.map((action) => {
-                   
-
-                    return (
-                        <ActionItem key={action.id}
-                            
-                        actionItem={action}
-
-                        
-                    />);
-
-
-                    
-
-                })
-            );
-        } else {
-            return (
-                <p>No Items Found</p>
-            );
-
-        }
-    };
-
-    const listHandlerMonth = () => {
-        const actionOnlyList = notesCtx.items.filter(item => (item.type === "4" && compareDateMonth(item.dateDue)));
-
-
-        if(actionOnlyList.length > 0) {
-            return (
-                actionOnlyList.map((action) => {
-                   
-
-                    return (
-                        <ActionItem key={action.id}
-                            
-                        actionItem={action}
-
-                        
-                    />);
-
-
-                    
-
-                })
-            );
-        } else {
-            return (
-                <p>No Items Found</p>
-            );
-
-        }
-    };
+    
 
     return (
         <React.Fragment>
             <Row>
                 <Col>
                     <h5>Today</h5>
-                    {listHandlerToday()}
+                    {listHandler(actionListDay)}
                 </Col>
 
                 
@@ -166,7 +96,7 @@ const ActionList = () => {
 
                 <Col>
                     <h5>This Week</h5>
-                    {listHandlerWeek()}
+                    {listHandler(actionListWeek)}
                 </Col>
 
                 
@@ -175,7 +105,7 @@ const ActionList = () => {
 
                 <Col>
                     <h5>This Month</h5>
-                    {listHandlerMonth()}
+                    {listHandler(actionListMonth)}
                 </Col>
                 
             </Row>
