@@ -4,28 +4,52 @@ import CaptureContext from './capture-context';
 
 const DUMMY_NOTES = [
     {
-      id: 'a1',
-      title: 'Meeting',
-      content: 'Have a meeting with shareholders about what is next',
-      dateCreated: new Date(2020, 7, 14),
-      dateDue: new Date(2020, 7, 14),
-      type: ''
+        id: 'a1',
+        title: 'Meeting',
+        content: 'Have a meeting with shareholders about what is next',
+        dateCreated: new Date(2020, 7, 14),
+        dateDue: new Date(2020, 7, 14),
+        type: '2'
     },
     {
-      id: 'a2',
-      title: 'Phone Callersas',
-      content: 'Call Mark about new designs for living room',
-      dateCreated: new Date(2021, 2, 28),
-      dateDue: new Date(2021, 2, 28),
-      type: '4'
+        id: 'a2',
+        title: 'Phone Call - Call Mark',
+        content: 'Call Mark about new designs for living room',
+        dateCreated: new Date(2021, 2, 28),
+        dateDue: new Date(),
+        type: '4'
     },
     {
-      id: 'a3',
-      title: 'Groceries',
-      content: 'Remember to buy milk',
-      dateCreated: new Date(2021, 5, 12),
-      dateDue: new Date(2021, 5, 12),
-      type: ''
+        id: 'a3',
+        title: 'Groceries',
+        content: 'Need to buy groceries',
+        dateCreated: new Date(2021, 5, 12),
+        dateDue: new Date(2021, 5, 12),
+        type: ''
+    },
+    {
+        id: 'a4',
+        title: 'Buy milk',
+        content: '',
+        dateCreated: new Date(2021, 5, 12),
+        dateDue: new Date(),
+        type: '4'
+    },
+    {
+        id: 'a5',
+        title: 'Buy car',
+        content: 'Need to find a new car',
+        dateCreated: new Date(2021, 5, 12),
+        dateDue: new Date(),
+        type: '2'
+    },
+    {
+        id: 'a6',
+        title: 'Vacation',
+        content: 'Christmas Vacation',
+        dateCreated: new Date(2021, 5, 12),
+        dateDue: new Date(),
+        type: '2'
     },
   ];
 

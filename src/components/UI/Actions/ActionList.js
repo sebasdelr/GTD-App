@@ -56,18 +56,14 @@ const ActionList = () => {
 
     const listHandler = (list) => {
 
-
         if(list.length > 0) {
             return (
                 list.map(action => {
                    
-
                     return (
                         <ActionItem key={action.id}
                             
-                        actionItem={action}
-
-                        
+                        actionItem={action}       
                     />);
 
                 })
@@ -80,26 +76,20 @@ const ActionList = () => {
         }
     };
 
-    
-
     return (
         <React.Fragment>
             <Row>
                 <Col>
                     <h5>Today</h5>
                     {listHandler(actionListDay)}
-                </Col>
-
-                
+                </Col>  
             </Row>
             <Row>
 
                 <Col>
                     <h5>This Week</h5>
                     {listHandler(actionListWeek)}
-                </Col>
-
-                
+                </Col>   
             </Row>
             <Row>
 

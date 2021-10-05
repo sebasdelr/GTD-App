@@ -10,7 +10,7 @@ const Project = (props) => {
 
     const toggleSelect = () => {
         
-        props.selectedProject(props.content.id);
+        props.selectedProject(props.item.id);
 
     };
 
@@ -18,9 +18,9 @@ const Project = (props) => {
         <Card className={props.selectedClass} onClick={toggleSelect}>
             <Card.Body>
                 
-                <Card.Title>{props.content.title}</Card.Title>
+                <Card.Title>{props.item.title}</Card.Title>
                 <Card.Text>
-                {props.content.description}
+                    {props.item.content}
                 </Card.Text>
 
             </Card.Body>
