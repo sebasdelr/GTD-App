@@ -9,9 +9,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 import CaptureContext from '../../capture/capture-context'
 
-
-
-
 function Items(){
 
     const notesCtx = useContext(CaptureContext);

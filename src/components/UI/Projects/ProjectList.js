@@ -23,10 +23,6 @@ const ProjectList = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const {list} = props;
-
-    
-
     const selectedProjectHandler = (id) => {
         setIsSelected(id);
     };
@@ -43,7 +39,7 @@ const ProjectList = (props) => {
 
     const handleDelete = () => {
         if(isSelected.trim !== '') {
-            props.handleDeleteProject(isSelected);
+            notesCtx.deleteItem(isSelected);
         }
         
     }
@@ -93,7 +89,7 @@ const ProjectList = (props) => {
     };
 
     const passProjectHandler = (enteredText) => {
-        props.onAddProject(enteredText);
+        notesCtx.addItem(enteredText);
     }
 
     return (
