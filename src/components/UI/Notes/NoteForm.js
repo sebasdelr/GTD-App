@@ -17,7 +17,6 @@ const NoteForm = () => {
     const notesCtx = useContext(CaptureContext);
 
     const [showAlert, setShowAlert] = useState(false);
-
     const [startDate, setStartDate] = useState(new Date());
    
 
@@ -27,8 +26,6 @@ const NoteForm = () => {
     const contentRef = useRef();
     const idRef = useRef();
     const typeRef = useRef();
-
-    const dueRef = useRef();
 
     
     const newNote = () => { 
@@ -58,8 +55,6 @@ const NoteForm = () => {
 
             console.log(selectedItem.dateCreated);
 
-            
-
             if(selectedItem.type === "") {
                 document.getElementById("inlineFormCustomSelect").value = "1";
             } else {
@@ -69,9 +64,6 @@ const NoteForm = () => {
         }
 
     }, [notesCtx.itemIndex]);
-
-
- 
 
     const checkIfEmpty = title => {
         if(title.trim().length === 0) {
@@ -93,22 +85,6 @@ const NoteForm = () => {
 
     const submitHandler = event => {
         event.preventDefault();
-
-        let today = new Date();
-
-        let dd = today.getDate();
-        let mm = today.getMonth() + 1;
-  
-        let yyyy = today.getFullYear();
-
-        if (dd < 10) {
-            dd = '0' + dd;
-        }
-        if (mm < 10) {
-            mm = '0' + mm;
-        }
-
-        let dateCreatedToday = new Date(yyyy, mm, dd);
         
         const enteredTitle = titleRef.current.value;
         const enteredContent = contentRef.current.value;
@@ -118,7 +94,6 @@ const NoteForm = () => {
 
 
         if(checkIfEmpty(enteredTitle)) {
-
 
             setShowAlert(false);
             const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, dateCreated: new Date(), dateDue: startDate, type: selectedType};

@@ -8,9 +8,7 @@ import { BiEdit, BiFileBlank, BiTrash } from "react-icons/bi";
 
 import CaptureContext from '../../../capture/capture-context';
 
-
-
-const ProjectList = (props) => {
+const ProjectList = () => {
     const [show, setShow] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const [isSelected, setIsSelected] = useState('');
