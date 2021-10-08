@@ -5,51 +5,63 @@ import CaptureContext from './capture-context';
 const DUMMY_NOTES = [
     {
         id: 'a1',
+        parentId: '',
         title: 'Meeting',
         content: 'Have a meeting with shareholders about what is next',
         dateCreated: new Date(2020, 7, 14),
         dateDue: new Date(2020, 7, 14),
-        type: '2'
+        type: '2',
+        status: '',
     },
     {
         id: 'a2',
+        parentId: '',
         title: 'Phone Call - Call Mark',
         content: 'Call Mark about new designs for living room',
         dateCreated: new Date(2021, 2, 28),
         dateDue: new Date(),
-        type: '4'
+        type: '4',
+        status: '',
     },
     {
         id: 'a3',
+        parentId: '',
         title: 'Groceries',
         content: 'Need to buy groceries',
         dateCreated: new Date(2021, 5, 12),
         dateDue: new Date(2021, 5, 12),
-        type: ''
+        type: '2',
+        status: '',
     },
     {
         id: 'a4',
+        parentId: '',
         title: 'Buy milk',
         content: '',
         dateCreated: new Date(2021, 5, 12),
         dateDue: new Date(),
-        type: '4'
+        type: '4',
+        status: '',
     },
     {
         id: 'a5',
+        parentId: '',
         title: 'Buy car',
         content: 'Need to find a new car',
         dateCreated: new Date(2021, 5, 12),
         dateDue: new Date(),
-        type: '2'
+        type: '2',
+        status: '',
     },
     {
         id: 'a6',
+        parentId: '',
         title: 'Vacation',
         content: 'Christmas Vacation',
         dateCreated: new Date(2021, 5, 12),
         dateDue: new Date(),
-        type: '2'
+        type: '2',
+        status: '',
     },
   ];
 
@@ -74,11 +86,13 @@ const captureReducer = (state, action) => {
 
         const itemSet = {
             id: action.item.id, 
+            parentId: '',
             title: action.item.title, 
             content: action.item.content ? action.item.content : null,
             dateCreated: action.item.dateCreated,
             dateDue: action.item.dateDue,
             type: action.item.type,
+            status: action.item.status,
 
             
         }

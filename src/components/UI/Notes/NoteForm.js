@@ -96,7 +96,15 @@ const NoteForm = () => {
         if(checkIfEmpty(enteredTitle)) {
 
             setShowAlert(false);
-            const enteredText = {id: generatedId, title: enteredTitle, content: enteredContent, dateCreated: new Date(), dateDue: startDate, type: selectedType};
+            const enteredText = {
+                id: generatedId, 
+                title: enteredTitle, 
+                content: enteredContent, 
+                dateCreated: new Date(), 
+                dateDue: startDate, 
+                type: selectedType,
+                status: '',
+            };
 
             notesCtx.addItem(enteredText);
 
@@ -141,6 +149,19 @@ const NoteForm = () => {
                         <Form.Group  controlId="note-id">
                             <Form.Control type="hidden" ref={idRef} readOnly/>
                         </Form.Group>
+
+                    </Form.Group>
+                
+                </Col>
+                <Col>
+                    <Form.Group controlId="parent-id">
+                        <Form.Label>Parent Item</Form.Label>
+                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" >
+                            <option value="0">Choose Project...</option>
+                            <option value="1">Groceries</option>
+                            <option value="2">Buy Car</option>
+                            <option value="3">Christmas Vacation</option>
+                        </Form.Control >
 
                     </Form.Group>
                 

@@ -65,7 +65,16 @@ const ProjectForm = (props) => {
 		
         if(checkIfEmpty(projectName)) {
             setShowAlert(false);
-            const enteredText = {id: projectId, title: projectName, content: projectDescription, dateCreated: new Date(), dateDue: new Date(), type: '2'};
+            const enteredText = {
+                id: projectId,
+                parentId: '', 
+                title: projectName, 
+                content: projectDescription, 
+                dateCreated: new Date(), 
+                dateDue: new Date(), 
+                type: '2',
+                status: '',
+            };
 
             props.passProjectHandler(enteredText);
 
