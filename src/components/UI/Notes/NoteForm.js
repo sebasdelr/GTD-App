@@ -12,6 +12,26 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+const projectListHandler = list => {
+    if(list.length > 0) {
+        return (
+            list.map(item => {
+                return (
+                    <option value={item.id}>{item.title}</option>
+                );
+
+            })
+        );
+
+    }
+    else {
+        return (
+            <option value='1'>No projects found</option>
+        );
+    }
+
+};
+
 const NoteForm = () => {
 
     const notesCtx = useContext(CaptureContext);
@@ -26,6 +46,10 @@ const NoteForm = () => {
     const contentRef = useRef();
     const idRef = useRef();
     const typeRef = useRef();
+
+    const projectList = notesCtx.items.filter(item => (item.type === "2"));
+
+    
 
     
     const newNote = () => { 
@@ -64,6 +88,8 @@ const NoteForm = () => {
         }
 
     }, [notesCtx.itemIndex]);
+
+    
 
     const checkIfEmpty = title => {
         if(title.trim().length === 0) {
@@ -140,7 +166,7 @@ const NoteForm = () => {
                     <Form.Group controlId="item-type">
                         <Form.Label>Item Type</Form.Label>
                         <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef}>
-                            <option value="0">Choose Type...</option>
+                            <option value>Choose Type...</option>
                             <option value="1">note-reference</option>
                             <option value="2">project</option>
                             <option value="3">idea</option>
@@ -157,10 +183,9 @@ const NoteForm = () => {
                     <Form.Group controlId="parent-id">
                         <Form.Label>Parent Item</Form.Label>
                         <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" >
-                            <option value="0">Choose Project...</option>
-                            <option value="1">Groceries</option>
-                            <option value="2">Buy Car</option>
-                            <option value="3">Christmas Vacation</option>
+                            <option readOnly>Choose Project...</option>
+                            {projectListHandler(projectList)}
+                           
                         </Form.Control >
 
                     </Form.Group>
