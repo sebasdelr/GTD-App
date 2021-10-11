@@ -86,7 +86,7 @@ const captureReducer = (state, action) => {
 
         const itemSet = {
             id: action.item.id, 
-            parentId: '',
+            parentId: action.item.parentId,
             title: action.item.title, 
             content: action.item.content ? action.item.content : null,
             dateCreated: action.item.dateCreated,

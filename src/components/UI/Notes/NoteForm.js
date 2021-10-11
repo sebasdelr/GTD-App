@@ -42,6 +42,8 @@ const NoteForm = () => {
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
+
+    const parentRef = useRef();
     
     const contentRef = useRef();
     const idRef = useRef();
@@ -74,6 +76,7 @@ const NoteForm = () => {
             document.getElementById("note-title").value = selectedItem.title;
             document.getElementById("note-content").value = selectedItem.content;
             document.getElementById("note-id").value = selectedItem.id;
+            document.getElementById("inlineFormCustomSelectParent").value = selectedItem.parentId;
 
             setStartDate(selectedItem.dateDue);
 
@@ -84,6 +87,7 @@ const NoteForm = () => {
             } else {
                 document.getElementById("inlineFormCustomSelect").value = selectedItem.type;
             }
+
             
         }
 
@@ -116,6 +120,7 @@ const NoteForm = () => {
         const enteredContent = contentRef.current.value;
         const generatedId = idRef.current.value;
         const selectedType = typeRef.current.value;
+        const selectedParentId = parentRef.current.value;
         // const dueDate = dueRef.current.value;
 
 
@@ -123,7 +128,8 @@ const NoteForm = () => {
 
             setShowAlert(false);
             const enteredText = {
-                id: generatedId, 
+                id: generatedId,
+                parentId: selectedParentId, 
                 title: enteredTitle, 
                 content: enteredContent, 
                 dateCreated: new Date(), 
@@ -182,7 +188,7 @@ const NoteForm = () => {
                 <Col>
                     <Form.Group controlId="parent-id">
                         <Form.Label>Parent Item</Form.Label>
-                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" >
+                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelectParent" ref={parentRef} >
                             <option readOnly>Choose Project...</option>
                             {projectListHandler(projectList)}
                            
