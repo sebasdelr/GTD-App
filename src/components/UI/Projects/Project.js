@@ -4,7 +4,33 @@ import {Card} from 'react-bootstrap/';
 
 import './Projects.css';
 
+const nextActionHandler = (list, id) => {
+    // childTasks = list.filter(item => (item.parentId === id));
+
+
+    if(list.length > 0) {
+        return(
+            <ul>
+                {list.map(item => {
+                    return(
+                        <li>{item.title}</li>
+                    );
+                    
+                })}
+            </ul>
+            
+        );
+
+    }else {
+        return (
+            <p>No Next Actions Set</p>
+        );
+    }
+};
+
 const Project = (props) => {
+
+    // childTasks = list.filter(item => (item.parentId === id));
 
     
 
@@ -19,8 +45,9 @@ const Project = (props) => {
             <Card.Body>
                 
                 <Card.Title>{props.item.title}</Card.Title>
+                <p>Next Actions</p>
                 <Card.Text>
-                    {props.item.content}
+                    {nextActionHandler(props.nextTasks)}
                 </Card.Text>
 
             </Card.Body>

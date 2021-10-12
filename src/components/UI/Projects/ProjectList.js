@@ -51,12 +51,17 @@ const ProjectList = () => {
     }
 
 
-
     
     const projectListHandler = list => {
+
+
+        let childTasks = [];
+
         if(list.length > 0) {
             return (
                 list.map((note) => {
+                    childTasks = notesCtx.items.filter(item => (item.parentId === note.id));
+
                     if(isSelected === note.id) {
 
                         // content = note;
@@ -69,7 +74,7 @@ const ProjectList = () => {
 
                     return (
                         <Col>
-                            <Project item={note} selectedProject={selectedProjectHandler} selectedClass={pclass}/>
+                            <Project item={note} selectedProject={selectedProjectHandler} selectedClass={pclass} nextTasks={childTasks}/>
 
                         </Col>
                     );
