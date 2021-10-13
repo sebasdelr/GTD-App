@@ -5,6 +5,7 @@ const CaptureContext = React.createContext({
     itemIndex: 0,
     addItem: (item) => {},
     selectedItem: (item) => {},
+    setDoneItem: (id) => {},
     deleteItem: (id) => {}
 });
 

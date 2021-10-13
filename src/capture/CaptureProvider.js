@@ -41,7 +41,7 @@ const DUMMY_NOTES = [
         dateCreated: new Date(2021, 5, 12),
         dateDue: new Date(),
         type: '4',
-        status: '',
+        status: 'done',
     },
     {
         id: 'a5',
@@ -116,6 +116,8 @@ const captureReducer = (state, action) => {
        
     } 
     if(action.type === 'SELECT') {
+
+        //can probably set with only using id and not whole item
         const existingNoteIndex = state.items.findIndex(item => item.id === action.item.id);
 
         // const existingNoteItem = state.items[existingNoteIndex];
@@ -128,6 +130,28 @@ const captureReducer = (state, action) => {
             itemIndex: existingNoteIndex
 
         };
+    }
+    if(action.type === 'SET_DONE') {
+        const existingNoteIndex = state.items.findIndex(item => item.id === action.id);
+
+        // const existingNoteItem = state.items[existingNoteIndex];
+
+        let updatedItems = [...state.items];
+
+        if(updatedItems[existingNoteIndex].status === 'done') {
+            updatedItems[existingNoteIndex].status = '';
+        }else {
+            updatedItems[existingNoteIndex].status = 'done';
+        }
+        
+       
+        return  {
+            // itemIndex: existingNoteIndex
+            items: updatedItems,
+            itemIndex: existingNoteIndex
+
+        };
+
     }
     if(action.type === 'DELETE') {
         // const existingNoteIndex = state.items.findIndex((item) => item.id === action.id);
@@ -162,7 +186,11 @@ const CaptureProvider = props => {
 
     const selectedItemHandler = item => {
         dispatchCaptureAction({type: 'SELECT', item: item});
-    }
+    };
+
+    const setDoneItemHandler = id => {
+        dispatchCaptureAction({type: 'SET_DONE', id: id});
+    };
 
     const deleteNoteHandler = id => {
         dispatchCaptureAction({type: 'DELETE', id: id});
@@ -173,6 +201,7 @@ const CaptureProvider = props => {
         itemIndex: captureState.itemIndex,
         addItem: addNoteHandler,
         selectedItem: selectedItemHandler,
+        setDoneItem: setDoneItemHandler,
         deleteItem: deleteNoteHandler
     };
 
