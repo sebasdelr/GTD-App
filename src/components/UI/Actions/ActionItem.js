@@ -1,24 +1,43 @@
-import { Form } from 'react-bootstrap/';
+import { useState } from 'react';
 
-import { Row } from 'react-bootstrap';
+import { Form, Row } from 'react-bootstrap/';
+
+
+import './Action.css';
 
 const checkHandler = (item) => {
     if(item === 'done') {
-        return 'checked';
+        document.getElementById("myCheck").checked = true;
+    }
+}
+
+const markDone = (item) => {
+    if(item === 'done') {
+        return 'task-done';
     }
 }
 
 const ActionItem = (props) => {
 
+    
+
+    let status = props.actionItem.status;
+
+    
+
 
     return (
         <Row>
-           <Form.Check type='checkbox'
-       
-            label={props.actionItem.title} 
-            
-            checked={checkHandler(props.actionItem.status)}
-            />
+            <div >
+                <Form.Check type='checkbox'>
+                    <Form.Check.Input  type='checkbox'  id="myCheck"/>
+                    <Form.Check.Label className={markDone(status)}>
+                        {props.actionItem.title}
+                    </Form.Check.Label>
+                </Form.Check>
+
+            </div>
+           
             
         </Row>
 
