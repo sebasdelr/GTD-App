@@ -5,11 +5,7 @@ import { Form, Row } from 'react-bootstrap/';
 
 import './Action.css';
 
-const checkHandler = (item) => {
-    if(item === 'done') {
-        document.getElementById("myCheck").checked = true;
-    }
-}
+
 
 const markDone = (item) => {
     if(item === 'done') {
@@ -18,6 +14,18 @@ const markDone = (item) => {
 }
 
 const ActionItem = (props) => {
+
+    const[useCheck, setUseCheck] = useState(props.actionItem.status);
+
+    const isWorking = () => {
+        if(useCheck === ''){
+            setUseCheck('done');
+            
+        } else {
+            setUseCheck('');
+        }
+        props.setStatus(props.actionItem.id);
+    }
 
     
 
@@ -30,8 +38,8 @@ const ActionItem = (props) => {
         <Row>
             <div >
                 <Form.Check type='checkbox'>
-                    <Form.Check.Input  type='checkbox'  id="myCheck"/>
-                    <Form.Check.Label className={markDone(status)}>
+                    <Form.Check.Input  type='checkbox'  id="myCheck" onChange={isWorking} checked={useCheck}/>
+                    <Form.Check.Label className={markDone(useCheck)}>
                         {props.actionItem.title}
                     </Form.Check.Label>
                 </Form.Check>

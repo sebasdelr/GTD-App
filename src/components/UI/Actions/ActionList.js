@@ -10,6 +10,10 @@ import { Row, Col } from 'react-bootstrap';
 const ActionList = () => {
 
     const notesCtx = useContext(CaptureContext);
+
+    const setStatusHandler = id => {
+        notesCtx.setDoneItem(id);
+    }
     
     
     const compareDate = (newDate, dateFilter = 'DAY') => {
@@ -62,8 +66,8 @@ const ActionList = () => {
                    
                     return (
                         <ActionItem key={action.id}
-                            
-                        actionItem={action}       
+                        setStatus={setStatusHandler}
+                        actionItem={action}      
                     />);
 
                 })
