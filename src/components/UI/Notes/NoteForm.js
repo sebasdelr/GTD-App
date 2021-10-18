@@ -34,11 +34,15 @@ const projectListHandler = list => {
 
 const NoteForm = () => {
 
+    
+
     const notesCtx = useContext(CaptureContext);
+
+    let selectedItem = notesCtx.items[notesCtx.itemIndex];
 
     const [showAlert, setShowAlert] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
-   
+    const [itemType, setItemType] = useState(selectedItem.type);
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
@@ -76,7 +80,7 @@ const NoteForm = () => {
             document.getElementById("note-title").value = selectedItem.title;
             document.getElementById("note-content").value = selectedItem.content;
             document.getElementById("note-id").value = selectedItem.id;
-            document.getElementById("inlineFormCustomSelectParent").value = selectedItem.parentId;
+            
 
             setStartDate(selectedItem.dateDue);
 
@@ -92,6 +96,29 @@ const NoteForm = () => {
         }
 
     }, [notesCtx.itemIndex]);
+
+    const setTypeHandler = event => {
+        setItemType(event.target.value);
+        console.log("setting type" + itemType);
+    }
+
+    const selectProjectDropdown = () => {
+        
+        if(itemType === '4') {
+
+            document.getElementById("inlineFormCustomSelectParent").value = notesCtx.items[notesCtx.itemIndex].parentId;
+
+            return(
+                <Form.Group >
+                    <Form.Label>Parent Item</Form.Label>
+                    <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelectParent" ref={parentRef} >
+                        <option readOnly>Choose Project...</option>
+                        {projectListHandler(projectList)}   
+                    </Form.Control >
+                </Form.Group>
+            );
+        }
+    }
 
     
 
@@ -171,7 +198,7 @@ const NoteForm = () => {
                 <Col>
                     <Form.Group controlId="item-type">
                         <Form.Label>Item Type</Form.Label>
-                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef}>
+                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelect" ref={typeRef} onChange={setTypeHandler}>
                             <option value>Choose Type...</option>
                             <option value="1">note-reference</option>
                             <option value="2">project</option>
@@ -185,29 +212,22 @@ const NoteForm = () => {
                     </Form.Group>
                 
                 </Col>
-                <Col>
-                    <Form.Group controlId="parent-id">
-                        <Form.Label>Parent Item</Form.Label>
-                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelectParent" ref={parentRef} >
-                            <option readOnly>Choose Project...</option>
-                            {projectListHandler(projectList)}
-                           
-                        </Form.Control >
 
-                    </Form.Group>
-                
-                </Col>
                 <Col>
                     <Form.Group controlId="due-date">
                         <Form.Label>Date Due</Form.Label>
                         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-                    
-
                     </Form.Group>
                 
                 </Col>
 
 
+            </Row>
+            <Row>
+                <Col>
+                    {selectProjectDropdown}
+                </Col>
+                <Col></Col>
             </Row>
             <Row>
                            

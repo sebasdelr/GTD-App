@@ -6,6 +6,8 @@ import Project from './Project';
 import { Row, Col, Button} from 'react-bootstrap/';
 import { BiEdit, BiFileBlank, BiTrash } from "react-icons/bi";
 
+import './Projects.css';
+
 import CaptureContext from '../../../capture/capture-context';
 
 const ProjectList = () => {
@@ -73,10 +75,9 @@ const ProjectList = () => {
                     console.log(pclass);
 
                     return (
-                        <Col>
+                     
                             <Project item={note} selectedProject={selectedProjectHandler} selectedClass={pclass} nextTasks={childTasks}/>
 
-                        </Col>
                     );
 
                 }
@@ -107,7 +108,7 @@ const ProjectList = () => {
                 </Col>
             </Row>
 
-            <Row style={{ padding: '15px 15px'  }} >
+            <Row style={{ padding: '15px'  }}  xs={2} md={4} lg={6} className="parent" >
                 {projectListHandler(projectOnlyList)}
             </Row>
             <ProjectForm show={show} onHide={handleClose} passProjectHandler={passProjectHandler} projectContent={content} canEdit={isEdit}/>
