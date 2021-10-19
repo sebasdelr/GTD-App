@@ -15,7 +15,7 @@ const DUMMY_NOTES = [
     },
     {
         id: 'a2',
-        parentId: '',
+        parentId: 'a1',
         title: 'Phone Call - Call Mark',
         content: 'Call Mark about new designs for living room',
         dateCreated: new Date(2021, 2, 28),
