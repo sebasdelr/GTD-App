@@ -35,19 +35,17 @@ const ActionItem = (props) => {
 
 
     return (
-        <Row>
-            <div >
-                <Form.Check type='checkbox'>
-                    <Form.Check.Input  type='checkbox'  id="myCheck" onChange={isWorking} checked={useCheck}/>
-                    <Form.Check.Label className={markDone(useCheck)}>
-                        {props.actionItem.title}
-                    </Form.Check.Label>
-                </Form.Check>
 
-            </div>
-           
-            
-        </Row>
+        <div >
+            <Form.Check type='checkbox'>
+                <Form.Check.Input  type='checkbox'  id="myCheck" onChange={isWorking} checked={useCheck}/>
+                <Form.Check.Label className={markDone(useCheck)}>
+                    {props.actionItem.title}
+                </Form.Check.Label>
+            </Form.Check>
+
+        </div>
+
 
     );
 }

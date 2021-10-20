@@ -11,6 +11,8 @@ const ActionList = () => {
 
     const notesCtx = useContext(CaptureContext);
 
+    
+
     const setStatusHandler = id => {
         notesCtx.setDoneItem(id);
     }
@@ -52,6 +54,7 @@ const ActionList = () => {
 
     };
 
+    const projectList = notesCtx.items.filter(item => (item.type === "2"));
     const actionOnlyList = notesCtx.items.filter(item => (item.type === "4"));
 
     const actionListDay = actionOnlyList.filter(item => compareDate(item.dateDue, 'DAY'));
@@ -63,12 +66,25 @@ const ActionList = () => {
         if(list.length > 0) {
             return (
                 list.map(action => {
-                   
+                    const parentItems = projectList.filter(item => (item.id === action.parentId));
+                    let parentTitle = '';
+                    if(action.parentId !== '') {
+                        parentTitle = parentItems[0].title;
+                        console.log(parentTitle);
+                    };
+                    
                     return (
-                        <ActionItem key={action.id}
-                        setStatus={setStatusHandler}
-                        actionItem={action}      
-                    />);
+                        <React.Fragment>
+                            <p>{parentTitle}</p>
+                            <ActionItem key={action.id}
+                            setStatus={setStatusHandler}
+                            actionItem={action}      
+                            />
+                            
+
+                        </React.Fragment>
+
+                    );
 
                 })
             );
