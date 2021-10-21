@@ -12,6 +12,7 @@ const DUMMY_NOTES = [
         dateDue: new Date(2020, 7, 14),
         type: '2',
         status: '',
+        reviewed: false,
     },
     {
         id: 'a2',
@@ -22,6 +23,7 @@ const DUMMY_NOTES = [
         dateDue: new Date(),
         type: '4',
         status: '',
+        reviewed: false,
     },
     {
         id: 'a3',
@@ -32,6 +34,7 @@ const DUMMY_NOTES = [
         dateDue: new Date(2021, 5, 12),
         type: '2',
         status: '',
+        reviewed: false,
     },
     {
         id: 'a4',
@@ -42,6 +45,7 @@ const DUMMY_NOTES = [
         dateDue: new Date(),
         type: '4',
         status: 'done',
+        reviewed: false,
     },
     {
         id: 'a5',
@@ -52,6 +56,7 @@ const DUMMY_NOTES = [
         dateDue: new Date(),
         type: '2',
         status: '',
+        reviewed: false,
     },
     {
         id: 'a6',
@@ -62,6 +67,7 @@ const DUMMY_NOTES = [
         dateDue: new Date(),
         type: '2',
         status: '',
+        reviewed: false,
     },
   ];
 
@@ -93,6 +99,7 @@ const captureReducer = (state, action) => {
             dateDue: action.item.dateDue,
             type: action.item.type,
             status: action.item.status,
+            reviewed: false,
 
             
         }
