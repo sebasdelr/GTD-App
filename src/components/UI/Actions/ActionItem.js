@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Form, Row } from 'react-bootstrap/';
+import { Form } from 'react-bootstrap/';
 
 
 import './Action.css';
@@ -27,11 +27,7 @@ const ActionItem = (props) => {
         props.setStatus(props.actionItem.id);
     }
 
-    
-
-    let status = props.actionItem.status;
-
-    
+      
 
 
     return (

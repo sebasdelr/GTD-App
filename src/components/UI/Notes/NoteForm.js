@@ -47,8 +47,6 @@ const NoteForm = () => {
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
-
-    const parentRef = useRef();
     
     const contentRef = useRef();
     const idRef = useRef();
