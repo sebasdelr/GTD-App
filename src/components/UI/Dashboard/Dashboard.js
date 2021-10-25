@@ -4,13 +4,15 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import {Card, Image, Row, Col} from 'react-bootstrap/';
 
+import { Link } from 'react-router-dom';
+
 import Create from '@material-ui/icons/Create';
 import List from '@material-ui/icons/List';
 import Folder from '@material-ui/icons/Folder';
 import MenuBook from '@material-ui/icons/MenuBook';
 import DirectionsWalk from '@material-ui/icons/DirectionsWalk';
 
-import dashboardImage from '../../../assets/xps-kLfkVa_4aXM-unsplash.jpg';
+import dashboardImage from '../../../assets/carlos-muza-hpjSkU2UYSU-unsplash.jpg';
 
 
 
@@ -30,37 +32,42 @@ const Dashboard = () => {
 					<Col>
 						<Card  className="dashboard-card" >
 							<Card.Body>
-								
+								<Link to="/capture">
 								<Create />
 								<Card.Title>Capture</Card.Title>
 								<Card.Text>
 								Capture anything that crosses your mind
 								</Card.Text>
 								{/* <Button variant="primary">Capture</Button> */}
+								</Link>
 							</Card.Body>
 						</Card>
 					</Col>
 					<Col>
 						<Card className="dashboard-card">
 							<Card.Body>
+								<Link to="/clarify">
 								<List/>
 								<Card.Title>Clarify</Card.Title>
 								<Card.Text>
 								Process what you've captured.
 								</Card.Text>
 								{/* <Button variant="primary">Clarify</Button> */}
+								</Link>
 							</Card.Body>
 						</Card>
 					</Col>
 					<Col>
 						<Card className="dashboard-card">
 							<Card.Body>
+								<Link to="/projects">
 								<Folder/>
 								<Card.Title>Organize</Card.Title>
 								<Card.Text>
 								Put everything in the right place.
 								</Card.Text>
 								{/* <Button variant="primary">Organize</Button> */}
+								</Link>
 							</Card.Body>
 						</Card>
 					</Col>
@@ -80,12 +87,14 @@ const Dashboard = () => {
 					<Col>
 						<Card  className="dashboard-card">
 							<Card.Body>
+								<Link to="/actions">
 								<DirectionsWalk/>
 								<Card.Title>Engage</Card.Title>
 								<Card.Text>
 								Get to work on the important stuff.
 								</Card.Text>
 								{/* <Button variant="primary">Engage</Button> */}
+								</Link>
 							</Card.Body>
 						</Card>
 					</Col>

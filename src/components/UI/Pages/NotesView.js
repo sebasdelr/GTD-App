@@ -43,13 +43,15 @@ const NotesView = () => {
   // }
 
 
-
+  const divStyle = {
+    padding: '1 px'
+  };
   
 
   return (
       <Row >
         
-        <Col xs={3} md={2}>
+        <Col xs={3} md={2} style={divStyle}>
           <Items />
         </Col>
         <Col>
