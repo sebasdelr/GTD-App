@@ -14,6 +14,7 @@ import ProjectsView from './components/UI/Pages/ProjectsView';
 import DashboardView from './components/UI/Pages/DashboardView';
 import ActionView from './components/UI/Pages/ActionView';
 import PlanningView from './components/UI/Pages/PlanningView';
+import GanttView from './components/UI/Projects/GanttView';
 
 import LoginForm from './components/UI/Login/LoginForm';
 
@@ -90,6 +91,7 @@ const App = () => {
                     </Route>
                     <Route path="/clarify" component={PlanningView} />
                     <Route path="/projects" component={ProjectsView} />
+                    <Route path="/project-viewer" component={GanttView} />
                     <Route path="/actions">
                       <ActionView />
                     </Route>
