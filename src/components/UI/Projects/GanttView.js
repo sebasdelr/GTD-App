@@ -2,14 +2,27 @@ import React from 'react';
 
 import { Table } from 'react-bootstrap';
 
+const generateRows = () => {
+
+}
+
 
 const generateTable = () => {
     return (
-        [1,2,3,4,5,6,7,8,9,10,11,12].map(item => {
+        Array.apply(null, Array(12)).map(function (x, i) { return i; }).map(item => {
             return (
-                <td>{item}</td>
+                <tr>
+                    {Array.apply(null, Array(40)).map(function (x, i) { return i; }).map(item => {
+                    return (
+                        <td>{item}</td>
+                    )
+                    })}
+                </tr>
+                
             )
         })
+        
+        
 
     );
 }
@@ -18,17 +31,52 @@ const GanttView = () => {
 
 
     return (
-        <Table>
-            <tbody>
-                <tr>
-                    {generateTable}
-                </tr>
+        <div>
+            <p>Test</p>
+            {/* <Table responsive>
+                <tbody>
+          
+                        {generateTable()}
+                    
 
-            </tbody>
-            
+                </tbody>
+                
 
 
-        </Table>
+            </Table> */}
+            <Table responsive>
+                <thead>
+                    <tr>
+                    <th>#</th>
+                    {Array.from({ length: 12 }).map((_, index) => (
+                        <th key={index}>Table heading</th>
+                    ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>1</td>
+                    {Array.from({ length: 12 }).map((_, index) => (
+                        <td key={index}>Table cell {index}</td>
+                    ))}
+                    </tr>
+                    <tr>
+                    <td>2</td>
+                    {Array.from({ length: 12 }).map((_, index) => (
+                        <td key={index}>Table cell {index}</td>
+                    ))}
+                    </tr>
+                    <tr>
+                    <td>3</td>
+                    {Array.from({ length: 12 }).map((_, index) => (
+                        <td key={index}>Table cell {index}</td>
+                    ))}
+                    </tr>
+                </tbody>
+            </Table>
+
+        </div>
+
     );
 
 };
