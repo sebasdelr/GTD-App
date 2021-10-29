@@ -5,10 +5,10 @@
     overflow: scroll initial;
     background-color: #333; */
     display: flex;
-    /* position: fixed; */
+    position: fixed;
     /* overflow: scroll initial; */
     left: 0;
-    top: 0;
+    /* top: 0; */
     height: 100vh;
     width: 240px;
     background: #11101d;

@@ -83,7 +83,7 @@ const App = () => {
                 <Col md="auto" className="sidebar">
                   <Sidebar/>
                 </Col>
-                <Col>
+                <Col className="containerthis">
                   <Switch>
                     <Route path="/" component={DashboardView} exact />
                     <Route path="/capture">
