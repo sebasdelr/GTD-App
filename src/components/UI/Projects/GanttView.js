@@ -1,20 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Table } from 'react-bootstrap';
 
-const generateRows = () => {
+import "./GanttView.css";
+
+import CaptureContext from '../../../capture/capture-context';
+
+const generateHeader = () => {
+    return (
+        <tr>
+            <th>#</th>
+            {Array.from({ length: 365 }).map((_, index) => (
+                <th key={index}>{index}</th>
+            ))}
+        </tr>
+    );
 
 }
 
 
-const generateTable = () => {
+const generateTable = (projects) => {
     return (
-        Array.apply(null, Array(12)).map(function (x, i) { return i; }).map(item => {
+
+        
+        projects.map(item => {
             return (
                 <tr>
-                    {Array.apply(null, Array(40)).map(function (x, i) { return i; }).map(item => {
+                    <td>{item.title}</td>
+                    {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
                     return (
-                        <td>{item}</td>
+                        <td>x</td>
                     )
                     })}
                 </tr>
@@ -29,22 +44,28 @@ const generateTable = () => {
 
 const GanttView = () => {
 
+    const notesCtx = useContext(CaptureContext);
+    const projectOnlyList = notesCtx.items.filter(item => (item.type === "2"));
+
 
     return (
-        <div>
+        <div className="ganttTable">
             <p>Test</p>
-            {/* <Table responsive>
+            <Table responsive > 
+                <thead>
+                    {generateHeader()}
+                </thead>
                 <tbody>
           
-                        {generateTable()}
+                    {generateTable(projectOnlyList)}
                     
 
                 </tbody>
                 
 
 
-            </Table> */}
-            <Table responsive>
+            </Table>
+            {/* <Table responsive>
                 <thead>
                     <tr>
                     <th>#</th>
@@ -73,7 +94,7 @@ const GanttView = () => {
                     ))}
                     </tr>
                 </tbody>
-            </Table>
+            </Table> */}
 
         </div>
 
