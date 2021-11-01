@@ -24,13 +24,35 @@ const generateTable = (projects) => {
 
         
         projects.map(item => {
+            let day1 = item.startDate; 
+            let day2 = item.dateDue;
+
+            let difference= Math.abs(day2-day1);
+            let days = difference/(1000 * 3600 * 24)
+
+            let daysLeft = days;
+
+            console.log(days);
+
             return (
                 <tr>
                     <td>{item.title}</td>
                     {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
-                    return (
-                        <td>x</td>
-                    )
+                    
+                    daysLeft--;
+
+                    if (daysLeft > 0) {
+                        return (
+                            <td>o</td>
+                        )
+                        
+                    } else {
+                        return (
+                            <td></td>
+                        )
+                    }
+
+                    
                     })}
                 </tr>
                 
