@@ -9,9 +9,12 @@ import CaptureContext from '../../../capture/capture-context';
 const generateHeader = () => {
     return (
         <tr>
-            <th>#</th>
+            <th>Project</th>
+            <th>Days Left</th>
+            <th>Start Date</th>
+            <th>End Date</th>
             {Array.from({ length: 365 }).map((_, index) => (
-                <th key={index}>{index}</th>
+                <th key={index} className="headerNumber">{index}</th>
             ))}
         </tr>
     );
@@ -24,33 +27,57 @@ const generateTable = (projects) => {
 
         
         projects.map(item => {
+            let yearStart = new Date(2021, 1, 1);
             let day1 = item.startDate; 
             let day2 = item.dateDue;
 
-            let difference= Math.abs(day2-day1);
-            let days = difference/(1000 * 3600 * 24)
+            let startMarker = Math.abs(day1-yearStart);
+            let daysTwo = startMarker/(1000 * 3600 * 24);
+
+            let difference = Math.abs(day2-day1);
+            let days = difference/(1000 * 3600 * 24);
 
             let daysLeft = days;
+            let daysLeftTwo = daysTwo;
 
-            console.log(days);
+            //add days left to a column
+
+            console.log(daysLeftTwo);
 
             return (
                 <tr>
                     <td>{item.title}</td>
-                    {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
+                    <td>{daysLeft}</td>
+                    <td>{day1.toISOString().substring(0, 10)}</td>
+                    <td>{day2.toISOString().substring(0, 10)}</td>
                     
-                    daysLeft--;
-
-                    if (daysLeft > 0) {
-                        return (
-                            <td>o</td>
-                        )
+                    {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
                         
-                    } else {
+                    
+                    
+                    
+
+                    if (daysLeftTwo > 0) {
+                        daysLeftTwo--;
                         return (
                             <td></td>
                         )
+                    } else {
+                        if (daysLeft > 0) {
+                            daysLeft--;
+                            return (
+                                <td className="activeCel"></td>
+                            )
+                            
+                        } else {
+                            return (
+                                <td></td>
+                            )
+                        }
+
                     }
+
+                    
 
                     
                     })}
@@ -72,8 +99,8 @@ const GanttView = () => {
 
     return (
         <div className="ganttTable">
-            <p>Test</p>
-            <Table responsive > 
+            
+            <Table responsive striped bordered hover size="sm"> 
                 <thead>
                     {generateHeader()}
                 </thead>

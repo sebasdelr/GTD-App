@@ -2,3 +2,12 @@
     padding: 20px;
     border-color: black;
 }
+
+.activeCel{
+    background-color:blueviolet !important;
+}
+
+.headerNumber {
+    font-size: small;
+}
+
