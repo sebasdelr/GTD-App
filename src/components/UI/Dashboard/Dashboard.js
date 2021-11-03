@@ -20,7 +20,6 @@ const Dashboard = () => {
 	return (
 		<div className="dashboard" >
 
-			<div >
 				{/* <div className="panel-heading">
 					
 					<b>Dashboard</b>
@@ -99,7 +98,7 @@ const Dashboard = () => {
 						</Card>
 					</Col>
 				</Row>
-			</div>
+			
 		</div>
 	);
 };

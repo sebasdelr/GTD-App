@@ -1,18 +1,28 @@
 import React, { useContext } from 'react';
 
-import { Table } from 'react-bootstrap';
+import { Table, Col, Row } from 'react-bootstrap';
 
 import "./GanttView.css";
 
 import CaptureContext from '../../../capture/capture-context';
 
-const generateHeader = () => {
+const generateHeader1 = () => {
     return (
         <tr>
             <th>Project</th>
             <th>Days Left</th>
             <th>Start Date</th>
             <th>End Date</th>
+            
+        </tr>
+    );
+
+}
+
+const generateHeader2 = () => {
+    return (
+        <tr>
+
             {Array.from({ length: 365 }).map((_, index) => (
                 <th key={index} className="headerNumber">{index}</th>
             ))}
@@ -21,8 +31,33 @@ const generateHeader = () => {
 
 }
 
+const generateTableData = (projects) => {
+    return(
+        projects.map(item => {
+            let day1 = item.startDate; 
+            let day2 = item.dateDue;
 
-const generateTable = (projects) => {
+            let difference = Math.abs(day2-day1);
+            let days = difference/(1000 * 3600 * 24);
+
+            return (
+                <tr>
+                    <td>{item.title}</td>
+                    <td>{days}</td>
+                    <td>{day1.toISOString().substring(0, 10)}</td>
+                    <td>{day2.toISOString().substring(0, 10)}</td>
+                    
+                   
+                </tr>
+                
+            );
+        })
+
+    );
+}
+
+
+const generateTableCels = (projects) => {
     return (
 
         
@@ -45,49 +80,32 @@ const generateTable = (projects) => {
             console.log(daysLeftTwo);
 
             return (
-                <tr>
-                    <td>{item.title}</td>
-                    <td>{daysLeft}</td>
-                    <td>{day1.toISOString().substring(0, 10)}</td>
-                    <td>{day2.toISOString().substring(0, 10)}</td>
-                    
+                <tr>               
                     {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
-                        
-                    
-                    
-                    
 
-                    if (daysLeftTwo > 0) {
-                        daysLeftTwo--;
-                        return (
-                            <td></td>
-                        )
-                    } else {
-                        if (daysLeft > 0) {
-                            daysLeft--;
-                            return (
-                                <td className="activeCel"></td>
-                            )
-                            
-                        } else {
+                        if (daysLeftTwo > 0) {
+                            daysLeftTwo--;
                             return (
                                 <td></td>
                             )
+                        } else {
+                            if (daysLeft > 0) {
+                                daysLeft--;
+                                return (
+                                    <td className="activeCel"></td>
+                                )
+                                
+                            } else {
+                                return (
+                                    <td></td>
+                                )
+                            }
+
                         }
-
-                    }
-
-                    
-
-                    
-                    })}
-                </tr>
-                
+                   })}
+                </tr>      
             )
         })
-        
-        
-
     );
 }
 
@@ -98,22 +116,42 @@ const GanttView = () => {
 
 
     return (
-        <div className="ganttTable">
-            
-            <Table responsive striped bordered hover size="sm"> 
-                <thead>
-                    {generateHeader()}
-                </thead>
-                <tbody>
-          
-                    {generateTable(projectOnlyList)}
-                    
-
-                </tbody>
+        <div className="ganttView">
+            <h1>Timelines</h1>
+            <Row>
+                <Col className="ganttData">
+                    <Table responsive striped bordered hover size="sm"> 
+                        <thead>
+                            {generateHeader1()}
+                        </thead>
+                        <tbody>
                 
+                            {generateTableData(projectOnlyList)}
+                            
+                        </tbody>
+                            
+                    </Table>
+                </Col>
+                <Col className="ganttTable">
+                    <Table responsive striped hover size="sm"> 
+                        <thead>
+                            {generateHeader2()}
+                        </thead>
+                        <tbody>
+                
+                            {generateTableCels(projectOnlyList)}
+                            
+
+                        </tbody>
+                        
 
 
-            </Table>
+                    </Table>
+                </Col>
+            </Row>
+            
+            
+            
             {/* <Table responsive>
                 <thead>
                     <tr>

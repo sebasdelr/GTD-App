@@ -1,10 +1,29 @@
+
+
+.ganttView {
+    margin: 0 20px;
+}
+
+.ganttView .col {
+    padding: 0px;
+    
+}
+
 .ganttTable{
-    padding: 20px;
-    border-color: black;
+    
+    max-width: 1100px;
 }
 
 .activeCel{
     background-color:blueviolet !important;
+}
+
+.ganttTable th {
+    height: 33px;
+}
+
+.ganttTable td {
+    height: 33px;
 }
 
 .headerNumber {
