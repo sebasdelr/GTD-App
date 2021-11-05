@@ -18,6 +18,10 @@
     background-color:blueviolet !important;
 }
 
+.activeCelChild{
+    background-color: teal !important;
+}
+
 .ganttTable th {
     height: 33px;
 }

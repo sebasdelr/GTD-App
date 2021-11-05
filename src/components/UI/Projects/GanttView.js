@@ -31,34 +31,79 @@ const generateHeader2 = () => {
 
 }
 
-const generateTableData = (projects) => {
+const generateTableData = (projects, hierarchy) => {
+
+    // const projectOnlyList = projects.filter(item => (item.type === "2"));
+
     return(
         projects.map(item => {
+            
+
             let day1 = item.startDate; 
             let day2 = item.dateDue;
 
             let difference = Math.abs(day2-day1);
             let days = difference/(1000 * 3600 * 24);
 
-            return (
-                <tr>
-                    <td>{item.title}</td>
-                    <td>{days}</td>
-                    <td>{day1.toISOString().substring(0, 10)}</td>
-                    <td>{day2.toISOString().substring(0, 10)}</td>
+           
+
+            if(item.type === "2") {
+
+                let childTasks = projects.filter(project => (project.parentId === item.id));
+
+                if(childTasks.length > 0) {
+                    generateTableData(childTasks, "2");
+                    console.log("children");
+                } else {
+                    console.log("no children + " );
+                }
+
+                return (
+                    <tr>
+                        <td><b>{item.title}</b></td>
+                        <td>{days}</td>
+                        <td>{day1.toISOString().substring(0, 10)}</td>
+                        <td>{day2.toISOString().substring(0, 10)}</td>
+                        
+                       
+                    </tr>
                     
-                   
-                </tr>
-                
-            );
+                );
+
+            } else {
+                return (
+                    <tr>
+                        <td>   &emsp;{item.title}</td>
+                        <td>{days}</td>
+                        <td>{day1.toISOString().substring(0, 10)}</td>
+                        <td>{day2.toISOString().substring(0, 10)}</td>
+                        
+                       
+                    </tr>
+                    
+                );
+            }
+
+            
+
+            
         })
 
     );
 }
 
+const generateChildrenData = (projects) => {
+
+}
+
 
 const generateTableCels = (projects) => {
+    
+
     return (
+
+
+        
 
         
         projects.map(item => {
@@ -75,36 +120,76 @@ const generateTableCels = (projects) => {
             let daysLeft = days;
             let daysLeftTwo = daysTwo;
 
-            //add days left to a column
+            if(item.type === "2") {
 
-            console.log(daysLeftTwo);
+                let childTasks = projects.filter(project => (project.parentId === item.id));
 
-            return (
-                <tr>               
-                    {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
+                if(childTasks.length > 0) {
+                    generateTableCels(childTasks);
+                    console.log("children");
+                } else {
+                    console.log("no children + " );
+                }
 
-                        if (daysLeftTwo > 0) {
-                            daysLeftTwo--;
-                            return (
-                                <td></td>
-                            )
-                        } else {
-                            if (daysLeft > 0) {
-                                daysLeft--;
-                                return (
-                                    <td className="activeCel"></td>
-                                )
-                                
-                            } else {
+                return (
+                    <tr>               
+                        {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
+
+                            if (daysLeftTwo > 0) {
+                                daysLeftTwo--;
                                 return (
                                     <td></td>
                                 )
-                            }
+                            } else {
+                                if (daysLeft > 0) {
+                                    daysLeft--;
+                                    return (
+                                        <td className="activeCel"></td>
+                                    )
+                                    
+                                } else {
+                                    return (
+                                        <td></td>
+                                    )
+                                }
 
-                        }
-                   })}
-                </tr>      
-            )
+                            }
+                        })}
+                    </tr> 
+                    
+                );
+
+            } else {
+                return (
+                    <tr>               
+                        {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
+
+                            if (daysLeftTwo > 0) {
+                                daysLeftTwo--;
+                                return (
+                                    <td></td>
+                                )
+                            } else {
+                                if (daysLeft > 0) {
+                                    daysLeft--;
+                                    return (
+                                        <td className="activeCelChild"></td>
+                                    )
+                                    
+                                } else {
+                                    return (
+                                        <td></td>
+                                    )
+                                }
+
+                            }
+                        })}
+                    </tr>
+                    
+                );
+            }
+
+       
         })
     );
 }
@@ -126,7 +211,7 @@ const GanttView = () => {
                         </thead>
                         <tbody>
                 
-                            {generateTableData(projectOnlyList)}
+                            {generateTableData(notesCtx.items, "1")}
                             
                         </tbody>
                             
@@ -139,7 +224,7 @@ const GanttView = () => {
                         </thead>
                         <tbody>
                 
-                            {generateTableCels(projectOnlyList)}
+                            {generateTableCels(notesCtx.items)}
                             
 
                         </tbody>
