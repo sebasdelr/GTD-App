@@ -4,9 +4,11 @@ import ProjectForm from './ProjectForm';
 import Project from './Project';
 
 import { Row, Col, Button} from 'react-bootstrap/';
+import { Link } from 'react-router-dom';
 import { BiEdit, BiFileBlank, BiTrash } from "react-icons/bi";
 
 import './Projects.css';
+import './ProjectList.css';
 
 import CaptureContext from '../../../capture/capture-context';
 
@@ -97,7 +99,7 @@ const ProjectList = () => {
     }
 
     return (
-        <React.Fragment>
+        <div className="projectlist">
             <Row>
                 <Col></Col>
                 <Col xs={6}>
@@ -111,10 +113,13 @@ const ProjectList = () => {
             <Row style={{ padding: '15px'  }}  xs={2} md={4} lg={6} className="parent" >
                 {projectListHandler(projectOnlyList)}
             </Row>
+            <Row>
+                <Col ><Button variant="primary"><Link to="/project-viewer">Project Viewer</Link></Button></Col>
+            </Row>
             <ProjectForm show={show} onHide={handleClose} passProjectHandler={passProjectHandler} projectContent={content} canEdit={isEdit}/>
 
 
-        </React.Fragment>
+        </div>
 
     );
 

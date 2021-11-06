@@ -1,0 +1,23 @@
+.projectlist {
+    margin: 20px;
+}
+
+.projectlist a:link {
+    text-decoration: none;
+    color:white;
+}
+
+.projectlist a:visited {
+    text-decoration: none;
+    color:white;
+}
+
+.projectlist a:active {
+    text-decoration: none;
+    color:white;
+}
+
+.projectlist a:hover {
+    text-decoration: none;
+    color:white;
+}

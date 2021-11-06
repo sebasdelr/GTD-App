@@ -17,10 +17,7 @@ const ProjectsView = () => {
           <ProjectList/>
         </Col>
       </Row>
-      <Row></Row>
-      <Row>
-      <Col><Button variant="primary"><Link to="/project-viewer">Project Viewer</Link></Button></Col>
-      </Row>
+      
     </React.Fragment>
 
 
