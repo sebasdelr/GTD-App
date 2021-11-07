@@ -21,10 +21,10 @@
     color: #f3cafb;
   }
   
-  .nav button {
+  .navbtn {
     font: inherit;
-    background: #dd0db0;
-    border: 1px solid #dd0db0;
+    background: #FFB703 !important;
+    border: 1px solid #FFB703;
     padding: 0.5rem 1.5rem;
     color: white;
     cursor: pointer;
@@ -50,7 +50,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #04AA6D;
+    background: #219EBC;
     padding: 5px;
   }
   

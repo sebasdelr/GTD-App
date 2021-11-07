@@ -7,6 +7,8 @@ import CaptureContext from '../../../capture/capture-context';
 
 import { Row, Col } from 'react-bootstrap';
 
+import './ActionList.css';
+
 const ActionList = () => {
 
     const notesCtx = useContext(CaptureContext);
@@ -97,7 +99,7 @@ const ActionList = () => {
     };
 
     return (
-        <React.Fragment>
+        <div className="actionList">
             <Row>
                 <Col>
                     <h5>Today</h5>
@@ -120,7 +122,7 @@ const ActionList = () => {
                 
             </Row>
 
-        </React.Fragment>
+        </div>
 
     );
 };

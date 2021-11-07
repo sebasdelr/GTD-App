@@ -29,7 +29,7 @@ const Header = (props) => {
                     </NavItem>
 
                     <NavItem>
-                        <Button onClick={props.onLogout}>Logout</Button>
+                        <Button onClick={props.onLogout} className="navbtn">Logout</Button>
                     </NavItem>
 
                     

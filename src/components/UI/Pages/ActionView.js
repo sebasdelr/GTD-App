@@ -5,13 +5,13 @@ import { Container } from 'react-bootstrap';
 
 const ActionView = (props) => {
     return (
-       <Container>
+       <div>
             <h1>Next Actions</h1>
 
             <ActionList notes={props.notes}/>
 
 
-       </Container>
+       </div>
             
 
       
