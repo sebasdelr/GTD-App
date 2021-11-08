@@ -28,8 +28,8 @@ const Dashboard = () => {
 			<div className="dashboard-image">
 				<Image className="top-image" src={dashboardImage} fluid />
 			</div>
-			<h1>Dashboard</h1>
-			<Row style={{ padding: '15px 15px'  }} >
+			<h1 style={{ padding: '15px 15px'  }}>Dashboard</h1>
+			<Row  >
 				<Col>
 					<Card  className="dashboard-card" >
 						<Card.Body>

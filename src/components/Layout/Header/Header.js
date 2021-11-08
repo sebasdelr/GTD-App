@@ -14,7 +14,7 @@ const Header = (props) => {
 
         <Navbar className = "main-header" expand="lg">
 
-            <Navbar.Brand  className="me-auto" href="#home">GTD App</Navbar.Brand>
+            <Navbar.Brand  className="me-auto" href="#home">Getting Things Done App</Navbar.Brand>
           
             
                 
