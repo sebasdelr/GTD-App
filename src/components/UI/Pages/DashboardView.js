@@ -1,4 +1,4 @@
-
+import {Container} from 'react-bootstrap/';
 
 import Dashboard from '../Dashboard/Dashboard';
 
@@ -6,8 +6,10 @@ import Dashboard from '../Dashboard/Dashboard';
 const DashboardView = () => {
     return (
        
+           <Dashboard />
+       
 
-            <Dashboard />
+            
 
       
     );
