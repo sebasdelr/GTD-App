@@ -1,4 +1,9 @@
 
+a:link {
+    text-decoration: none;
+}
+
+
 
 .dashboard-image {
     width: 100%;
@@ -17,6 +22,71 @@
 .dashboard-container {
     max-height: 550px;
     overflow-y: auto;
+}
+
+.dashboard-sections {
+    display: flex;
+    margin: 0px -8px 16px;
+    flex-wrap: wrap;
+    -moz-box-pack: justify;
+    min-height: 132px;
+    justify-content: space-between;
+}
+
+.dashboard-section {
+    width: 126px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    padding: 0px;
+    color: rgb(80, 95, 121);
+    background-color: transparent;
+    border: 0px none;
+}
+
+.dashboard-section-name a:active {
+    text-decoration: none;
+}
+
+.dashboard-section-icon {
+    text-align: center;
+    height: 75px;
+    width: 75px;
+    border-radius: 16px;
+    box-sizing: border-box;
+    margin: 0px auto 8px;
+    padding: 12px 0px;
+    background-color: #E55300;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
+}
+
+.dashboard-section-icon svg {
+    color: white;
+    height: 48px;
+    width: 48px;
+}
+
+.dashboard-section-name {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    min-height: 16px;
+    margin-bottom: 4px;
+    color: rgb(23, 43, 77);
+    
+}
+
+
+
+.dashboard-section-description {
+    color: rgb(122, 134, 154);
+    font-size: 12px;
+    line-height: 16px;
+    min-height: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 .dashboard-card {

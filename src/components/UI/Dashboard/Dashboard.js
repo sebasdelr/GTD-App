@@ -30,77 +30,90 @@ const Dashboard = () => {
 			</div>
 			<h1 style={{ padding: '15px 15px'  }}>Dashboard</h1>
 			<div className="dashboard-container">
-				<Row  >
+			<Row  className="dashboard-sections">
 					<Col>
-						<Card  className="dashboard-card" >
-							<Card.Body>
-								<Link to="/capture">
-								<Create />
-								<Card.Title>Capture</Card.Title>
-								<Card.Text>
-								Capture anything that crosses your mind
-								</Card.Text>
+						<Link to="/capture">
+							<div className="dashboard-section">
+								<div  className="dashboard-section-icon" >								
+										<Create />
+								</div>
+								<p className="dashboard-section-name">Capture</p>
+								<p className="dashboard-section-description">
+								Capture anything
+								</p>
 								{/* <Button variant="primary">Capture</Button> */}
-								</Link>
-							</Card.Body>
-						</Card>
+							</div>
+							
+							
+						</Link>
 					</Col>
 					<Col>
-						<Card className="dashboard-card">
-							<Card.Body>
-								<Link to="/clarify">
-								<List/>
-								<Card.Title>Clarify</Card.Title>
-								<Card.Text>
-								Process what you've captured.
-								</Card.Text>
-								{/* <Button variant="primary">Clarify</Button> */}
-								</Link>
-							</Card.Body>
-						</Card>
+						<Link to="/clarify">
+							<div className="dashboard-section">
+								<div  className="dashboard-section-icon" >								
+									<List />
+								</div>
+								<p className="dashboard-section-name">Clarify</p>
+								<p className="dashboard-section-description">
+								Process what's captured.
+								</p>
+								{/* <Button variant="primary">Capture</Button> */}
+							</div>
+							
+							
+						</Link>
 					</Col>
 					<Col>
-						<Card className="dashboard-card">
-							<Card.Body>
-								<Link to="/projects">
-								<Folder/>
-								<Card.Title>Organize</Card.Title>
-								<Card.Text>
+						<Link to="/projects">
+							<div className="dashboard-section">
+								<div  className="dashboard-section-icon" >								
+									<Folder />
+								</div>
+								<p className="dashboard-section-name">Organize</p>
+								<p className="dashboard-section-description">
 								Put everything in the right place.
-								</Card.Text>
-								{/* <Button variant="primary">Organize</Button> */}
-								</Link>
-							</Card.Body>
-						</Card>
+								</p>
+								{/* <Button variant="primary">Capture</Button> */}
+							</div>
+							
+							
+						</Link>
 					</Col>
-
 					<Col>
-						<Card className="dashboard-card" >
-							<Card.Body>
-								<MenuBook/>
-								<Card.Title>Review</Card.Title>
-								<Card.Text>
+						<Link to="/projects">
+							<div className="dashboard-section">
+								<div  className="dashboard-section-icon" >								
+									<MenuBook />
+								</div>
+								<p className="dashboard-section-name">Review</p>
+								<p className="dashboard-section-description">
 								Go over your lists.
-								</Card.Text>
-								{/* <Button variant="primary">Review</Button> */}
-							</Card.Body>
-						</Card>
+								</p>
+								{/* <Button variant="primary">Capture</Button> */}
+							</div>
+							
+							
+						</Link>
 					</Col>
 					<Col>
-						<Card  className="dashboard-card">
-							<Card.Body>
-								<Link to="/actions">
-								<DirectionsWalk/>
-								<Card.Title>Engage</Card.Title>
-								<Card.Text>
+						<Link to="/actions">
+							<div className="dashboard-section">
+								<div  className="dashboard-section-icon" >								
+									<DirectionsWalk />
+								</div>
+								<p className="dashboard-section-name">Engage</p>
+								<p className="dashboard-section-description">
 								Get to work on the important stuff.
-								</Card.Text>
-								{/* <Button variant="primary">Engage</Button> */}
-								</Link>
-							</Card.Body>
-						</Card>
+								</p>
+								{/* <Button variant="primary">Capture</Button> */}
+							</div>
+							
+							
+						</Link>
 					</Col>
+					
 				</Row>
+				
 				<Row style={{ padding: '15px 15px'  }}>
 					<h3>Upcoming Events</h3>
 					<Card className="dashboard-card">
