@@ -30,87 +30,87 @@ const Dashboard = () => {
 			</div>
 			<h1 style={{ padding: '15px 15px'  }}>Dashboard</h1>
 			<div className="dashboard-container">
-			<Row  className="dashboard-sections">
-					<Col>
-						<Link to="/capture">
-							<div className="dashboard-section">
-								<div  className="dashboard-section-icon" >								
-										<Create />
-								</div>
-								<p className="dashboard-section-name">Capture</p>
-								<p className="dashboard-section-description">
-								Capture anything
-								</p>
-								{/* <Button variant="primary">Capture</Button> */}
+				<Row  className="dashboard-sections">
+					
+					<Link to="/capture">
+						<div className="dashboard-section">
+							<div  className="dashboard-section-icon" >								
+									<Create />
 							</div>
-							
-							
-						</Link>
-					</Col>
-					<Col>
-						<Link to="/clarify">
-							<div className="dashboard-section">
-								<div  className="dashboard-section-icon" >								
-									<List />
-								</div>
-								<p className="dashboard-section-name">Clarify</p>
-								<p className="dashboard-section-description">
-								Process what's captured.
-								</p>
-								{/* <Button variant="primary">Capture</Button> */}
+							<p className="dashboard-section-name">Capture</p>
+							<p className="dashboard-section-description">
+							Capture anything
+							</p>
+							{/* <Button variant="primary">Capture</Button> */}
+						</div>
+						
+						
+					</Link>
+				
+				
+					<Link to="/clarify">
+						<div className="dashboard-section">
+							<div  className="dashboard-section-icon" >								
+								<List />
 							</div>
-							
-							
-						</Link>
-					</Col>
-					<Col>
-						<Link to="/projects">
-							<div className="dashboard-section">
-								<div  className="dashboard-section-icon" >								
-									<Folder />
-								</div>
-								<p className="dashboard-section-name">Organize</p>
-								<p className="dashboard-section-description">
-								Put everything in the right place.
-								</p>
-								{/* <Button variant="primary">Capture</Button> */}
+							<p className="dashboard-section-name">Clarify</p>
+							<p className="dashboard-section-description">
+							Process what's captured.
+							</p>
+							{/* <Button variant="primary">Capture</Button> */}
+						</div>
+						
+						
+					</Link>
+				
+				
+					<Link to="/projects">
+						<div className="dashboard-section">
+							<div  className="dashboard-section-icon" >								
+								<Folder />
 							</div>
-							
-							
-						</Link>
-					</Col>
-					<Col>
-						<Link to="/projects">
-							<div className="dashboard-section">
-								<div  className="dashboard-section-icon" >								
-									<MenuBook />
-								</div>
-								<p className="dashboard-section-name">Review</p>
-								<p className="dashboard-section-description">
-								Go over your lists.
-								</p>
-								{/* <Button variant="primary">Capture</Button> */}
+							<p className="dashboard-section-name">Organize</p>
+							<p className="dashboard-section-description">
+							Put everything in the right place.
+							</p>
+							{/* <Button variant="primary">Capture</Button> */}
+						</div>
+						
+						
+					</Link>
+			
+					<Link to="/projects">
+						<div className="dashboard-section">
+							<div  className="dashboard-section-icon" >								
+								<MenuBook />
 							</div>
-							
-							
-						</Link>
-					</Col>
-					<Col>
-						<Link to="/actions">
-							<div className="dashboard-section">
-								<div  className="dashboard-section-icon" >								
-									<DirectionsWalk />
-								</div>
-								<p className="dashboard-section-name">Engage</p>
-								<p className="dashboard-section-description">
-								Get to work on the important stuff.
-								</p>
-								{/* <Button variant="primary">Capture</Button> */}
+							<p className="dashboard-section-name">Review</p>
+							<p className="dashboard-section-description">
+							Go over your lists.
+							</p>
+							{/* <Button variant="primary">Capture</Button> */}
+						</div>
+						
+						
+					</Link>
+				
+					<Link to="/actions">
+						<div className="dashboard-section">
+							<div  className="dashboard-section-icon" >								
+								<DirectionsWalk />
 							</div>
-							
-							
-						</Link>
-					</Col>
+							<p className="dashboard-section-name">Engage</p>
+							<p className="dashboard-section-description">
+							Get to work on the important stuff.
+							</p>
+							{/* <Button variant="primary">Capture</Button> */}
+						</div>
+						
+						
+					</Link>
+
+					
+				
 					
 				</Row>
 				

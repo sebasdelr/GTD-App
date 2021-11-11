@@ -1,5 +1,42 @@
+
+.action-item {
+    border-bottom: 1px solid rgb(202, 202, 202);
+    padding: 8px 0;
+}
+
 .task-done{
     text-decoration: line-through;
     
 }
 
+.action-item-title{
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    min-height: 14px;
+    margin-bottom: 4px;
+    color: rgb(23, 43, 77);
+}
+
+.action-item-description{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    min-height: 14px;
+    margin-bottom: 4px;
+    color: rgb(23, 43, 77);
+}
+
+.action-item-project{
+    font-weight: 200;
+    font-size: 12px;
+    line-height: 12px;
+    min-height: 12px;
+    margin-bottom: 4px;
+    color: rgb(128, 128, 128);
+}
+
+.action-item-project svg {
+    height: 12px;
+    width: 12px;
+}

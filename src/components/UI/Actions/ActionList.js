@@ -77,10 +77,11 @@ const ActionList = () => {
                     
                     return (
                         <React.Fragment>
-                            <p>{parentTitle}</p>
+                            
                             <ActionItem key={action.id}
                             setStatus={setStatusHandler}
-                            actionItem={action}      
+                            actionItem={action}
+                            parentTitle={parentTitle}      
                             />
                             
 
@@ -100,20 +101,20 @@ const ActionList = () => {
 
     return (
         <div className="actionList">
-            <Row>
+            <Row className="action-section">
                 <Col>
                     <h5>Today</h5>
                     {listHandler(actionListDay)}
                 </Col>  
             </Row>
-            <Row>
+            <Row className="action-section">
 
                 <Col>
                     <h5>This Week</h5>
                     {listHandler(actionListWeek)}
                 </Col>   
             </Row>
-            <Row>
+            <Row className="action-section">
 
                 <Col>
                     <h5>This Month</h5>

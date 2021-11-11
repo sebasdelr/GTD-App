@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { Form } from 'react-bootstrap/';
 
+import Assignment from '@material-ui/icons/Assignment';
+
 
 import './Action.css';
 
@@ -32,12 +34,15 @@ const ActionItem = (props) => {
 
     return (
 
-        <div >
+        <div className="action-item" >
             <Form.Check type='checkbox'>
                 <Form.Check.Input  type='checkbox'  id="myCheck" onChange={isWorking} checked={useCheck}/>
                 <Form.Check.Label className={markDone(useCheck)}>
-                    {props.actionItem.title}
+                    <div className="action-item-title">{props.actionItem.title}</div>
+                    
                 </Form.Check.Label>
+                <div className="action-item-description">{props.actionItem.content}</div>
+                <div className="action-item-project"><Assignment />{props.parentTitle}</div>
             </Form.Check>
 
         </div>

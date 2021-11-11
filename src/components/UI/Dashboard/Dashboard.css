@@ -22,15 +22,19 @@ a:link {
 .dashboard-container {
     max-height: 550px;
     overflow-y: auto;
+
 }
 
 .dashboard-sections {
-    display: flex;
+    /* display: flex; */
     margin: 0px -8px 16px;
-    flex-wrap: wrap;
-    -moz-box-pack: justify;
+    /* flex-wrap: wrap; */
+    /* -moz-box-pack: justify; */
     min-height: 132px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 20px;
 }
 
 .dashboard-section {
