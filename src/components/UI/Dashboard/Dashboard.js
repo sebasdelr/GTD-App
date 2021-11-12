@@ -115,17 +115,6 @@ const Dashboard = () => {
 				</Row>
 				
 				<Row style={{ padding: '15px 15px'  }}>
-					<h3>Upcoming Events</h3>
-					<Card className="dashboard-card">
-					
-					<ListGroup variant="flush">
-						<ListGroup.Item>Cras justo odio - Mark</ListGroup.Item>
-						<ListGroup.Item>Dapibus ac facilisis in - Jessica</ListGroup.Item>
-						<ListGroup.Item>Vestibulum at eros - Joe</ListGroup.Item>
-					</ListGroup>
-					</Card>
-				</Row>
-				<Row style={{ padding: '15px 15px'  }}>
 					<h3>Due Today</h3>
 					<Col>
 						<Card className="dashboard-card">

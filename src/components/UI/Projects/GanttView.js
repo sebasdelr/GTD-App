@@ -47,16 +47,15 @@ const generateTableData = (projects, hierarchy) => {
 
            
 
-            if(item.type === "2") {
+            if(hierarchy === "1" && item.type === "2") {
 
                 let childTasks = projects.filter(project => (project.parentId === item.id));
 
                 if(childTasks.length > 0) {
                     generateTableData(childTasks, "2");
-                    console.log("children");
-                } else {
-                    console.log("no children + " );
-                }
+                    console.log(item.title + " has " + childTasks.length + " children");
+                    console.log(childTasks[0].title);
+                } 
 
                 return (
                     <tr>
@@ -70,10 +69,15 @@ const generateTableData = (projects, hierarchy) => {
                     
                 );
 
-            } else {
+            } else if (hierarchy === "2") {
+
+                
                 return (
-                    <tr>
-                        <td>   &emsp;{item.title}</td>
+                    <div>
+                        <p>huh</p>
+                        <tr>
+                        
+                        <td>&emsp;{item.title}</td>
                         <td>{days}</td>
                         <td>{day1.toISOString().substring(0, 10)}</td>
                         <td>{day2.toISOString().substring(0, 10)}</td>
@@ -81,20 +85,17 @@ const generateTableData = (projects, hierarchy) => {
                        
                     </tr>
                     
+
+                    </div>
+                    
                 );
             }
-
-            
-
             
         })
 
     );
 }
 
-const generateChildrenData = (projects) => {
-
-}
 
 
 const generateTableCels = (projects) => {
@@ -127,10 +128,7 @@ const generateTableCels = (projects) => {
                 if(childTasks.length > 0) {
                     generateTableCels(childTasks);
                     console.log("children");
-                } else {
-                    console.log("no children + " );
-                }
-
+                } 
                 return (
                     <tr>               
                         {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {

@@ -41,8 +41,8 @@ const ActionItem = (props) => {
                     <div className="action-item-title">{props.actionItem.title}</div>
                     
                 </Form.Check.Label>
-                <div className="action-item-description">{props.actionItem.content}</div>
-                <div className="action-item-project"><Assignment />{props.parentTitle}</div>
+                {(props.actionItem.content !== "") && <div className="action-item-description">{props.actionItem.content}</div>}
+                {(props.parentTitle !== "") && <div className="action-item-project"><Assignment />{props.parentTitle}</div>}
             </Form.Check>
 
         </div>
