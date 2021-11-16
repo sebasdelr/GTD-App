@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import GanttChildren from './GanttChildren';
+
 import { Table, Col, Row } from 'react-bootstrap';
 
 import "./GanttView.css";
@@ -19,6 +21,8 @@ const generateHeader1 = () => {
 
 }
 
+
+
 const generateHeader2 = () => {
     return (
         <tr>
@@ -31,69 +35,57 @@ const generateHeader2 = () => {
 
 }
 
+//parselist will parse list, concatenate html elements
+//it will call function depending on level, function will render item individually
+
+
+
 const generateTableData = (projects, hierarchy) => {
 
-    // const projectOnlyList = projects.filter(item => (item.type === "2"));
+    const projectOnlyList = projects.filter(item => (item.type === "2"));
 
-    return(
-        projects.map(item => {
-            
+    if(projectOnlyList.length > 0) {
 
-            let day1 = item.startDate; 
-            let day2 = item.dateDue;
-
-            let difference = Math.abs(day2-day1);
-            let days = difference/(1000 * 3600 * 24);
-
-           
-
-            if(hierarchy === "1" && item.type === "2") {
-
+        return(
+            projectOnlyList.map(item => {
+    
+                let day1 = item.startDate; 
+                let day2 = item.dateDue;
+    
+                let difference = Math.abs(day2-day1);
+                let days = difference/(1000 * 3600 * 24);
+    
                 let childTasks = projects.filter(project => (project.parentId === item.id));
 
-                if(childTasks.length > 0) {
-                    generateTableData(childTasks, "2");
-                    console.log(item.title + " has " + childTasks.length + " children");
-                    console.log(childTasks[0].title);
-                } 
-
                 return (
-                    <tr>
+                    <React.Fragment>
+                        <tr>
                         <td><b>{item.title}</b></td>
                         <td>{days}</td>
                         <td>{day1.toISOString().substring(0, 10)}</td>
                         <td>{day2.toISOString().substring(0, 10)}</td>
                         
-                       
-                    </tr>
+                        
+                        </tr>
+                        {(childTasks.length > 0) && <GanttChildren list={childTasks}/>}
+    
+                    </React.Fragment>
+                    
                     
                 );
+   
+            })
+    
+        );
 
-            } else if (hierarchy === "2") {
-
-                
-                return (
-                    <div>
-                        <p>huh</p>
-                        <tr>
-                        
-                        <td>&emsp;{item.title}</td>
-                        <td>{days}</td>
-                        <td>{day1.toISOString().substring(0, 10)}</td>
-                        <td>{day2.toISOString().substring(0, 10)}</td>
-                        
-                       
-                    </tr>
-                    
-
-                    </div>
-                    
-                );
-            }
-            
-        })
-
-    );
+    } else {
+        return (
+            <div>
+                No Items Found
+            </div>
+        );
+    }
+  
 }
 
 
