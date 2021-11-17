@@ -41,7 +41,8 @@ const NoteForm = () => {
     let selectedItem = notesCtx.items[notesCtx.itemIndex];
 
     const [showAlert, setShowAlert] = useState(false);
-    const [startDate, setStartDate] = useState(new Date());
+    const [getStartDate, setStartDate] = useState(new Date());
+    const [dueDate, setDueDate] = useState(new Date());
     const [itemType, setItemType] = useState(selectedItem.type);
     const [parentItem, setParentItem] = useState(selectedItem.parentId);
 
@@ -61,6 +62,7 @@ const NoteForm = () => {
         //can use ref as well
         document.getElementById("note-form").reset();
         setStartDate(new Date());
+        setDueDate(new Date());
         document.getElementById("note-id").value = Math.random().toString();
         
     };
@@ -81,7 +83,9 @@ const NoteForm = () => {
             document.getElementById("note-id").value = selectedItem.id;
             setParentItem(selectedItem.parentId);
 
-            setStartDate(selectedItem.dateDue);
+            setStartDate(selectedItem.startDate);
+
+            setDueDate(selectedItem.dateDue);
 
             console.log(selectedItem.dateCreated);
 
@@ -166,8 +170,9 @@ const NoteForm = () => {
                 parentId: selectedParentId, 
                 title: enteredTitle, 
                 content: enteredContent, 
-                dateCreated: new Date(), 
-                dateDue: startDate, 
+                dateCreated: new Date(),
+                startDate: getStartDate, 
+                dateDue: dueDate, 
                 type: selectedType,
                 status: '',
             };
@@ -221,9 +226,16 @@ const NoteForm = () => {
                 </Col>
 
                 <Col>
+                    <Form.Group controlId="date-Start">
+                        <Form.Label>Start Date</Form.Label>
+                        <DatePicker selected={getStartDate} onChange={(date) => setStartDate(date)} />
+                    </Form.Group>
+                
+                </Col>
+                <Col>
                     <Form.Group controlId="due-date">
                         <Form.Label>Date Due</Form.Label>
-                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date)} />
                     </Form.Group>
                 
                 </Col>
