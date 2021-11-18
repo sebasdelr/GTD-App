@@ -32,6 +32,16 @@ const projectListHandler = list => {
 
 };
 
+const checkDateDifference = (day1, day2) => {
+    if(day2 > day1) {
+        return true;
+    } else {
+        return false;
+    }
+
+
+};
+
 const NoteForm = () => {
 
     
@@ -45,6 +55,7 @@ const NoteForm = () => {
     const [dueDate, setDueDate] = useState(new Date());
     const [itemType, setItemType] = useState(selectedItem.type);
     const [parentItem, setParentItem] = useState(selectedItem.parentId);
+    const [arterMessage, setAlertMessage] = useState();
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
@@ -159,10 +170,11 @@ const NoteForm = () => {
         const generatedId = idRef.current.value;
         const selectedType = itemType;
         const selectedParentId = parentItem;
+        const dateCreated = new Date();
         // const dueDate = dueRef.current.value;
 
 
-        if(checkIfEmpty(enteredTitle)) {
+        if((checkIfEmpty(enteredTitle)) && checkDateDifference(getStartDate, dueDate)) {
 
             setShowAlert(false);
             const enteredText = {
@@ -170,7 +182,7 @@ const NoteForm = () => {
                 parentId: selectedParentId, 
                 title: enteredTitle, 
                 content: enteredContent, 
-                dateCreated: new Date(),
+                dateCreated: dateCreated,
                 startDate: getStartDate, 
                 dateDue: dueDate, 
                 type: selectedType,
@@ -181,6 +193,12 @@ const NoteForm = () => {
 
         } else {
             setShowAlert(true);
+            if(!checkIfEmpty(enteredTitle)) {   
+                setAlertMessage("Please enter a title.");
+            } else {
+                setAlertMessage("Due date cannot be set before the start date.")
+            }
+            
 
         }
 
@@ -257,7 +275,7 @@ const NoteForm = () => {
 
             </Row>
 
-            {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
+            {showAlert && <Alert variant="danger" >{arterMessage}</Alert>}
             
             
             
