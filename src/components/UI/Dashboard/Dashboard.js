@@ -1,7 +1,7 @@
-import "./Dashboard.css";
+
 
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+
 import {Card, Image, Row, Col, ListGroup} from 'react-bootstrap/';
 
 import { Link } from 'react-router-dom';
@@ -12,9 +12,13 @@ import Folder from '@material-ui/icons/Folder';
 import MenuBook from '@material-ui/icons/MenuBook';
 import DirectionsWalk from '@material-ui/icons/DirectionsWalk';
 
+import "./Dashboard.css";
+import 'bootstrap/dist/css/bootstrap.css';
+
+
 import dashboardImage from '../../../assets/carlos-muza-hpjSkU2UYSU-unsplash.jpg';
 
-import CaptureContext from '../../../capture/capture-context';
+import DashboardActionList from './DashboardActionList';
 
 const Dashboard = () => {
 	return (
@@ -117,25 +121,9 @@ const Dashboard = () => {
 				<Row style={{ padding: '15px 15px'  }}>
 					<h3>Due Today</h3>
 					<Col>
-						<Card className="dashboard-card">
-						
-						<ListGroup variant="flush">
-							<ListGroup.Item>Cras justo odio - Mark</ListGroup.Item>
-							<ListGroup.Item>Dapibus ac facilisis in - Jessica</ListGroup.Item>
-							<ListGroup.Item>Vestibulum at eros - Joe</ListGroup.Item>
-						</ListGroup>
-						</Card>
+						<DashboardActionList/>
 					</Col>
-					<Col>
-						<Card className="dashboard-card">
-						
-						<ListGroup variant="flush">
-							<ListGroup.Item>Cras justo odio - Mark</ListGroup.Item>
-							<ListGroup.Item>Dapibus ac facilisis in - Jessica</ListGroup.Item>
-							<ListGroup.Item>Vestibulum at eros - Joe</ListGroup.Item>
-						</ListGroup>
-						</Card>
-					</Col>
+					
 					
 				</Row>
 				<Row style={{ padding: '15px 15px'  }}>

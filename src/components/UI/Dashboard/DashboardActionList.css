@@ -1,0 +1,13 @@
+.dashboard-action-list {
+    margin-top: 10px;
+    max-width: 500px;
+}
+
+.action-section {
+    padding: 8px 0;
+}
+
+.dashboard-action-list h5 {
+    /* border-bottom: 1px solid rgb(226, 226, 226); */
+    padding: 16px 0;
+}

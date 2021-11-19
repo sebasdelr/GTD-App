@@ -131,13 +131,19 @@ const NoteForm = () => {
             // setParentItem(selectedItem.parentId);
 
             return(
-                <Form.Group >
-                    <Form.Label>Parent Item</Form.Label>
-                    <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelectParent" value={parentItem} onChange={setParentHandler} >
-                        <option readOnly>Choose Project...</option>
-                        {projectListHandler(projectList)}   
-                    </Form.Control >
-                </Form.Group>
+                
+                <Row className="mb-3">
+                <Col>
+                    <Form.Group >
+                        <Form.Label>Parent Item</Form.Label>
+                        <Form.Control as="select" className="me-sm-2" id="inlineFormCustomSelectParent" value={parentItem} onChange={setParentHandler} >
+                            <option readOnly>Choose Project...</option>
+                            {projectListHandler(projectList)}   
+                        </Form.Control >
+                    </Form.Group>
+                </Col>
+                <Col></Col>
+            </Row>
             );
         }
     }
@@ -235,43 +241,46 @@ const NoteForm = () => {
                             <option value="3">idea</option>
                             <option value="4">action</option>
                         </Form.Control >
-                        <Form.Group  controlId="note-id">
-                            <Form.Control type="hidden" ref={idRef} readOnly/>
-                        </Form.Group>
+                        
 
                     </Form.Group>
                 
                 </Col>
+               
 
                 <Col>
                     <Form.Group controlId="date-Start">
                         <Form.Label>Start Date</Form.Label>
-                        <DatePicker selected={getStartDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker className="date-dropdown" selected={getStartDate} onChange={(date) => setStartDate(date)} />
                     </Form.Group>
                 
                 </Col>
                 <Col>
                     <Form.Group controlId="due-date">
                         <Form.Label>Date Due</Form.Label>
-                        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date)} />
+                        <DatePicker className="date-dropdown" selected={dueDate} onChange={(date) => setDueDate(date)} />
                     </Form.Group>
                 
                 </Col>
+                <Col>
+                <Form.Group  controlId="note-id">
+                            <Form.Control type="hidden" ref={idRef} readOnly/>
+                        </Form.Group>
+                </Col>
 
 
             </Row>
+            
+            {selectProjectDropdown(itemType)}
+
             <Row>
                 <Col>
-                    {selectProjectDropdown(itemType)}
-                </Col>
-                <Col></Col>
-            </Row>
-            <Row>
-                           
-                <Form.Group className="mb-3" controlId="note-content">
-                    <Form.Label>Note Content</Form.Label>
-                    <Form.Control as="textarea" ref={contentRef} rows={3} />
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="note-content">
+                        <Form.Label>Note Content</Form.Label>
+                        <Form.Control as="textarea" ref={contentRef} rows={3} />
+                    </Form.Group>
+                </Col>         
+                
 
             </Row>
 
