@@ -1,16 +1,20 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 
 
-import { Form, Button, Alert, Row, Col} from 'react-bootstrap/';
+import { Form, Button, Alert, Row, Col, Modal} from 'react-bootstrap/';
 import { BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 
 import './NoteForm.css';
 
 import CaptureContext from '../../../capture/capture-context';
 
+import NoteFormDirtyAlert from './NoteFormDirtyAlert';
+
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+
+
 
 const projectListHandler = list => {
     if(list.length > 0) {
@@ -56,6 +60,7 @@ const NoteForm = () => {
     const [itemType, setItemType] = useState(selectedItem.type);
     const [parentItem, setParentItem] = useState(selectedItem.parentId);
     const [arterMessage, setAlertMessage] = useState();
+    const [dirtyFlag, setDirtyFlag] = useState(false);
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
@@ -65,6 +70,10 @@ const NoteForm = () => {
     const typeRef = useRef();
 
     const projectList = notesCtx.items.filter(item => (item.type === "2"));
+
+    const dirtyFlagHandler = () => {
+        setDirtyFlag(true);
+    }
 
     
 
@@ -116,11 +125,24 @@ const NoteForm = () => {
 
     const setTypeHandler = event => {
         setItemType(event.target.value);
+        dirtyFlagHandler();
         
     }
 
     const setParentHandler = event => {
         setParentItem(event.target.value);
+        dirtyFlagHandler();
+        
+    }
+
+    const setDateHandler = (date, type) => {
+        dirtyFlagHandler();
+        if(type === "start") {
+            setStartDate(date);
+        } else {
+            setDueDate(date);
+            
+        }
     }
 
     const selectProjectDropdown = (type) => {
@@ -213,6 +235,7 @@ const NoteForm = () => {
 
     return (
         <Form  onSubmit={submitHandler} id="note-form">
+            <NoteFormDirtyAlert />
 
             <Row>
                 <Col></Col>
@@ -227,7 +250,7 @@ const NoteForm = () => {
 
                 <Form.Group  controlId="note-title">
                     <Form.Label>Note Title</Form.Label>
-                    <Form.Control type="input" ref={titleRef} />
+                    <Form.Control type="input" ref={titleRef} onChange={dirtyFlagHandler} />
                 </Form.Group>
             </Row>
             <Row className="mb-3">
@@ -251,14 +274,14 @@ const NoteForm = () => {
                 <Col>
                     <Form.Group controlId="date-Start">
                         <Form.Label>Start Date</Form.Label>
-                        <DatePicker className="date-dropdown" selected={getStartDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker className="date-dropdown" selected={getStartDate} onChange={((date) => setDateHandler(date, "start"))} />
                     </Form.Group>
                 
                 </Col>
                 <Col>
                     <Form.Group controlId="due-date">
                         <Form.Label>Date Due</Form.Label>
-                        <DatePicker className="date-dropdown" selected={dueDate} onChange={(date) => setDueDate(date)} />
+                        <DatePicker className="date-dropdown" selected={dueDate} onChange={((date) => setDateHandler(date, "due"))} />
                     </Form.Group>
                 
                 </Col>
@@ -277,7 +300,7 @@ const NoteForm = () => {
                 <Col>
                     <Form.Group className="mb-3" controlId="note-content">
                         <Form.Label>Note Content</Form.Label>
-                        <Form.Control as="textarea" ref={contentRef} rows={3} />
+                        <Form.Control as="textarea" ref={contentRef} rows={3} onChange={dirtyFlagHandler} />
                     </Form.Group>
                 </Col>         
                 
