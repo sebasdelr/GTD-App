@@ -19,6 +19,7 @@ import GanttView from './components/UI/Projects/GanttView';
 import LoginForm from './components/UI/Login/LoginForm';
 
 import CaptureProvider from './capture/CaptureProvider';
+import UnsavedProvider from './capture/UnsavedProvider';
 
 
 //styling
@@ -77,6 +78,7 @@ const App = () => {
       {isLoggedIn &&
         <CaptureProvider>
           <BrowserRouter>
+            <UnsavedProvider>
             <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }} >
               <Header onLogout={logoutHandler}/>
               <Row >
@@ -102,7 +104,7 @@ const App = () => {
               </Row>
               
             </Container>
-
+          </UnsavedProvider>
           </BrowserRouter>
            
         </CaptureProvider>

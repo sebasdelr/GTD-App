@@ -7,8 +7,8 @@ import { BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
 import './NoteForm.css';
 
 import CaptureContext from '../../../capture/capture-context';
+import UnsavedContext from '../../../capture/unsaved-context';
 
-import NoteFormDirtyAlert from './NoteFormDirtyAlert';
 
 import DatePicker from "react-datepicker";
 
@@ -51,6 +51,7 @@ const NoteForm = () => {
     
 
     const notesCtx = useContext(CaptureContext);
+    const flagCtx = useContext(UnsavedContext);
 
     let selectedItem = notesCtx.items[notesCtx.itemIndex];
 
@@ -72,7 +73,8 @@ const NoteForm = () => {
     const projectList = notesCtx.items.filter(item => (item.type === "2"));
 
     const dirtyFlagHandler = () => {
-        setDirtyFlag(true);
+        
+        flagCtx.setFlag(true);
     }
 
     
@@ -235,7 +237,7 @@ const NoteForm = () => {
 
     return (
         <Form  onSubmit={submitHandler} id="note-form">
-            <NoteFormDirtyAlert />
+            
 
             <Row>
                 <Col></Col>
