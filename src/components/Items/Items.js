@@ -57,7 +57,6 @@ function Items(){
     
     return(
         <ListGroup >
-            {flagCtx.flag && <NoteFormDirtyAlert />}
             {listHandler(notesCtx.items)}
 
         </ListGroup>

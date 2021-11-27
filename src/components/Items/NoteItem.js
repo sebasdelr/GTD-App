@@ -8,19 +8,39 @@ import Clear from '@material-ui/icons/Clear';
 import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import CaptureContext from '../../capture/capture-context'
+import CaptureContext from '../../capture/capture-context';
+import UnsavedContext from '../../capture/unsaved-context';
+
+
+
+import NoteFormDirtyAlert from '../UI/Notes/NoteFormDirtyAlert';
 
 
 
 const NoteItem = (props) => {
 
     const notesCtx = useContext(CaptureContext);
+    const flagCtx = useContext(UnsavedContext);
 
     const [style, setStyle] = useState({display: 'none'});
+    const [loadAlert, setLoadAlert] = useState(false);
+
+    const resetAlert = () => {
+        setLoadAlert(false);
+    }
 
     const toggleSelect = () => {
-        notesCtx.selectedItem(props.listItem);
+        if(flagCtx.flag){
+            console.log("please save");
+            setLoadAlert(true);
+            
+        } else {
+            notesCtx.selectedItem(props.listItem);
 
+        }
+        // setTimeout(setLoadAlert(false), 3000);
+        
+        
     };
 
     const deleteItem = () => {
@@ -35,6 +55,7 @@ const NoteItem = (props) => {
             setStyle({display: 'none'})
         }}>
             <ListGroup.Item className={props.selectStyle}>
+            {loadAlert && <NoteFormDirtyAlert onClick={resetAlert}/>}
             <span  onClick={toggleSelect}>{props.listItem.title}</span><Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
         </ListGroup>
 
