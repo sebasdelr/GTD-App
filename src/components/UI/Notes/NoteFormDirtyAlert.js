@@ -1,21 +1,21 @@
-import { useState, useRef, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 
 
-import { Form, Button, Alert, Row, Col, Modal} from 'react-bootstrap/';
+import { Button, Modal} from 'react-bootstrap/';
+
+import UnsavedContext from '../../../capture/unsaved-context';
+
 
 function NoteFormDirtyAlert() {
-    const [show, setShow] = useState(true);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    const flagCtx = useContext(UnsavedContext);
+
+    const handleClose = () => flagCtx.setShow(false);
+    
   
     return (
       <>
-        {/* <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
-        </Button> */}
-  
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={flagCtx.show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Unsaved Changes</Modal.Title>
           </Modal.Header>

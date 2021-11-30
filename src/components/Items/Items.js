@@ -8,14 +8,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 import CaptureContext from '../../capture/capture-context';
-import UnsavedContext from '../../capture/unsaved-context';
 
-import NoteFormDirtyAlert from '../UI/Notes/NoteFormDirtyAlert';
 
 function Items(){
 
     const notesCtx = useContext(CaptureContext);
-    const flagCtx = useContext(UnsavedContext);
 
     
     const deleteID = id => {

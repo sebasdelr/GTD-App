@@ -11,6 +11,7 @@ import UnsavedContext from '../../../capture/unsaved-context';
 
 
 import DatePicker from "react-datepicker";
+import NoteFormDirtyAlert from './NoteFormDirtyAlert';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -61,7 +62,6 @@ const NoteForm = () => {
     const [itemType, setItemType] = useState(selectedItem.type);
     const [parentItem, setParentItem] = useState(selectedItem.parentId);
     const [arterMessage, setAlertMessage] = useState();
-    const [dirtyFlag, setDirtyFlag] = useState(false);
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
@@ -82,10 +82,16 @@ const NoteForm = () => {
     
     const newNote = () => { 
         //can use ref as well
-        document.getElementById("note-form").reset();
-        setStartDate(new Date());
-        setDueDate(new Date());
-        document.getElementById("note-id").value = Math.random().toString();
+
+        if(flagCtx.flag) {
+            flagCtx.setShow(true);
+        } else {
+            document.getElementById("note-form").reset();
+            setStartDate(new Date());
+            setDueDate(new Date());
+            document.getElementById("note-id").value = Math.random().toString();
+        }
+        
         
     };
 
@@ -189,7 +195,13 @@ const NoteForm = () => {
     const deleteNoteHandler = () => {
         const generatedId = idRef.current.value;
 
-        notesCtx.deleteItem(generatedId);
+        if(flagCtx.flag) {
+            flagCtx.setShow(true);
+        } else {
+            notesCtx.deleteItem(generatedId);
+        }
+
+        
     };
 
     const submitHandler = event => {
@@ -220,6 +232,7 @@ const NoteForm = () => {
             };
 
             notesCtx.addItem(enteredText);
+            flagCtx.setFlag(false);
 
         } else {
             setShowAlert(true);
@@ -237,7 +250,7 @@ const NoteForm = () => {
 
     return (
         <Form  onSubmit={submitHandler} id="note-form">
-            
+            <NoteFormDirtyAlert />           
 
             <Row>
                 <Col></Col>
