@@ -255,10 +255,10 @@ const NoteForm = () => {
             <Row>
                 <Col></Col>
                 <Col xs={6}>
-                    <Button variant="light" onClick={newNote} className="notebutton"><BiFileBlank/> New Note</Button>{' '}
+                    <Button variant="secondary" onClick={newNote} className="notebutton"><BiFileBlank/> New Note</Button>{' '}
                     {/* <Button variant="light" onClick={editNoteHandler} className="notebutton"><BiEdit/> Edit Note</Button>{' '} */}
-                    <Button variant="light" onClick={deleteNoteHandler} className="notebutton"><BiTrash/> Delete Note</Button>{' '}
-                    <Button  type="submit" variant="light"  className="notebutton"><BiSave/> Save Note</Button>
+                    <Button variant="secondary" onClick={deleteNoteHandler} className="notebutton"><BiTrash/> Delete Note</Button>{' '}
+                    <Button  type="submit" variant="primary" className="notebutton" disabled={!flagCtx.flag && "disabled"}><BiSave/> Save Note</Button>
                 </Col>
             </Row>
             <Row className="mb-3">

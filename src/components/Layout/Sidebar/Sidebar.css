@@ -96,3 +96,7 @@
 .sideitems .linkName{
     padding-left: 10px;
 }
+
+.disabled-link {
+    pointer-events: none;
+}
