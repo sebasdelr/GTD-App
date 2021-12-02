@@ -224,39 +224,36 @@ const GanttView = () => {
                     </Table>
                 </Col>
             </Row>
+            <div className="table-container">
+                <div className="table-name-container">
+                    <div className="table-data-header">
+                        <h3>Project Name</h3>
+                    </div>
+
+                </div>
+                <div className="table-data-container">
+                    <div className="table-data-header">
+                        <div className="table-data-month">January</div>
+                        <div className="table-data-month">February</div>
+                        <div className="table-data-month">March</div>
+                        <div className="table-data-month">April</div>
+                        <div className="table-data-month">May</div>
+                        <div className="table-data-month">June</div>
+                        <div className="table-data-month">July</div>
+                        <div className="table-data-month">August</div>
+                        <div className="table-data-month">September</div>
+                        <div className="table-data-month">October</div>
+                        <div className="table-data-month">November</div>
+                        <div className="table-data-month">December</div>
+
+                    </div>
+
+                </div>
+            </div>
             
             
             
-            {/* <Table responsive>
-                <thead>
-                    <tr>
-                    <th>#</th>
-                    {Array.from({ length: 12 }).map((_, index) => (
-                        <th key={index}>Table heading</th>
-                    ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td>1</td>
-                    {Array.from({ length: 12 }).map((_, index) => (
-                        <td key={index}>Table cell {index}</td>
-                    ))}
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    {Array.from({ length: 12 }).map((_, index) => (
-                        <td key={index}>Table cell {index}</td>
-                    ))}
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    {Array.from({ length: 12 }).map((_, index) => (
-                        <td key={index}>Table cell {index}</td>
-                    ))}
-                    </tr>
-                </tbody>
-            </Table> */}
+           
 
         </div>
 

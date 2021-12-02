@@ -34,3 +34,62 @@
     font-size: small;
 }
 
+.table-container{
+    flex: 1 1 auto;
+    position: relative;
+    min-height: 900px;
+    background-color: blanchedalmond;
+}
+
+.table-name-container{
+    background-color: chocolate;
+    min-height: 900px;
+    width: 320px;
+    flex: 0 0 auto;
+    position: sticky;
+    left: 0px;
+    z-index: 11;
+}
+
+.table-data-container {
+    
+    min-height: 900px;
+    width: 9571px;
+    background-color: darkcyan;
+    flex: 0 0 auto;
+    position: absolute;
+    inset: 0px 0px 0px 320px;
+    pointer-events: none;
+}
+
+.table-data-header {
+    background-color: darksalmon;
+    width: 100%;
+    height: 56px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(223, 225, 230);
+    /* background-color: rgb(244, 245, 247); */
+    position: sticky;
+    top: 0px;
+    z-index: 11;
+    border-top: 1px solid rgb(193, 199, 208);
+    border-left: 1px solid rgb(193, 199, 208);
+    border-radius: 3px 0px 0px;
+}
+
+.table-data-month {
+    width: 250px;
+    padding-bottom: 0px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-right: 1px solid rgb(223, 225, 230);
+    box-sizing: border-box;
+}
