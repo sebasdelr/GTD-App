@@ -227,13 +227,18 @@ const GanttView = () => {
             <div className="table-container">
                 <div className="table-name-container">
                     <div className="table-data-header">
-                        <h3>Project Name</h3>
+                        <div className="table-data-header-project">Project Name</div>
+                        <div className="table-data-header-project">Days Left</div>
+                        <div className="table-data-header-project">Start Date</div>
+                        <div className="table-data-header-project">End Date</div>
                     </div>
+                    
 
                 </div>
                 <div className="table-data-container">
                     <div className="table-data-header">
-                        <div className="table-data-month">January</div>
+                        
+                        
                         <div className="table-data-month">February</div>
                         <div className="table-data-month">March</div>
                         <div className="table-data-month">April</div>
@@ -245,8 +250,48 @@ const GanttView = () => {
                         <div className="table-data-month">October</div>
                         <div className="table-data-month">November</div>
                         <div className="table-data-month">December</div>
+                        
 
                     </div>
+                    <div  className="table-data-content">
+                        <div className="table-data-separator">
+                        
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                        <div className="table-data-separator">
+
+                        </div>
+                    </div>
+                    
 
                 </div>
             </div>
