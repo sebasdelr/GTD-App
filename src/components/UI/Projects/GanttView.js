@@ -193,7 +193,7 @@ const GanttView = () => {
     return (
         <div className="ganttView">
             <h1>Timelines</h1>
-            <Row>
+            {/* <Row>
                 <Col className="ganttData">
                     <Table responsive striped bordered hover size="sm"> 
                         <thead>
@@ -223,7 +223,7 @@ const GanttView = () => {
 
                     </Table>
                 </Col>
-            </Row>
+            </Row> */}
             <div className="table-container">
                 <div className="table-name-container">
                     <div className="table-data-header">
@@ -252,6 +252,9 @@ const GanttView = () => {
                         <div className="table-data-month">December</div>
                         
 
+                    </div>
+                    <div className="table-data-row-odd">
+                        
                     </div>
                     <div  className="table-data-content">
                         <div className="table-data-separator">
@@ -291,6 +294,7 @@ const GanttView = () => {
 
                         </div>
                     </div>
+                    
                     
 
                 </div>
