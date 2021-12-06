@@ -225,73 +225,73 @@ const GanttView = () => {
                 </Col>
             </Row> */}
             <div className="table-container">
-                <div className="table-data-table">
+                <div className="table-name-container">
                     <div className="table-data-header">
-                        <div className="table-data-header-name">Project Name</div>
-                        <div className="table-data-header-name">Days Left</div>
-                        <div className="table-data-header-name">Start Date</div>
-                        <div className="table-data-header-name">End Date</div>
+                        <div className="table-data-header-project">Project Name</div>
+                        <div className="table-data-header-project">Days Left</div>
+                        <div className="table-data-header-project">Start Date</div>
+                        <div className="table-data-header-project">End Date</div>
                     </div>
                     
 
                 </div>
-                <div className="table-bar-table">
-                    <div className="table-bar-header">
+                <div className="table-data-container">
+                    <div className="table-data-header">
                         
                         
-                        <div className="table-bar-header-month">February</div>
-                        <div className="table-bar-header-month">March</div>
-                        <div className="table-bar-header-month">April</div>
-                        <div className="table-bar-header-month">May</div>
-                        <div className="table-bar-header-month">June</div>
-                        <div className="table-bar-header-month">July</div>
-                        <div className="table-bar-header-month">August</div>
-                        <div className="table-bar-header-month">September</div>
-                        <div className="table-bar-header-month">October</div>
-                        <div className="table-bar-header-month">November</div>
-                        <div className="table-bar-header-month">December</div>
+                        <div className="table-data-month">February</div>
+                        <div className="table-data-month">March</div>
+                        <div className="table-data-month">April</div>
+                        <div className="table-data-month">May</div>
+                        <div className="table-data-month">June</div>
+                        <div className="table-data-month">July</div>
+                        <div className="table-data-month">August</div>
+                        <div className="table-data-month">September</div>
+                        <div className="table-data-month">October</div>
+                        <div className="table-data-month">November</div>
+                        <div className="table-data-month">December</div>
                         
 
                     </div>
-                    <div  className="table-bar-body-separators">
-                        <div className="table-bar-body-separator">
+                    <div  className="table-data-content">
+                        <div className="table-data-separator">
                         
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
-                        <div className="table-bar-body-separator">
-                        
+                        <div className="table-data-separator">
+
                         </div>
                     </div>
-                    <div className="table-bar-body-row-odd">
+                    <div className="table-data-row-odd">
                         {/* <div className="table-data-cell">
                         
                         </div>
@@ -329,13 +329,13 @@ const GanttView = () => {
                         
                         </div> */}
                     </div>
-                    {/* <div className="table-data-row-odder">
+                    <div className="table-data-row-odder">
                         
                     </div>
                     <div className="table-data-row-odderer">
                         
                     </div>
-                     */}
+                    
                     
                     
 

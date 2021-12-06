@@ -56,12 +56,12 @@
 .table-data-container {
     
     min-height: 900px;
-    /* width: 9000px;
+    width: 9000px;
     flex: 0 0 auto;
     position: absolute;
     inset: 0px 0px 0px 320px;
     pointer-events: none;
-    display: flex;  */
+    display: flex; 
 }
 
 .table-data-header {
