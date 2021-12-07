@@ -238,7 +238,7 @@ const GanttView = () => {
                 <div className="table-bar-table">
                     <div className="table-bar-header">
                         
-                        
+                        <div className="table-bar-header-month">January</div>
                         <div className="table-bar-header-month">February</div>
                         <div className="table-bar-header-month">March</div>
                         <div className="table-bar-header-month">April</div>
