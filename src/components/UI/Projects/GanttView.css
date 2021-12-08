@@ -6,7 +6,6 @@
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background-color: blueviolet;
     border-radius: 5px;
     
   }
@@ -35,13 +34,13 @@
     height: 900px;
     background-color: blanchedalmond;
     /* display: table; */
-    width: 2000px;
+    width: 1900px;
 }
 
 
 
 .table-data-table {
-    width: 500px;
+    width: 600px;
     height: 100%;
     position: sticky;
     float:left;
@@ -65,10 +64,32 @@
 }
 
 .table-data-header-name {
-    height: 100%;
-    
+    height: 56px;
+    display: table-cell;
+    min-width: 150px;
+    text-align: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
 }
-
+    
+.table-data-body-separator {
+    height: 844px;
+    min-width: 150px;
+    top: 0px;
+    bottom: 0px;
+    flex: 0 0 auto;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border-right: 3px solid rgb(223, 225, 230);
+    box-sizing: border-box;
+    float:left;
+    position:static;
+}
 
 
 
@@ -76,19 +97,20 @@
 .table-bar-table {
     
     background-color: blueviolet;
-    width: 1000px;
+    width: 1300px;
     height: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+   
 
 }
 
 .table-bar-header {
     background-color: rgb(233, 122, 215);
     /* width: 100%; */
-    height: 56px;
-    width: 3000px;
+    max-height: 56px;
+    width: 1800px;
     
     /* box-sizing: border-box;
     border-bottom: 1px solid rgb(223, 225, 230);
@@ -103,11 +125,15 @@
 }
 
 .table-bar-header-month {
-    height: 100%;
+    height: 56px;
     display: table-cell;
-    min-width: 250px;
+    min-width: 150px;
     text-align: center;
-    /* vertical-align: middle; */
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    vertical-align: middle;
 }
 
 .table-data-row-odderer {
@@ -130,9 +156,13 @@
        
 }
 
-.table-data-separator {
-    min-height: 844px;
-    min-width: 250px;
+.table-bar-body {
+    width: 1800px;
+}
+
+.table-bar-body-separator {
+    height: 844px;
+    min-width: 150px;
     top: 0px;
     bottom: 0px;
     flex: 0 0 auto;

@@ -232,9 +232,16 @@ const GanttView = () => {
                         <div className="table-data-header-name">Start Date</div>
                         <div className="table-data-header-name">End Date</div>
                     </div>
-                    
+                    <div className="table-data-body">
+                        <div className="table-data-body-separator"></div>
+                        <div className="table-data-body-separator"></div>
+                        <div className="table-data-body-separator"></div>
+                        <div className="table-data-body-separator"></div>
+                    </div>
+                        
 
                 </div>
+                
                 <div className="table-bar-table">
                     <div className="table-bar-header">
                         
@@ -253,43 +260,19 @@ const GanttView = () => {
                         
 
                     </div>
-                    <div  className="table-bar-body-separators">
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
-                        <div className="table-bar-body-separator">
-                        
-                        </div>
+                    <div  className="table-bar-body">
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>>
                     </div>
                     <div className="table-bar-body-row-odd">
                         {/* <div className="table-data-cell">
