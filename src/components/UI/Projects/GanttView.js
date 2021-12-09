@@ -224,7 +224,7 @@ const GanttView = () => {
                     </Table>
                 </Col>
             </Row> */}
-            <div className="table-container">
+            {/* <div className="table-container">
                 <div className="table-data-table">
                     <div className="table-data-header">
                         <div className="table-data-header-name">Project Name</div>
@@ -233,10 +233,20 @@ const GanttView = () => {
                         <div className="table-data-header-name">End Date</div>
                     </div>
                     <div className="table-data-body">
-                        <div className="table-data-body-separator"></div>
-                        <div className="table-data-body-separator"></div>
-                        <div className="table-data-body-separator"></div>
-                        <div className="table-data-body-separator"></div>
+                        <div>
+                            <div className="table-data-body-cell">Meeting with Mark</div>
+                            <div className="table-data-body-cell">35</div>
+                            <div className="table-data-body-cell">05/05/1950</div>
+                            <div className="table-data-body-cell">05/05/1950</div>
+                        </div>
+                        <div>
+                            <div className="table-data-body-separator"></div>
+                            <div className="table-data-body-separator"></div>
+                            <div className="table-data-body-separator"></div>
+                            <div className="table-data-body-separator"></div>
+                        </div>
+                        
+                        
                     </div>
                         
 
@@ -272,59 +282,58 @@ const GanttView = () => {
                         <div className="table-bar-body-separator"></div>
                         <div className="table-bar-body-separator"></div>
                         <div className="table-bar-body-separator"></div>
-                        <div className="table-bar-body-separator"></div>>
+                        <div className="table-bar-body-separator"></div>
                     </div>
-                    <div className="table-bar-body-row-odd">
-                        {/* <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                        <div className="table-data-cell">
-                        
-                        </div>
-                         <div className="table-data-cell">
-                        
-                        </div> */}
-                    </div>
-                    {/* <div className="table-data-row-odder">
-                        
-                    </div>
-                    <div className="table-data-row-odderer">
-                        
-                    </div>
-                     */}
+                   
                     
                     
 
                 </div>
+            </div> */}
+            <div className="table-container">
+                <div className="table-data-table">
+                    <table>
+                        <tr>
+                            <th className="table-data-header-name">Project Name</th>
+                            <th className="table-data-header-name">Days Left</th>
+                            <th className="table-data-header-name">Start Date</th>
+                            <th className="table-data-header-name">End Date</th>
+
+                        </tr>
+                        <tr>
+                            <td className="table-data-body-cell">Meeting with Mark</td>
+                            <td className="table-data-body-cell">35</td>
+                            <td className="table-data-body-cell">05/05/1950</td>
+                            <td className="table-data-body-cell">05/05/1950</td>
+                       
+                        </tr>
+                        
+
+                    </table>
+
+                </div>
+                <div className="table-bar-table">
+                    <table>
+                    <col></col><col></col><col></col><col></col><col/><col/><col/><col/><col/><col/><col/><col/>
+                        <tr>
+                            <th className="table-bar-header-month">January</th>
+                            <th className="table-bar-header-month">February</th>
+                            <th className="table-bar-header-month">March</th>
+                            <th className="table-bar-header-month">April</th>
+                            <th className="table-bar-header-month">May</th>
+                            <th className="table-bar-header-month">June</th>
+                            <th className="table-bar-header-month">July</th>
+                            <th className="table-bar-header-month">August</th>
+                            <th className="table-bar-header-month">September</th>
+                            <th className="table-bar-header-month">October</th>
+                            <th className="table-bar-header-month">November</th>
+                            <th className="table-bar-header-month">December</th>
+                        </tr>
+                        
+                        
+                    </table>
+                </div>
             </div>
-            
             
             
            
