@@ -242,13 +242,7 @@ const GanttView = () => {
                             <td >05/05/1950</td>
                        
                         </tr>
-                        <tr>
-                            <td >&nbsp;</td>
-                            <td >&nbsp;</td>
-                            <td >&nbsp;</td>
-                            <td >&nbsp;</td>
-                       
-                        </tr>
+
 
                         
 
@@ -273,8 +267,9 @@ const GanttView = () => {
                             <th className="table-bar-header-month">November</th>
                             <th className="table-bar-header-month">December</th>
                         </tr>
+                        
                         <tr>
-                            <div></div>
+                            
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -289,6 +284,7 @@ const GanttView = () => {
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
+                            
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
@@ -303,10 +299,19 @@ const GanttView = () => {
                             <td>&nbsp;</td>
                         </tr>
                         
+
+                        
+                       
            
                       
                         
                     </table>
+                    <div className="table-bar-content-progress-bars" >
+                        <div className="table-bar-content-bar"></div>
+                        <div className="table-bar-content-bar"></div>
+                    </div>
+                    
+                    
                 </div>
             </div>
             <div className="table-container-overlay">
@@ -348,8 +353,10 @@ const GanttView = () => {
                     
 
                 </div>
+               
                 
             </div>
+            
             
             
            
