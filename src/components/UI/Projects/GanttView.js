@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 
 import GanttChildren from './GanttChildren';
-
-import { Table, Col, Row } from 'react-bootstrap';
+import GanttEmptyChildren from './GanttEmptyChildren';
 
 import "./GanttView.css";
 
@@ -40,7 +39,7 @@ const generateHeader2 = () => {
 
 
 
-const generateTableData = (projects, hierarchy) => {
+const generateTableData = (projects) => {
 
     const projectOnlyList = projects.filter(item => (item.type === "2"));
 
@@ -86,6 +85,60 @@ const generateTableData = (projects, hierarchy) => {
         );
     }
   
+}
+
+const generateEmptyCels = (projects) => {
+    const projectOnlyList = projects.filter(item => (item.type === "2"));
+
+    if(projectOnlyList.length > 0) {
+
+        return(
+            projectOnlyList.map(item => {
+    
+                let day1 = item.startDate; 
+                let day2 = item.dateDue;
+    
+                let difference = Math.abs(day2-day1);
+                let days = difference/(1000 * 3600 * 24);
+    
+                let childTasks = projects.filter(project => (project.parentId === item.id));
+
+                return (
+                    <React.Fragment>
+                        <tr>
+                            
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        {(childTasks.length > 0) && <GanttEmptyChildren list={childTasks}/>}
+    
+                    </React.Fragment>
+                    
+                    
+                );
+   
+            })
+    
+        );
+
+    } else {
+        return (
+            <div>
+                No Items Found
+            </div>
+        );
+    }
+
 }
 
 
@@ -184,6 +237,64 @@ const generateTableCels = (projects) => {
     );
 }
 
+
+const generateBars = (projects) => {
+    
+    return (
+        
+        projects.map(item => {
+
+            const tableWidth = 1800;
+            const cellHeight = 58;
+            const convConst = 493;
+
+            let yearStart = new Date(2021, 1, 1);
+            let day1 = item.startDate; 
+            let day2 = item.dateDue;
+
+            let startMarker = ((Math.abs(day1-yearStart)) );
+            
+            let daysTwo = (startMarker/(1000 * 3600 * 24))  ;
+
+            // console.log(daysTwo * convConst);
+
+            let difference = Math.abs(day2-day1);
+            let days = (difference/(1000 * 3600 * 24));
+
+            let daysLeft = days;
+            let daysLeftTwo = daysTwo;
+
+            
+
+            
+            return (
+
+                // bar should be wrapped in a div, in case needing empty div
+                <div 
+                className="table-bar-content-bar"
+                style={{
+                    background: "aquamarine",
+                    height: "30px", 
+                    width: days + "px",
+                    marginTop: "15px",
+                    marginLeft: daysTwo + "px",
+                    borderRadius: "25px",
+                   
+                }}
+
+                
+                
+                ></div>
+                
+                
+            );
+            
+
+       
+        })
+    );
+}
+
 const GanttView = () => {
 
     const notesCtx = useContext(CaptureContext);
@@ -193,37 +304,6 @@ const GanttView = () => {
     return (
         <div className="ganttView">
             <h1>Timelines</h1>
-            {/* <Row>
-                <Col className="ganttData">
-                    <Table responsive striped bordered hover size="sm"> 
-                        <thead>
-                            {generateHeader1()}
-                        </thead>
-                        <tbody>
-                
-                            {generateTableData(notesCtx.items, "1")}
-                            
-                        </tbody>
-                            
-                    </Table>
-                </Col>
-                <Col className="ganttTable">
-                    <Table responsive striped hover size="sm"> 
-                        <thead>
-                            {generateHeader2()}
-                        </thead>
-                        <tbody>
-                
-                            {generateTableCels(notesCtx.items)}
-                            
-
-                        </tbody>
-                        
-
-
-                    </Table>
-                </Col>
-            </Row> */}
             
             <div className="table-container">
                 <div className="table-data-table">
@@ -235,13 +315,7 @@ const GanttView = () => {
                             <th className="table-data-header-name">End Date</th>
 
                         </tr>
-                        <tr>
-                            <td >Meeting with Mark</td>
-                            <td >35</td>
-                            <td >05/05/1950</td>
-                            <td >05/05/1950</td>
-                       
-                        </tr>
+                        {generateTableData(notesCtx.items)}
 
 
                         
@@ -268,36 +342,7 @@ const GanttView = () => {
                             <th className="table-bar-header-month">December</th>
                         </tr>
                         
-                        <tr>
-                            
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
-                        <tr>
-                            
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
-                        </tr>
+                        {generateEmptyCels(notesCtx.items)}
                         
 
                         
@@ -307,8 +352,7 @@ const GanttView = () => {
                         
                     </table>
                     <div className="table-bar-content-progress-bars" >
-                        <div className="table-bar-content-bar"></div>
-                        <div className="table-bar-content-bar"></div>
+                        {generateBars(notesCtx.items)}
                     </div>
                     
                     
