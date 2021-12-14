@@ -10,7 +10,7 @@ const GanttChildren = (props) => {
             let day2 = item.dateDue;
 
             let difference = Math.abs(day2-day1);
-            let days = difference/(1000 * 3600 * 24);
+            let days = Math.ceil(difference/(1000 * 3600 * 24));
 
             
 

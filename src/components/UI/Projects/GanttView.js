@@ -2,41 +2,11 @@ import React, { useContext } from 'react';
 
 import GanttChildren from './GanttChildren';
 import GanttEmptyChildren from './GanttEmptyChildren';
+import GanttBarChildren from './GanttBarChildren';
 
 import "./GanttView.css";
 
 import CaptureContext from '../../../capture/capture-context';
-
-const generateHeader1 = () => {
-    return (
-        <tr>
-            <th>Project</th>
-            <th>Days Left</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            
-        </tr>
-    );
-
-}
-
-
-
-const generateHeader2 = () => {
-    return (
-        <tr>
-
-            {Array.from({ length: 365 }).map((_, index) => (
-                <th key={index} className="headerNumber">{index}</th>
-            ))}
-        </tr>
-    );
-
-}
-
-//parselist will parse list, concatenate html elements
-//it will call function depending on level, function will render item individually
-
 
 
 const generateTableData = (projects) => {
@@ -49,10 +19,12 @@ const generateTableData = (projects) => {
             projectOnlyList.map(item => {
     
                 let day1 = item.startDate; 
+
+               
                 let day2 = item.dateDue;
     
                 let difference = Math.abs(day2-day1);
-                let days = difference/(1000 * 3600 * 24);
+                let days = Math.ceil(difference/(1000 * 3600 * 24));
     
                 let childTasks = projects.filter(project => (project.parentId === item.id));
 
@@ -141,166 +113,119 @@ const generateEmptyCels = (projects) => {
 
 }
 
+const setBarPosition = (amount) => {
+
+    const cellHeight = -58;
 
 
-const generateTableCels = (projects) => {
-    
+    return (amount * cellHeight).toString() + "px";
 
-    return (
-
-
-        
-
-        
-        projects.map(item => {
-            let yearStart = new Date(2021, 1, 1);
-            let day1 = item.startDate; 
-            let day2 = item.dateDue;
-
-            let startMarker = Math.abs(day1-yearStart);
-            let daysTwo = startMarker/(1000 * 3600 * 24);
-
-            let difference = Math.abs(day2-day1);
-            let days = difference/(1000 * 3600 * 24);
-
-            let daysLeft = days;
-            let daysLeftTwo = daysTwo;
-
-            if(item.type === "2") {
-
-                let childTasks = projects.filter(project => (project.parentId === item.id));
-
-                if(childTasks.length > 0) {
-                    generateTableCels(childTasks);
-                    console.log("children");
-                } 
-                return (
-                    <tr>               
-                        {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
-
-                            if (daysLeftTwo > 0) {
-                                daysLeftTwo--;
-                                return (
-                                    <td></td>
-                                )
-                            } else {
-                                if (daysLeft > 0) {
-                                    daysLeft--;
-                                    return (
-                                        <td className="activeCel"></td>
-                                    )
-                                    
-                                } else {
-                                    return (
-                                        <td></td>
-                                    )
-                                }
-
-                            }
-                        })}
-                    </tr> 
-                    
-                );
-
-            } else {
-                return (
-                    <tr>               
-                        {Array.apply(null, Array(365)).map(function (x, i) { return i; }).map(item => {
-
-                            if (daysLeftTwo > 0) {
-                                daysLeftTwo--;
-                                return (
-                                    <td></td>
-                                )
-                            } else {
-                                if (daysLeft > 0) {
-                                    daysLeft--;
-                                    return (
-                                        <td className="activeCelChild"></td>
-                                    )
-                                    
-                                } else {
-                                    return (
-                                        <td></td>
-                                    )
-                                }
-
-                            }
-                        })}
-                    </tr>
-                    
-                );
-            }
-
-       
-        })
-    );
 }
 
 
+
 const generateBars = (projects) => {
-    
-    return (
+
+    const projectOnlyList = projects.filter(item => (item.type === "2"));
+
+    if(projectOnlyList.length > 0) {
+        return (
         
-        projects.map(item => {
+            projectOnlyList.map(item => {
 
-            const tableWidth = 1800;
-            const cellHeight = 58;
-            const convConst = 493;
-
-            let yearStart = new Date(2021, 1, 1);
-            let day1 = item.startDate; 
-            let day2 = item.dateDue;
-
-            let startMarker = ((Math.abs(day1-yearStart)) );
-            
-            let daysTwo = (startMarker/(1000 * 3600 * 24))  ;
-
-            // console.log(daysTwo * convConst);
-
-            let difference = Math.abs(day2-day1);
-            let days = (difference/(1000 * 3600 * 24));
-
-            let daysLeft = days;
-            let daysLeftTwo = daysTwo;
-
-            
-
-            
-            return (
-
-                // bar should be wrapped in a div, in case needing empty div
-                <div 
-                className="table-bar-content-bar"
-                style={{
-                    background: "aquamarine",
-                    height: "30px", 
-                    width: days + "px",
-                    marginTop: "15px",
-                    marginLeft: daysTwo + "px",
-                    borderRadius: "25px",
-                   
-                }}
-
+                let randomColor = Math.floor(Math.random()*16777215).toString(16);
+    
+                const tableWidth = 1800;
+                const cellHeight = 58;
+                const convConst = 5;
+    
+                //date needs to subtract or add a month
+    
+                let start = new Date(2021, 0, 1);
+                let yearStart = start.getTime();
+                let day1 = item.startDate.getTime(); 
+                let day2 = item.dateDue.getTime();
+    
+                let startMarker = ((Math.abs(day1-yearStart)) );
+               
                 
-                
-                ></div>
-                
-                
-            );
-            
+                let daysTwo = Math.ceil(startMarker/(1000 * 3600 * 24)) * convConst  ;
 
-       
-        })
-    );
+    
+                let difference = Math.abs(day2-day1);
+                let days = (difference/(1000 * 3600 * 24))  * convConst ;
+    
+                let childTasks = projects.filter(project => (project.parentId === item.id));
+    
+                
+    
+                
+                return (
+    
+                    // bar should be wrapped in a div, in case needing empty div
+                    <React.Fragment>
+                        <div
+                        style={{
+                            
+                            height: "46px", 
+                            marginTop: "10px",
+                            padding: "18px 0"
+                            // width: days + "px",
+                            // marginTop: "19px",
+                            // marginBottom: "19px",
+                            // marginLeft: daysTwo + "px",
+                            // borderRadius: "25px",
+                            // position: "relative"
+                        
+                        }}>
+                            <div 
+                            // className="table-bar-content-bar"
+                            style={{
+                                background: "#" + randomColor,
+                                height: "20px", 
+                                width: days + "px",
+                                // paddingTop: "18px",
+                                // // paddingBottom: "18px",
+                                marginLeft: daysTwo + "px",
+                                borderRadius: "25px",
+                                // position: "relative"
+                            
+                            }}>
+
+                            </div>
+                        
+                        
+                        </div>
+                        {(childTasks.length > 0) && <GanttBarChildren list={childTasks}/>}
+
+                    </React.Fragment>
+                    
+                    
+                    
+                );
+                
+    
+           
+            })
+        );
+
+    } else {
+        return (
+            <div></div>
+        );
+    }
+    
+    
 }
 
 const GanttView = () => {
 
     const notesCtx = useContext(CaptureContext);
     const projectOnlyList = notesCtx.items.filter(item => (item.type === "2"));
+    const totalItems = notesCtx.items.filter(item => ((item.type === "2") || (item.parentId !== "")));
+    let setBarsPosition = (totalItems * -50).toString();
 
-
+    console.log(setBarPosition(3));
     return (
         <div className="ganttView">
             <h1>Timelines</h1>
@@ -309,7 +234,7 @@ const GanttView = () => {
                 <div className="table-data-table">
                     <table>
                         <tr>
-                            <th className="table-data-header-name">Project Name</th>
+                            <th className="table-data-header-name">Project/Task Name</th>
                             <th className="table-data-header-name">Days Left</th>
                             <th className="table-data-header-name">Start Date</th>
                             <th className="table-data-header-name">End Date</th>
@@ -351,7 +276,13 @@ const GanttView = () => {
                       
                         
                     </table>
-                    <div className="table-bar-content-progress-bars" >
+                    <div 
+                    // className="table-bar-content-progress-bars" 
+                    style={{
+                        position: "relative",
+                        top: setBarPosition(totalItems.length)
+                    
+                    }}>                
                         {generateBars(notesCtx.items)}
                     </div>
                     
