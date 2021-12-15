@@ -65,9 +65,12 @@ const DashboardActionList = () => {
 
     const listHandler = (list) => {
 
+        let limit = list.slice(0,5);
+
         if(list.length > 0) {
+            limit = list.slice(0,5);
             return (
-                list.map(action => {
+                limit.map(action => {
                     const parentItems = projectList.filter(item => (item.id === action.parentId));
                     let parentTitle = '';
                     if(action.parentId !== '') {

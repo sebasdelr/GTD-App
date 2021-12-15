@@ -3,15 +3,19 @@ import React, { useContext } from 'react';
 import GanttChildren from './GanttChildren';
 import GanttEmptyChildren from './GanttEmptyChildren';
 import GanttBarChildren from './GanttBarChildren';
+import { Tooltip} from 'react-bootstrap/';
 
 import "./GanttView.css";
 
 import CaptureContext from '../../../capture/capture-context';
 
 
+
 const generateTableData = (projects) => {
 
     const projectOnlyList = projects.filter(item => (item.type === "2"));
+
+    projectOnlyList.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1);
 
     if(projectOnlyList.length > 0) {
 
@@ -128,6 +132,8 @@ const generateBars = (projects) => {
 
     const projectOnlyList = projects.filter(item => (item.type === "2"));
 
+    projectOnlyList.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1);
+
     if(projectOnlyList.length > 0) {
         return (
         
@@ -143,8 +149,8 @@ const generateBars = (projects) => {
     
                 let start = new Date(2021, 0, 1);
                 let yearStart = start.getTime();
-                let day1 = item.startDate.getTime(); 
-                let day2 = item.dateDue.getTime();
+                let day1 = item.startDate; 
+                let day2 = item.dateDue;
     
                 let startMarker = ((Math.abs(day1-yearStart)) );
                
@@ -223,9 +229,9 @@ const GanttView = () => {
     const notesCtx = useContext(CaptureContext);
     const projectOnlyList = notesCtx.items.filter(item => (item.type === "2"));
     const totalItems = notesCtx.items.filter(item => ((item.type === "2") || (item.parentId !== "")));
-    let setBarsPosition = (totalItems * -50).toString();
+    console.log(totalItems.length);
 
-    console.log(setBarPosition(3));
+    
     return (
         <div className="ganttView">
             <h1>Timelines</h1>

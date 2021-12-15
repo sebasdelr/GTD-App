@@ -2,6 +2,8 @@ import React from 'react';
 
 const GanttChildren = (props) => {
 
+    props.list.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1);
+
     return (
         
         props.list.map(item => {

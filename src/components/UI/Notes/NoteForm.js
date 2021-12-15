@@ -102,7 +102,7 @@ const NoteForm = () => {
             
      
         } else {
-            console.log('itemfound')
+            
 
             let selectedItem = notesCtx.items[notesCtx.itemIndex];
 
@@ -115,7 +115,6 @@ const NoteForm = () => {
 
             setDueDate(selectedItem.dateDue);
 
-            console.log(selectedItem.dateCreated);
 
             if(selectedItem.type === "") {
 
@@ -215,6 +214,8 @@ const NoteForm = () => {
         const dateCreated = new Date();
         // const dueDate = dueRef.current.value;
 
+        console.log(getStartDate);
+
 
         if((checkIfEmpty(enteredTitle)) && checkDateDifference(getStartDate, dueDate)) {
 
@@ -230,6 +231,9 @@ const NoteForm = () => {
                 type: selectedType,
                 status: '',
             };
+
+            console.log(getStartDate);
+            // console.log(dateDue);
 
             notesCtx.addItem(enteredText);
             flagCtx.setFlag(false);

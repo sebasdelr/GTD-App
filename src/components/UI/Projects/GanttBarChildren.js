@@ -2,6 +2,8 @@ import React from 'react';
 
 const GanttBarChildren = (props) => {
 
+    props.list.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1);
+
     return (
         
         props.list.map(item => {
@@ -16,8 +18,8 @@ const GanttBarChildren = (props) => {
 
             let start = new Date(2021, 0, 1);
             let yearStart = start.getTime();
-            let day1 = item.startDate.getTime(); 
-            let day2 = item.dateDue.getTime();
+            let day1 = item.startDate; 
+            let day2 = item.dateDue;
 
             let startMarker = ((Math.abs(day1-yearStart)) );
            
