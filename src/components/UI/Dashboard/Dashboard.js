@@ -119,14 +119,14 @@ const Dashboard = () => {
 				</Row>
 				
 				<Row style={{ padding: '15px 15px'  }}>
-					<h3>Due Today</h3>
+					
 					<Col>
 						<DashboardActionList/>
 					</Col>
 					
 					
 				</Row>
-				<Row style={{ padding: '15px 15px'  }}>
+				{/* <Row style={{ padding: '15px 15px'  }}>
 					<h3>Waiting for</h3>
 					<Card className="dashboard-card">
 					
@@ -136,7 +136,7 @@ const Dashboard = () => {
 						<ListGroup.Item>Vestibulum at eros - Joe</ListGroup.Item>
 					</ListGroup>
 					</Card>
-				</Row>
+				</Row> */}
 			</div>
 			
 			

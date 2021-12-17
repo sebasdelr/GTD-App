@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from 'react';
 
 
 import { Form, Button, Alert, Row, Col, Modal} from 'react-bootstrap/';
-import { BiFileBlank, BiSave,  BiTrash } from "react-icons/bi";
+import { BiFileBlank, BiSave,  BiTrash, BiUndo } from "react-icons/bi";
 
 import './NoteForm.css';
 
@@ -61,7 +61,8 @@ const NoteForm = () => {
     const [dueDate, setDueDate] = useState(new Date());
     const [itemType, setItemType] = useState(selectedItem.type);
     const [parentItem, setParentItem] = useState(selectedItem.parentId);
-    const [arterMessage, setAlertMessage] = useState();
+    const [alertMessage, setAlertMessage] = useState();
+    const [originalItem, setOriginalItem] = useState();
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
@@ -95,6 +96,42 @@ const NoteForm = () => {
         
     };
 
+    const setBack = () => {
+        if(notesCtx.itemIndex === null) {
+            newNote();
+            
+     
+        } else {
+            
+
+            let selectedItem = notesCtx.items[notesCtx.itemIndex];
+            setOriginalItem(selectedItem);
+
+            document.getElementById("note-title").value = selectedItem.title;
+            document.getElementById("note-content").value = selectedItem.content;
+            document.getElementById("note-id").value = selectedItem.id;
+            setParentItem(selectedItem.parentId);
+
+            setStartDate(selectedItem.startDate);
+
+            setDueDate(selectedItem.dateDue);
+
+
+            if(selectedItem.type === "") {
+
+                document.getElementById("inlineFormCustomSelect").value = "1";
+                setItemType("1");
+            } else {
+                document.getElementById("inlineFormCustomSelect").value = selectedItem.type;
+                setItemType(selectedItem.type);
+            }
+
+            flagCtx.setFlag(false);
+
+            
+        }
+    }
+
 
     useEffect(() => {
         if(notesCtx.itemIndex === null) {
@@ -105,6 +142,7 @@ const NoteForm = () => {
             
 
             let selectedItem = notesCtx.items[notesCtx.itemIndex];
+            setOriginalItem(selectedItem);
 
             document.getElementById("note-title").value = selectedItem.title;
             document.getElementById("note-content").value = selectedItem.content;
@@ -214,7 +252,7 @@ const NoteForm = () => {
         const dateCreated = new Date();
         // const dueDate = dueRef.current.value;
 
-        console.log(getStartDate);
+        console.log(notesCtx.items[notesCtx.itemIndex].title);
 
 
         if((checkIfEmpty(enteredTitle)) && checkDateDifference(getStartDate, dueDate)) {
@@ -262,6 +300,7 @@ const NoteForm = () => {
                     <Button variant="secondary" onClick={newNote} className="notebutton"><BiFileBlank/> New Note</Button>{' '}
                     {/* <Button variant="light" onClick={editNoteHandler} className="notebutton"><BiEdit/> Edit Note</Button>{' '} */}
                     <Button variant="secondary" onClick={deleteNoteHandler} className="notebutton"><BiTrash/> Delete Note</Button>{' '}
+                    <Button variant="secondary" disabled={!flagCtx.flag && "disabled"} onClick={setBack} className="notebutton"><BiUndo/> Undo</Button>{' '}
                     <Button  type="submit" variant="primary" className="notebutton" disabled={!flagCtx.flag && "disabled"}><BiSave/> Save Note</Button>
                 </Col>
             </Row>
@@ -326,7 +365,7 @@ const NoteForm = () => {
 
             </Row>
 
-            {showAlert && <Alert variant="danger" >{arterMessage}</Alert>}
+            {showAlert && <Alert variant="danger" >{alertMessage}</Alert>}
             
             
             

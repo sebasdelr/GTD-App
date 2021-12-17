@@ -29,10 +29,18 @@ const DashboardActionList = () => {
         const thisWeek = new Date();
         const tomorrow = new Date();
         const today = new Date();
+        const yesterday = new Date(today);
 
         thisMonth.setMonth(thisMonth.getMonth() + MONTH); 
         thisWeek.setDate(thisWeek.getDate() + WEEK);
         tomorrow.setDate(tomorrow.getDate() + DAY);
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if(dateFilter === 'OVERDUE') {
+            return (
+                newDate <= yesterday
+            );
+        }
 
         if(dateFilter === 'DAY') {
             return (
@@ -56,9 +64,11 @@ const DashboardActionList = () => {
 
     };
 
+
     const projectList = notesCtx.items.filter(item => (item.type === "2"));
     const actionOnlyList = notesCtx.items.filter(item => (item.type === "4"));
 
+    const actionListOverdue = actionOnlyList.filter(item => compareDate(item.dateDue, 'OVERDUE'));
     const actionListDay = actionOnlyList.filter(item => compareDate(item.dateDue, 'DAY'));
     const actionListWeek = actionOnlyList.filter(item => compareDate(item.dateDue, 'WEEK'));
     const actionListMonth = actionOnlyList.filter(item => compareDate(item.dateDue, 'MONTH'));
@@ -106,7 +116,13 @@ const DashboardActionList = () => {
         <div className="dashboard-action-list">
             <Row className="action-section">
                 <Col>
-                    
+                <h3>Overdue Tasks</h3>
+                    {listHandler(actionListOverdue)}
+                </Col>  
+            </Row>
+            <Row className="action-section">
+                <Col>
+                <h3>Due Today</h3>
                     {listHandler(actionListDay)}
                 </Col>  
             </Row>

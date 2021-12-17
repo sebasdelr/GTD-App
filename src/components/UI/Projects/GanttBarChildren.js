@@ -41,7 +41,7 @@ const GanttBarChildren = (props) => {
                             
                             height: "46px", 
                             marginTop: "10px",
-                            padding: "18px 0"
+                            padding: "19px 0"
                             // width: days + "px",
                             // marginTop: "19px",
                             // marginBottom: "19px",

@@ -119,7 +119,7 @@ const generateEmptyCels = (projects) => {
 
 const setBarPosition = (amount) => {
 
-    const cellHeight = -58;
+    const cellHeight = -57.5;
 
 
     return (amount * cellHeight).toString() + "px";
@@ -141,8 +141,7 @@ const generateBars = (projects) => {
 
                 let randomColor = Math.floor(Math.random()*16777215).toString(16);
     
-                const tableWidth = 1800;
-                const cellHeight = 58;
+                
                 const convConst = 5;
     
                 //date needs to subtract or add a month
@@ -153,8 +152,7 @@ const generateBars = (projects) => {
                 let day2 = item.dateDue;
     
                 let startMarker = ((Math.abs(day1-yearStart)) );
-               
-                
+                       
                 let daysTwo = Math.ceil(startMarker/(1000 * 3600 * 24)) * convConst  ;
 
     
@@ -163,9 +161,6 @@ const generateBars = (projects) => {
     
                 let childTasks = projects.filter(project => (project.parentId === item.id));
     
-                
-    
-                
                 return (
     
                     // bar should be wrapped in a div, in case needing empty div
@@ -175,7 +170,7 @@ const generateBars = (projects) => {
                             
                             height: "46px", 
                             marginTop: "10px",
-                            padding: "18px 0"
+                            padding: "19px 0"
                             // width: days + "px",
                             // marginTop: "19px",
                             // marginBottom: "19px",
@@ -226,10 +221,29 @@ const generateBars = (projects) => {
 
 const GanttView = () => {
 
+
     const notesCtx = useContext(CaptureContext);
-    const projectOnlyList = notesCtx.items.filter(item => (item.type === "2"));
-    const totalItems = notesCtx.items.filter(item => ((item.type === "2") || (item.parentId !== "")));
-    console.log(totalItems.length);
+
+
+    const totalItems = () => {
+
+        let total = 0;
+        notesCtx.items.forEach(element => {
+            if(element.type === "2"){
+                total++;
+                let childTasks = notesCtx.items.filter(project => (project.parentId === element.id));
+                if(childTasks.length > 0) {
+                    total = total + childTasks.length;
+                }
+                
+            }
+            
+        });
+
+        return total;
+    }
+    
+    console.log(totalItems());
 
     
     return (
@@ -286,7 +300,7 @@ const GanttView = () => {
                     // className="table-bar-content-progress-bars" 
                     style={{
                         position: "relative",
-                        top: setBarPosition(totalItems.length)
+                        top: setBarPosition(totalItems())
                     
                     }}>                
                         {generateBars(notesCtx.items)}
