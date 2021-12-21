@@ -3,9 +3,12 @@ import React, { useState, useContext } from 'react';
 import ProjectForm from './ProjectForm';
 import Project from './Project';
 
-import { Row, Col, Button} from 'react-bootstrap/';
+import { Row, Col, Button, Image} from 'react-bootstrap/';
 import { Link } from 'react-router-dom';
 import { BiEdit, BiFileBlank, BiTrash } from "react-icons/bi";
+
+import projectImage from '../../../assets/xps-dpbXgTh0Lac-unsplash.jpg';
+
 
 import './Projects.css';
 import './ProjectList.css';
@@ -99,27 +102,35 @@ const ProjectList = () => {
     }
 
     return (
-        <div className="projectlist">
-            <Row>
-                <Col></Col>
-                <Col xs={6}>
-                    <Button variant="light" className="" onClick={handleNew}><BiFileBlank/> New Project</Button>{' '}
-                    <Button variant="light" className="" onClick={handleEdit}><BiEdit/> Edit Project</Button>{' '}
-                    <Button variant="light" className="" onClick={handleDelete}><BiTrash/> Delete Project</Button>{' '}
-                    {/* <Button  variant="light" className=""><BiSave/> Save Project</Button> */}
-                </Col>
-            </Row>
+        <div>
+            <div className="project-image">
+                <Image className="top-image" src={projectImage} fluid />
+            </div>
+            <div className="projectlist">
+                
+                <Row>
+                    <Col></Col>
+                    <Col xs={6}>
+                        <Button variant="light" className="" onClick={handleNew}><BiFileBlank/> New Project</Button>{' '}
+                        <Button variant="light" className="" onClick={handleEdit}><BiEdit/> Edit Project</Button>{' '}
+                        <Button variant="light" className="" onClick={handleDelete}><BiTrash/> Delete Project</Button>{' '}
+                        {/* <Button  variant="light" className=""><BiSave/> Save Project</Button> */}
+                    </Col>
+                </Row>
 
-            <Row style={{ padding: '15px'  }}  xs={2} md={4} lg={6} className="parent" >
-                {projectListHandler(projectOnlyList)}
-            </Row>
-            <Row>
-                <Col ><Button variant="primary"><Link to="/project-viewer">Project Viewer</Link></Button></Col>
-            </Row>
-            <ProjectForm show={show} onHide={handleClose} passProjectHandler={passProjectHandler} projectContent={content} canEdit={isEdit}/>
+                <Row style={{ padding: '15px'  }}  xs={2} md={4} lg={6} className="parent" >
+                    {projectListHandler(projectOnlyList)}
+                </Row>
+                <Row>
+                    <Col ><Button variant="primary"><Link to="/project-viewer">Project Viewer</Link></Button></Col>
+                </Row>
+                <ProjectForm show={show} onHide={handleClose} passProjectHandler={passProjectHandler} projectContent={content} canEdit={isEdit}/>
 
+
+            </div>
 
         </div>
+        
 
     );
 

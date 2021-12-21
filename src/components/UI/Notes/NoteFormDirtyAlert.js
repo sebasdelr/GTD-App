@@ -6,11 +6,18 @@ import { Button, Modal} from 'react-bootstrap/';
 import UnsavedContext from '../../../capture/unsaved-context';
 
 
-function NoteFormDirtyAlert() {
+function NoteFormDirtyAlert(props) {
 
     const flagCtx = useContext(UnsavedContext);
 
     const handleClose = () => flagCtx.setShow(false);
+
+    const handleReset = () => {
+      flagCtx.setShow(false);
+      flagCtx.setRevert(true);
+      // props.setFormReset();
+    
+    };
     
   
     return (
@@ -24,7 +31,7 @@ function NoteFormDirtyAlert() {
             <Button variant="secondary" onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleReset}>
               Ok
             </Button>
           </Modal.Footer>

@@ -23,13 +23,30 @@ const NoteItem = (props) => {
     const flagCtx = useContext(UnsavedContext);
 
     const [style, setStyle] = useState({display: 'none'});
-  
+
+   
 
 
     const toggleSelect = () => {
+
+        
+
         if(flagCtx.flag){
+
+            const confirmed = window.confirm("Are you sure?");
+        
+            if (confirmed) {
+                notesCtx.selectedItem(props.listItem);
+                flagCtx.setFlag(false);
+            }
             
-            flagCtx.setShow(true);
+            // flagCtx.setShow(true);
+            // if(flagCtx.revert) {
+            //     console.log("reverting?");
+            //     flagCtx.setRevert(false);
+            //     flagCtx.setFlag(false);
+            //     notesCtx.selectedItem(props.listItem);
+            // }
             
         } else {
             notesCtx.selectedItem(props.listItem);

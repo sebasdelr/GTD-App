@@ -135,6 +135,7 @@ const NoteForm = () => {
 
     useEffect(() => {
         if(notesCtx.itemIndex === null) {
+            
             newNote();
             
      
@@ -292,7 +293,7 @@ const NoteForm = () => {
 
     return (
         <Form  onSubmit={submitHandler} id="note-form">
-            <NoteFormDirtyAlert />           
+            <NoteFormDirtyAlert setFormReset={setBack}/>           
 
             <Row>
                 <Col></Col>

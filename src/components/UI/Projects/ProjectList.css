@@ -2,6 +2,20 @@
     margin: 20px;
 }
 
+.project-image {
+    width: 100%;
+    height: 15rem;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.project-image .top-image {
+    width: 110%;
+    height: 100%;
+    object-fit: cover;
+   
+}
+
 .projectlist a:link {
     text-decoration: none;
     color:white;

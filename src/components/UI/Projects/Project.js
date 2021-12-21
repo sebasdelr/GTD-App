@@ -4,6 +4,7 @@ import {Card} from 'react-bootstrap/';
 
 import './Projects.css';
 
+
 const nextActionHandler = (list, id) => {
     // childTasks = list.filter(item => (item.parentId === id));
 
@@ -45,11 +46,12 @@ const Project = (props) => {
         <Card className={props.selectedClass} onClick={toggleSelect}>
             <Card.Body>
                 
-                <Card.Title>{props.item.title}</Card.Title>
-                <p>Next Actions</p>
-                <Card.Text>
-                    {nextActionHandler(props.nextTasks)}
-                </Card.Text>
+                <div className="project-title">{props.item.title}</div>
+                <div className="next-action">Next Action</div>
+
+                    <div className="action-item-title">{nextActionHandler(props.nextTasks)}</div>
+                    
+               
 
             </Card.Body>
         </Card>
