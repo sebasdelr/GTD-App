@@ -1,5 +1,6 @@
 .actionList {
     margin: 60px;
+    overflow: auto;
 }
 
 .action-section {

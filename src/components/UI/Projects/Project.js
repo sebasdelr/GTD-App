@@ -11,15 +11,10 @@ const nextActionHandler = (list, id) => {
 
     if(list.length > 0) {
         return(
-            <ul>
-                <li>{list[0].title}</li>
-                {/* {list.map(item => {
-                    return(
-                        <li>{item.title}</li>
-                    );
-                    
-                })} */}
-            </ul>
+            <div>
+                {list[0].title}
+            </div>
+                
             
         );
 

@@ -1,7 +1,5 @@
 import ActionList from "../Actions/ActionList";
 
-import { Container } from 'react-bootstrap';
-
 
 const ActionView = (props) => {
     return (

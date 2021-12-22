@@ -106,8 +106,9 @@ const ProjectList = () => {
             <div className="project-image">
                 <Image className="top-image" src={projectImage} fluid />
             </div>
+            
             <div className="projectlist">
-                
+            <h1>Projects</h1>
                 <Row>
                     <Col></Col>
                     <Col xs={6}>

@@ -43,9 +43,9 @@ const Sidebar = () => {
                     <Form.Control placeholder="Search..." className="search" />
                 </Form.Group>
                 <Nav.Link eventKey="link-1" className="sidelink"  onClick={showAlert}><Link to="/capture" class={flagCtx.flag && "disabled-link"}><Create className="bxicon"/><span className="linkName">Capture</span></Link></Nav.Link>
-                <Nav.Link eventKey="link-2" className="sidelink"  onClick={showAlert}><Link to="/clarify" class={flagCtx.flag && "disabled-link"}><List className="bxicon"/><span className="linkName">Clarify</span></Link></Nav.Link>
-                <Nav.Link eventKey="link-3" className="sidelink"  onClick={showAlert} ><Link to="/projects" class={flagCtx.flag && "disabled-link"}><Folder className="bxicon"/><span className="linkName">Organize</span></Link></Nav.Link>
-                <Nav.Link eventKey="link-4" className="sidelink"  onClick={showAlert}><MenuBook className="bxicon"/><span className="linkName">Review</span></Nav.Link>
+                {/* <Nav.Link eventKey="link-2" className="sidelink"  onClick={showAlert}><Link to="/clarify" class={flagCtx.flag && "disabled-link"}><List className="bxicon"/><span className="linkName">Clarify</span></Link></Nav.Link> */}
+                <Nav.Link eventKey="link-3" className="sidelink"  onClick={showAlert} ><Link to="/projects" class={flagCtx.flag && "disabled-link"}><Folder className="bxicon"/><span className="linkName">Projects</span></Link></Nav.Link>
+                {/* <Nav.Link eventKey="link-4" className="sidelink"  onClick={showAlert}><MenuBook className="bxicon"/><span className="linkName">Review</span></Nav.Link> */}
                 <Nav.Link eventKey="link-5" className="sidelink"  onClick={showAlert} ><Link to="/actions" class={flagCtx.flag && "disabled-link"}><DirectionsWalk className="bxicon"/><span className="linkName">Engage</span></Link></Nav.Link>
             </Container>
             
