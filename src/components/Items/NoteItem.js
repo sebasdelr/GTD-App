@@ -58,10 +58,19 @@ const NoteItem = (props) => {
     };
 
     const deleteItem = () => {
-        if(flagCtx.flag) {
-          flagCtx.setShow(true);
-        } else {
-          props.deleteItem(props.listItem.id);
+
+        const confirmed = window.confirm("Are you sure you want to delete this item?");
+        if(confirmed) {
+            notesCtx.deleteItem(props.listItem.id);
+            if(notesCtx.items.length > 1) {
+                notesCtx.itemIndex = 0;
+                console.log(notesCtx.items.length);
+            } else {
+                
+                notesCtx.itemIndex = 'test';
+                console.log(isNaN(notesCtx.itemIndex));
+            }
+            
         }
         
     }

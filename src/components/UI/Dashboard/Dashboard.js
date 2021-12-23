@@ -52,7 +52,7 @@ const Dashboard = () => {
 					</Link>
 				
 				
-					<Link to="/clarify">
+					{/* <Link to="/clarify">
 						<div className="dashboard-section">
 							<div  className="dashboard-section-icon" >								
 								<List />
@@ -61,11 +61,11 @@ const Dashboard = () => {
 							<p className="dashboard-section-description">
 							Process what's captured.
 							</p>
-							{/* <Button variant="primary">Capture</Button> */}
+							
 						</div>
 						
 						
-					</Link>
+					</Link> */}
 				
 				
 					<Link to="/projects">
@@ -73,7 +73,7 @@ const Dashboard = () => {
 							<div  className="dashboard-section-icon" >								
 								<Folder />
 							</div>
-							<p className="dashboard-section-name">Organize</p>
+							<p className="dashboard-section-name">Projects</p>
 							<p className="dashboard-section-description">
 							Put everything in the right place.
 							</p>
@@ -83,7 +83,7 @@ const Dashboard = () => {
 						
 					</Link>
 			
-					<Link to="/projects">
+					{/* <Link to="/projects">
 						<div className="dashboard-section">
 							<div  className="dashboard-section-icon" >								
 								<MenuBook />
@@ -92,11 +92,11 @@ const Dashboard = () => {
 							<p className="dashboard-section-description">
 							Go over your lists.
 							</p>
-							{/* <Button variant="primary">Capture</Button> */}
+
 						</div>
 						
 						
-					</Link>
+					</Link> */}
 				
 					<Link to="/actions">
 						<div className="dashboard-section">

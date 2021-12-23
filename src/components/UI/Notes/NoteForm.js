@@ -59,8 +59,8 @@ const NoteForm = () => {
     const [showAlert, setShowAlert] = useState(false);
     const [getStartDate, setStartDate] = useState(new Date());
     const [dueDate, setDueDate] = useState(new Date());
-    const [itemType, setItemType] = useState(selectedItem.type);
-    const [parentItem, setParentItem] = useState(selectedItem.parentId);
+    const [itemType, setItemType] = useState("");
+    const [parentItem, setParentItem] = useState("");
     const [alertMessage, setAlertMessage] = useState();
     const [originalItem, setOriginalItem] = useState();
 
@@ -88,6 +88,7 @@ const NoteForm = () => {
             flagCtx.setShow(true);
         } else {
             document.getElementById("note-form").reset();
+            setItemType(1);
             setStartDate(new Date());
             setDueDate(new Date());
             document.getElementById("note-id").value = Math.random().toString();
@@ -134,15 +135,15 @@ const NoteForm = () => {
 
 
     useEffect(() => {
-        if(notesCtx.itemIndex === null) {
-            
-            newNote();
-            
-     
-        } else {
-            
 
-            let selectedItem = notesCtx.items[notesCtx.itemIndex];
+        console.log("run else");
+
+        let selectedItem = notesCtx.items[notesCtx.itemIndex];
+        
+
+        if (typeof(selectedItem) === 'undefined') {
+            newNote();
+        } else {
             setOriginalItem(selectedItem);
 
             document.getElementById("note-title").value = selectedItem.title;
@@ -164,10 +165,13 @@ const NoteForm = () => {
                 setItemType(selectedItem.type);
             }
 
-            
         }
 
-    }, [notesCtx.itemIndex]);
+            
+
+
+
+    }, [notesCtx]);
 
     const setTypeHandler = event => {
         setItemType(event.target.value);
@@ -233,10 +237,18 @@ const NoteForm = () => {
     const deleteNoteHandler = () => {
         const generatedId = idRef.current.value;
 
-        if(flagCtx.flag) {
-            flagCtx.setShow(true);
-        } else {
+        const confirmed = window.confirm("Are you sure you want to delete this item?");
+        if(confirmed) {
             notesCtx.deleteItem(generatedId);
+            if(notesCtx.items.length > 1) {
+                notesCtx.itemIndex = 0;
+                console.log(notesCtx.items.length);
+            } else {
+                console.log("empty");
+                notesCtx.itemIndex = null;
+                console.log(notesCtx.itemIndex);
+            }
+            
         }
 
         

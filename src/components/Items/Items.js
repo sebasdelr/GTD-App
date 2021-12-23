@@ -35,6 +35,7 @@ function Items(){
                         <NoteItem key={note.id}
                         listItem={note}
                         deleteItem={deleteID}
+                        
                         selectStyle={isStyle}   
                         />
                         
