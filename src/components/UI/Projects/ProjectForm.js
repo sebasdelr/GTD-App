@@ -1,22 +1,61 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+import DatePicker from "react-datepicker";
+
+import {Form, Alert, Modal, Button, Col, Row} from 'react-bootstrap/';
+
+import UnsavedContext from '../../../capture/unsaved-context';
+
+const checkDateDifference = (day1, day2) => {
+    if(day2 > day1) {
+        return true;
+    } else {
+        return false;
+    }
 
 
-
-import {Form, Alert, Modal, Button} from 'react-bootstrap/';
+};
 
 const ProjectForm = (props) => {
 
+    const flagCtx = useContext(UnsavedContext);
+
 	const [showAlert, setShowAlert] = useState(false);
+    const [getStartDate, setStartDate] = useState(new Date());
+    const [dueDate, setDueDate] = useState(new Date());
+    const [alertMessage, setAlertMessage] = useState();
+    const [projectId, setProjectId] = useState();
+
+    const dirtyFlagHandler = () => {
+        
+        flagCtx.setFlag(true);
+    }
+
+    const setDateHandler = (date, type) => {
+        
+        if(type === "start") {
+            setStartDate(date);
+        } else {
+            setDueDate(date);
+            
+        }
+    }
+
 
 	const projectInputRef = useRef();
 
-    let projectId = '';
+ 
 
     const newProject = () => { 
 
         if(props.show) {
             document.getElementById("project-form").reset();
-            projectId = Math.random().toString();
+            setProjectId(Math.random().toString());
+            setStartDate(new Date());
+
+            setDueDate(new Date());
 
         }
 
@@ -31,7 +70,12 @@ const ProjectForm = (props) => {
                 
                 document.getElementById("project-title").value = props.projectContent.title;
                 // document.getElementById("note-content").value = props.selectedItem.content;
-                projectId = props.projectContent.id;
+                setProjectId(props.projectContent.id);
+
+
+                setStartDate(props.projectContent.startDate);
+
+                setDueDate(props.projectContent.dateDue);
 
             }
             
@@ -52,6 +96,7 @@ const ProjectForm = (props) => {
 
     const handleClose = () => {
         setShowAlert(false);
+        flagCtx.setFlag(false);
         props.onHide();
     };
 
@@ -59,11 +104,11 @@ const ProjectForm = (props) => {
 		event.preventDefault();	
 		
 		const projectName = projectInputRef.current.value;
-        const projectDescription = "Placeholder";
+        const projectDescription = "";
         // const projectId = Math.random().toString();
         // props.projectContent.id
 		
-        if(checkIfEmpty(projectName)) {
+        if((checkIfEmpty(projectName)) && checkDateDifference(getStartDate, dueDate)) {
             setShowAlert(false);
             const enteredText = {
                 id: projectId,
@@ -71,7 +116,8 @@ const ProjectForm = (props) => {
                 title: projectName, 
                 content: projectDescription, 
                 dateCreated: new Date(), 
-                dateDue: new Date(), 
+                startDate: getStartDate, 
+                dateDue: dueDate,  
                 type: '2',
                 status: '',
             };
@@ -81,11 +127,17 @@ const ProjectForm = (props) => {
             handleClose();
             
 
-        } else {
+        }  else {
             setShowAlert(true);
+            if(!checkIfEmpty(projectName)) {   
+                setAlertMessage("Please enter a title.");
+            } else {
+                setAlertMessage("Due date cannot be set before the start date.")
+            }
             
 
         }
+
 
 	};
 
@@ -103,9 +155,21 @@ const ProjectForm = (props) => {
                     <Modal.Body>
                     <Form.Group className="mb-3" controlId="project-title">
                         <Form.Label>Project Name</Form.Label>
-                        <Form.Control type="input" placeholder="Enter Project Name" ref={projectInputRef} />
+                        <Form.Control type="input" placeholder="Enter Project Name" ref={projectInputRef} onChange={dirtyFlagHandler} />
                     </Form.Group>
-                    {showAlert && <Alert variant="danger" >Please enter a title.</Alert>}
+
+                    <Form.Group controlId="date-Start">
+                        <Form.Label>Start Date</Form.Label>
+                        <DatePicker className="date-dropdown" selected={getStartDate} onChange={((date) => setDateHandler(date, "start"))} />
+                    </Form.Group>
+                
+             
+                    <Form.Group controlId="due-date">
+                        <Form.Label>Date Due</Form.Label>
+                        <DatePicker className="date-dropdown" selected={dueDate} onChange={((date) => setDateHandler(date, "due"))} />
+                    </Form.Group>
+         
+                    {showAlert && <Alert variant="danger" >{alertMessage}</Alert>}
 
                     
 
@@ -114,7 +178,7 @@ const ProjectForm = (props) => {
                     <Button onClick={handleClose}>
                         Close
                     </Button>
-                    <Button  type="submit" >
+                    <Button  type="submit"  disabled={!flagCtx.flag && "disabled"} >
                         Save Changes
                     </Button>
                     </Modal.Footer>

@@ -7,6 +7,8 @@ import { Row, Col, Button, Image} from 'react-bootstrap/';
 import { Link } from 'react-router-dom';
 import { BiEdit, BiFileBlank, BiTrash } from "react-icons/bi";
 
+
+
 import projectImage from '../../../assets/xps-dpbXgTh0Lac-unsplash.jpg';
 
 
@@ -71,7 +73,7 @@ const ProjectList = () => {
 
                     if(isSelected === note.id) {
 
-                        // content = note;
+                        content = note;
                         
                         pclass = "dashboard-card active";
                     } else {
@@ -113,7 +115,7 @@ const ProjectList = () => {
                     <Col></Col>
                     <Col xs={6}>
                         <Button variant="light" className="" onClick={handleNew}><BiFileBlank/> New Project</Button>{' '}
-                        <Button variant="light" className="" onClick={handleEdit}><BiEdit/> Edit Project</Button>{' '}
+                        <Button variant="light" className="" onClick={handleEdit} disabled={(isSelected.trim().length === 0) && "disabled"}><BiEdit/> Edit Project</Button>{' '}
                         <Button variant="light" className="" onClick={handleDelete}><BiTrash/> Delete Project</Button>{' '}
                         {/* <Button  variant="light" className=""><BiSave/> Save Project</Button> */}
                     </Col>

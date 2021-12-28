@@ -136,7 +136,7 @@ const NoteForm = () => {
 
     useEffect(() => {
 
-        console.log("run else");
+        
 
         let selectedItem = notesCtx.items[notesCtx.itemIndex];
         
