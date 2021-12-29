@@ -160,6 +160,8 @@ const generateBars = (projects) => {
                 let days = (difference/(1000 * 3600 * 24))  * convConst ;
     
                 let childTasks = projects.filter(project => (project.parentId === item.id));
+
+                console.log(item.color);
     
                 return (
     
@@ -182,7 +184,7 @@ const generateBars = (projects) => {
                             <div 
                             // className="table-bar-content-bar"
                             style={{
-                                background: "#" + randomColor,
+                                background: item.color,
                                 height: "20px", 
                                 width: days + "px",
                                 // paddingTop: "18px",

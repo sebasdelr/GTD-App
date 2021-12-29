@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 
 
-import { Form, Button, Alert, Row, Col, Modal} from 'react-bootstrap/';
+import { Form, Button, Alert, Row, Col, Modal, Dropdown} from 'react-bootstrap/';
 import { BiFileBlank, BiSave,  BiTrash, BiUndo } from "react-icons/bi";
 
 import './NoteForm.css';
@@ -14,6 +14,8 @@ import DatePicker from "react-datepicker";
 import NoteFormDirtyAlert from './NoteFormDirtyAlert';
 
 import "react-datepicker/dist/react-datepicker.css";
+
+import { HexColorPicker } from "react-colorful";
 
 
 
@@ -55,6 +57,7 @@ const NoteForm = () => {
     const flagCtx = useContext(UnsavedContext);
 
     let selectedItem = notesCtx.items[notesCtx.itemIndex];
+    let randomColor = Math.floor(Math.random()*16777215).toString(16);
 
     const [showAlert, setShowAlert] = useState(false);
     const [getStartDate, setStartDate] = useState(new Date());
@@ -63,6 +66,7 @@ const NoteForm = () => {
     const [parentItem, setParentItem] = useState("");
     const [alertMessage, setAlertMessage] = useState();
     const [originalItem, setOriginalItem] = useState();
+    const [color, setColor] = useState("#" + randomColor);
 
     const titleRef = useRef();
     //usestate instead? useeffect does not rerender!
@@ -117,6 +121,8 @@ const NoteForm = () => {
 
             setDueDate(selectedItem.dateDue);
 
+            setColor(selectedItem.color);
+
 
             if(selectedItem.type === "") {
 
@@ -154,6 +160,8 @@ const NoteForm = () => {
             setStartDate(selectedItem.startDate);
 
             setDueDate(selectedItem.dateDue);
+
+            setColor(selectedItem.color);
 
 
             if(selectedItem.type === "") {
@@ -193,6 +201,11 @@ const NoteForm = () => {
             setDueDate(date);
             
         }
+    }
+
+    const setColorHandler = value => {
+        setColor(value);
+        dirtyFlagHandler();
     }
 
     const selectProjectDropdown = (type) => {
@@ -281,6 +294,7 @@ const NoteForm = () => {
                 dateDue: dueDate, 
                 type: selectedType,
                 status: '',
+                color: color
             };
 
             console.log(getStartDate);
@@ -355,6 +369,25 @@ const NoteForm = () => {
                         <DatePicker className="date-dropdown" selected={dueDate} onChange={((date) => setDateHandler(date, "due"))} />
                     </Form.Group>
                 
+                </Col>
+                
+                <Col>
+                    <Form.Group controlId="color-select">
+                        <Form.Label>Select Color</Form.Label>
+                        <Dropdown>
+                            <Dropdown.Toggle id="dropdown-basic"  style={{
+                                background: color                        
+                            }}>
+                                {color}
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                            <HexColorPicker color={color} onChange={setColorHandler} />
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </Form.Group>
+                   
+                    
                 </Col>
                 <Col>
                 <Form.Group  controlId="note-id">

@@ -15,6 +15,7 @@ const DUMMY_NOTES = [
         type: '2',
         status: '',
         reviewed: false,
+        color: '#5dcf91'
     },
     {
         id: 'a2',
@@ -28,6 +29,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#cf945d'
     },
     {
         id: 'a3',
@@ -41,6 +43,7 @@ const DUMMY_NOTES = [
         type: '2',
         status: '',
         reviewed: false,
+        color: '#5dcf5e'
     },
     {
         id: 'a4',
@@ -54,6 +57,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: 'done',
         reviewed: false,
+        color: '#5d76cf'
     },
     {
         id: 'a5',
@@ -67,6 +71,7 @@ const DUMMY_NOTES = [
         type: '2',
         status: '',
         reviewed: false,
+        color: '#b55dcf'
     },
     {
         id: 'a6',
@@ -80,6 +85,7 @@ const DUMMY_NOTES = [
         type: '2',
         status: '',
         reviewed: false,
+        color: '#cfa15d'
     },
     {
         id: 'a7',
@@ -93,6 +99,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#66cf5d'
     },
     {
         id: 'a8',
@@ -106,6 +113,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#cf945d'
     },
     {
         id: 'a9',
@@ -119,6 +127,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#b55dcf'
     },
     {
         id: 'a10',
@@ -132,6 +141,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#5dcfbe'
     },
     {
         id: 'a11',
@@ -145,6 +155,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#565f5d'
     },
     {
         id: 'a12',
@@ -158,6 +169,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#5a5f5c'
     },
     {
         id: 'a13',
@@ -171,6 +183,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#5c565f'
     },
     {
         id: 'a14',
@@ -184,6 +197,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#5e5f56'
     },
     {
         id: 'a15',
@@ -197,6 +211,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#63b35c'
     },
     {
         id: 'a16',
@@ -210,6 +225,7 @@ const DUMMY_NOTES = [
         type: '4',
         status: '',
         reviewed: false,
+        color: '#b55dcf'
     },
   ];
 
@@ -243,6 +259,7 @@ const captureReducer = (state, action) => {
             type: action.item.type,
             status: action.item.status,
             reviewed: false,
+            color: action.item.color
 
             
         }

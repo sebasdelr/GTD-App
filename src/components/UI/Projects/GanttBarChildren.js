@@ -53,7 +53,7 @@ const GanttBarChildren = (props) => {
                             <div 
                             // className="table-bar-content-bar"
                             style={{
-                                background: "#" + randomColor,
+                                background: item.color,
                                 height: "20px", 
                                 width: days + "px",
                                 // paddingTop: "18px",
