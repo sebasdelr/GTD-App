@@ -337,6 +337,24 @@ const captureReducer = (state, action) => {
 
         
     }
+    
+    if(action.type === 'FILTER') {
+        // const existingNoteIndex = state.items.findIndex((item) => item.id === action.id);
+
+        // const existingNoteItem = state.items[existingNoteIndex];
+
+        let updatedItems;
+
+        updatedItems = state.items.filter(item => item.title === action.title);
+
+        return {
+            items: updatedItems,
+            itemIndex: 0
+        };
+
+
+        
+    }
     return defaultCaptureState;
 
 };
@@ -363,13 +381,18 @@ const CaptureProvider = props => {
         dispatchCaptureAction({type: 'DELETE', id: id});
     };
 
+    const filterNoteHandler = title => {
+        dispatchCaptureAction({type: 'FILTER', title: title});
+    };
+
     const captureContext = {
         items: captureState.items,
         itemIndex: captureState.itemIndex,
         addItem: addNoteHandler,
         selectedItem: selectedItemHandler,
         setDoneItem: setDoneItemHandler,
-        deleteItem: deleteNoteHandler
+        deleteItem: deleteNoteHandler,
+        filterItem: filterNoteHandler
     };
 
     return(

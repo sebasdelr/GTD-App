@@ -1,4 +1,4 @@
-import  React, { useContext } from 'react';
+import  React, { useContext, useRef } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,8 @@ import Folder from '@material-ui/icons/Folder';
 import MenuBook from '@material-ui/icons/MenuBook';
 import DirectionsWalk from '@material-ui/icons/DirectionsWalk';
 import Home from '@material-ui/icons/Home';
+
+import CaptureContext from '../../../capture/capture-context';
 
 import { Link } from 'react-router-dom';
 
@@ -24,6 +26,9 @@ import UnsavedContext from '../../../capture/unsaved-context';
 const Sidebar = () => {
 
     const flagCtx = useContext(UnsavedContext);
+    const notesCtx = useContext(CaptureContext);
+
+    const searchRef = useRef();
 
     const showAlert = () =>{
         if(flagCtx.flag){
@@ -33,6 +38,10 @@ const Sidebar = () => {
         } 
     }
 
+    const filterItemHandler = () => {
+        notesCtx.filterItem(searchRef.current.value);
+    }
+
 
     return (
         <Nav defaultActiveKey="/home" className="flex-column sidebar" >
@@ -40,7 +49,7 @@ const Sidebar = () => {
             <Container className="sideitems">
                 <Form.Group className="sidelink">
                     <BiSearch className="magnifying bxicon"/>
-                    <Form.Control placeholder="Search..." className="search" />
+                    <Form.Control placeholder="Search..." className="search" ref={searchRef} onChange={filterItemHandler} />
                 </Form.Group>
                 <Nav.Link eventKey="link-1" className="sidelink"  onClick={showAlert}><Link to="/capture" class={flagCtx.flag && "disabled-link"}><Create className="bxicon"/><span className="linkName">Capture</span></Link></Nav.Link>
                 {/* <Nav.Link eventKey="link-2" className="sidelink"  onClick={showAlert}><Link to="/clarify" class={flagCtx.flag && "disabled-link"}><List className="bxicon"/><span className="linkName">Clarify</span></Link></Nav.Link> */}
