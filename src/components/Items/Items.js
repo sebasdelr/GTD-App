@@ -54,10 +54,14 @@ function Items(){
 
     
     return(
-        <ListGroup >
+        <div className="list-items">
+            <ListGroup >
             {listHandler(notesCtx.items)}
 
-        </ListGroup>
+            </ListGroup>
+
+        </div>
+        
 
 
     );

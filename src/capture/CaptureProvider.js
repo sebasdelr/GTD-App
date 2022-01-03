@@ -342,13 +342,13 @@ const captureReducer = (state, action) => {
         // const existingNoteIndex = state.items.findIndex((item) => item.id === action.id);
 
         // const existingNoteItem = state.items[existingNoteIndex];
+        // let updatedItems = [...state.items];
+        let tempItems = DUMMY_NOTES;
 
-        let updatedItems;
-
-        updatedItems = state.items.filter(item => item.title === action.title);
+        // updatedItems = state.items.filter(item => item.title === action.title);
 
         return {
-            items: updatedItems,
+            items: tempItems.filter(item => item.title.includes(action.title)),
             itemIndex: 0
         };
 

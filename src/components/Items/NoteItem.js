@@ -85,7 +85,9 @@ const NoteItem = (props) => {
             <ListGroup.Item className={props.selectStyle}>
             
             
-            <span  onClick={toggleSelect}>{props.listItem.title}</span><Clear style={style}  onClick={deleteItem}/></ListGroup.Item>
+            <div className="note-item-title"  onClick={toggleSelect}>{props.listItem.title}<Clear style={style}  onClick={deleteItem}/></div>
+            <div className="note-item-description">{props.listItem.content}</div>
+            </ListGroup.Item>
         </ListGroup>
 
 

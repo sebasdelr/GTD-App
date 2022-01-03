@@ -7,6 +7,11 @@
   border: 1px solid #ccc;
 }
 
+.list-items{
+  flex: auto !important;
+  height: 90px;
+}
+
 .selected {
   background: rgb(240, 240, 243) !important;
 }
@@ -29,4 +34,22 @@ p {
   visibility:visible;
   background-color: blueviolet;
   
+}
+
+.note-item-title{
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  min-height: 14px;
+  margin-bottom: 4px;
+  color: rgb(23, 43, 77);
+}
+
+.note-item-description{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  min-height: 14px;
+  margin-bottom: 4px;
+  color: rgb(23, 43, 77);
 }
