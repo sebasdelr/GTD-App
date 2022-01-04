@@ -8,8 +8,8 @@
 }
 
 .list-items{
-  flex: auto !important;
-  height: 90px;
+  overflow: auto;
+  height: 900px;
 }
 
 .selected {
