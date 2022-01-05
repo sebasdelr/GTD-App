@@ -14,9 +14,9 @@ const ProjectsView = () => {
     <React.Fragment>
       
       <Row className="justify-content-md-center">
-        <Col style={{padding: '0px'}}>
+      
           <ProjectList/>
-        </Col>
+      
       </Row>
       
     </React.Fragment>

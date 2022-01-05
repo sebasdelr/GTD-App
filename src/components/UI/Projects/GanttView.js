@@ -95,6 +95,18 @@ const generateEmptyCels = (projects) => {
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
                         </tr>
                         {(childTasks.length > 0) && <GanttEmptyChildren list={childTasks}/>}
     
@@ -287,6 +299,18 @@ const GanttView = () => {
                             <th className="table-bar-header-month">October</th>
                             <th className="table-bar-header-month">November</th>
                             <th className="table-bar-header-month">December</th>
+                            <th className="table-bar-header-month">January</th>
+                            <th className="table-bar-header-month">February</th>
+                            <th className="table-bar-header-month">March</th>
+                            <th className="table-bar-header-month">April</th>
+                            <th className="table-bar-header-month">May</th>
+                            <th className="table-bar-header-month">June</th>
+                            <th className="table-bar-header-month">July</th>
+                            <th className="table-bar-header-month">August</th>
+                            <th className="table-bar-header-month">September</th>
+                            <th className="table-bar-header-month">October</th>
+                            <th className="table-bar-header-month">November</th>
+                            <th className="table-bar-header-month">December</th>
                         </tr>
                         
                         {generateEmptyCels(notesCtx.items)}
@@ -300,11 +324,11 @@ const GanttView = () => {
                     </table>
                     <div 
                     // className="table-bar-content-progress-bars" 
-                    style={{
-                        position: "relative",
-                        top: setBarPosition(totalItems())
-                    
-                    }}>                
+                        style={{
+                            position: "relative",
+                            top: setBarPosition(totalItems())
+                        
+                        }}>                
                         {generateBars(notesCtx.items)}
                     </div>
                     
@@ -332,6 +356,18 @@ const GanttView = () => {
                 <div className="table-bar-table-overlay">
 
                     <div  className="table-bar-body">
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
+                        <div className="table-bar-body-separator"></div>
                         <div className="table-bar-body-separator"></div>
                         <div className="table-bar-body-separator"></div>
                         <div className="table-bar-body-separator"></div>

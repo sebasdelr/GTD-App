@@ -109,36 +109,45 @@ const ActionList = () => {
     };
 
     return (
-        <div className="actionList">
-            <Row className="action-section">
-                <Col>
-                    <h5>Overdue</h5>
-                    {listHandler(actionListOverdue)}
-                </Col>  
-            </Row>
-            <Row className="action-section">
-                <Col>
-                    <h5>Today</h5>
-                    {listHandler(actionListDay)}
-                </Col>  
-            </Row>
-            <Row className="action-section">
+        <div className="actionList-container">
+            <div className="actionList-container-inner">
+                <h1>Next Actions</h1>
+                <div className="actionList">
+                    <Row className="action-section">
+                        <Col>
+                            <h5>Overdue</h5>
+                            {listHandler(actionListOverdue)}
+                        </Col>  
+                    </Row>
+                    <Row className="action-section">
+                        <Col>
+                            <h5>Today</h5>
+                            {listHandler(actionListDay)}
+                        </Col>  
+                    </Row>
+                    <Row className="action-section">
 
-                <Col>
-                    <h5>This Week</h5>
-                    {listHandler(actionListWeek)}
-                </Col>   
-            </Row>
-            <Row className="action-section">
+                        <Col>
+                            <h5>This Week</h5>
+                            {listHandler(actionListWeek)}
+                        </Col>   
+                    </Row>
+                    <Row className="action-section">
 
-                <Col>
-                    <h5>This Month</h5>
-                    {listHandler(actionListMonth)}
-                </Col>
-                
-            </Row>
+                        <Col>
+                            <h5>This Month</h5>
+                            {listHandler(actionListMonth)}
+                        </Col>
+                        
+                    </Row>
+
+                </div>
+
+            </div>
+            
 
         </div>
+        
 
     );
 };

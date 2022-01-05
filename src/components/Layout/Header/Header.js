@@ -20,13 +20,13 @@ const Header = (props) => {
                 
                 <Nav className="justify-content-end">
 
-                    <NavItem >
+                    {/* <NavItem >
                     <Nav.Link className="font-weight-bold" href="/">Home</Nav.Link>
                     </NavItem>
                     
                     <NavItem >
                     <Nav.Link className="font-weight-bold" href="/">Settings</Nav.Link>
-                    </NavItem>
+                    </NavItem> */}
 
                     <NavItem>
                         <Button onClick={props.onLogout} className="navbtn">Logout</Button>

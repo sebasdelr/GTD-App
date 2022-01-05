@@ -1,7 +1,18 @@
-.actionList {
-    margin: 60px;
+.actionList-container {
+    /* header is 80 px high,  */
     overflow: auto;
-    max-height: 900px;
+    max-height: 860px;
+}
+
+.actionList-container-inner {
+    /* header is 80 px high,  */
+    margin: 20px;
+}
+
+
+.actionList {
+    margin: 40px;
+    
 }
 
 .action-section {

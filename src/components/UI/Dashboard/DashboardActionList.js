@@ -116,13 +116,13 @@ const DashboardActionList = () => {
         <div className="dashboard-action-list">
             <Row className="action-section">
                 <Col>
-                <h3>Overdue Tasks</h3>
+                <h5>Overdue Tasks</h5>
                     {listHandler(actionListOverdue)}
                 </Col>  
             </Row>
             <Row className="action-section">
                 <Col>
-                <h3>Due Today</h3>
+                <h5>Due Today</h5>
                     {listHandler(actionListDay)}
                 </Col>  
             </Row>
