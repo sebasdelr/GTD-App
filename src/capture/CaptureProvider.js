@@ -235,6 +235,14 @@ const defaultCaptureState = {
     itemIndex: 0,
 };
 
+const dateConverter = (date) => {
+
+    let dateSplits = date.split("-");
+    let newDate = new Date(dateSplits[0], dateSplits[1] - 1, dateSplits[2].substr(0,2));
+
+    return newDate;
+}
+
 const captureReducer = (state, action) => {
     //need to have following: adding, removing and selecting
     //item list should be able to grab from here item list and know which item is being selected
@@ -394,9 +402,10 @@ const CaptureProvider = props => {
             parentId: data[key].parentId,
             title: data[key].title,
             content: data[key].content,
-            dateCreated: data[key].dateCreated,
-            startDate: data[key].startDate,
-            dateDue: data[key].dateDue,
+            //converter is run to change date to javascript format
+            dateCreated: dateConverter(data[key].dateCreated),
+            startDate: dateConverter(data[key].startDate),
+            dateDue: dateConverter(data[key].dateDue),
             type: data[key].type,
             status: data[key].status,
             reviewed: data[key].reviewed,
@@ -406,7 +415,10 @@ const CaptureProvider = props => {
 
 
         setTasks(loadedTasks);
-        console.log(loadedTasks[0]);
+
+
+        // console.log(loadedTasks[0].startDate);
+        // console.log(DUMMY_NOTES[0].startDate);
         
     } catch (error) {
         console.log(error.message);
@@ -452,6 +464,7 @@ const CaptureProvider = props => {
 
     const captureContext = {
         items: captureState.items,
+        // items: tasks, -> to load api tasks
         itemIndex: captureState.itemIndex,
         addItem: addNoteHandler,
         selectedItem: selectedItemHandler,
