@@ -439,7 +439,17 @@ const CaptureProvider = props => {
     const [captureState, dispatchCaptureAction] = useReducer(captureReducer, defaultCaptureState);
 
     
-
+    async function addApiNoteHandler(item) {
+        const response = await fetch('/tasks', {
+          method: 'POST',
+          body: JSON.stringify(item),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        console.log(data);
+    };
 
 
     const addNoteHandler = item => {
@@ -463,10 +473,11 @@ const CaptureProvider = props => {
     };
 
     const captureContext = {
-        items: captureState.items,
-        // items: tasks, -> to load api tasks
+        // items: captureState.items,
+        items: tasks,
         itemIndex: captureState.itemIndex,
         addItem: addNoteHandler,
+        addApiItem: addApiNoteHandler,
         selectedItem: selectedItemHandler,
         setDoneItem: setDoneItemHandler,
         deleteItem: deleteNoteHandler,

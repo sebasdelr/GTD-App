@@ -297,10 +297,25 @@ const NoteForm = () => {
                 color: color
             };
 
-            console.log(getStartDate);
-            // console.log(dateDue);
+            const apiEnteredText = {
+                id: generatedId,
+                parentId: selectedParentId, 
+                title: enteredTitle, 
+                content: enteredContent, 
+                dateCreated: dateCreated.toISOString().split('T')[0],
+                startDate: getStartDate.toISOString().split('T')[0], 
+                dateDue: dueDate.toISOString().split('T')[0], 
+                type: selectedType,
+                status: null,
+                reviewed: false,
+                color: color
 
-            notesCtx.addItem(enteredText);
+            }
+
+            // response = requests.post(BASE + "tasks", json = {"title": "Joe task", "content": "1000", "dateCreated": "01.04.2017", "startDate": "01.04.2017", "dateDue": "01.04.2017", "type": "2", "status": (None), "reviewed": (False), "color": "#5dcf5e"})
+            
+            // notesCtx.addItem(enteredText);
+            notesCtx.addApiItem(apiEnteredText);
             flagCtx.setFlag(false);
 
         } else {
