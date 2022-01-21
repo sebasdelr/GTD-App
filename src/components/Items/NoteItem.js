@@ -61,7 +61,8 @@ const NoteItem = (props) => {
 
         const confirmed = window.confirm("Are you sure you want to delete this item?");
         if(confirmed) {
-            notesCtx.deleteItem(props.listItem.id);
+            // notesCtx.deleteItem(props.listItem.id);
+            notesCtx.deleteApiItem(props.listItem.id);
             if(notesCtx.items.length > 1) {
                 notesCtx.itemIndex = 0;
                 console.log(notesCtx.items.length);

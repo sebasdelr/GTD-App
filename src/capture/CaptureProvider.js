@@ -433,12 +433,6 @@ const CaptureProvider = props => {
 
     //api caller code ends here
 
-
-
-
-    const [captureState, dispatchCaptureAction] = useReducer(captureReducer, defaultCaptureState);
-
-    
     async function addApiNoteHandler(item) {
         const response = await fetch('/tasks', {
           method: 'POST',
@@ -449,7 +443,27 @@ const CaptureProvider = props => {
         });
         const data = await response.json();
         console.log(data);
+        fetchTasksHandler();
     };
+
+    async function deleteApiNoteHandler(id) {
+        const response = await fetch('/tasks/' + id.toString(), {
+          method: 'DELETE',
+        //   body: JSON.stringify(id),
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   }
+        });
+        const data = await response.json();
+        console.log(id);
+        fetchTasksHandler();
+    };
+
+
+    const [captureState, dispatchCaptureAction] = useReducer(captureReducer, defaultCaptureState);
+
+    
+    
 
 
     const addNoteHandler = item => {
@@ -478,6 +492,7 @@ const CaptureProvider = props => {
         itemIndex: captureState.itemIndex,
         addItem: addNoteHandler,
         addApiItem: addApiNoteHandler,
+        deleteApiItem: deleteApiNoteHandler,
         selectedItem: selectedItemHandler,
         setDoneItem: setDoneItemHandler,
         deleteItem: deleteNoteHandler,
