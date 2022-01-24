@@ -36,7 +36,7 @@ const NoteItem = (props) => {
             const confirmed = window.confirm("Are you sure?");
         
             if (confirmed) {
-                notesCtx.selectedItem(props.listItem);
+                notesCtx.selectedApiItem(props.listItem.id);
                 flagCtx.setFlag(false);
             }
             
@@ -65,7 +65,7 @@ const NoteItem = (props) => {
             notesCtx.deleteApiItem(props.listItem.id);
             if(notesCtx.items.length > 1) {
                 notesCtx.itemIndex = 0;
-                console.log(notesCtx.items.length);
+                console.log(props.listItem.id);
             } else {
                 
                 notesCtx.itemIndex = 'test';

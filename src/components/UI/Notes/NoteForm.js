@@ -406,7 +406,7 @@ const NoteForm = () => {
                 </Col>
                 <Col>
                 <Form.Group  controlId="note-id">
-                            <Form.Control type="hidden" ref={idRef} readOnly/>
+                            <Form.Control type="" ref={idRef} readOnly/>
                         </Form.Group>
                 </Col>
 

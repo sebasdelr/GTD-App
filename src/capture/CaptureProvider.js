@@ -398,7 +398,7 @@ const CaptureProvider = props => {
 
         for (const key in data) {
         loadedTasks.push({
-            id: key,
+            id: data[key].id,
             parentId: data[key].parentId,
             title: data[key].title,
             content: data[key].content,
@@ -459,6 +459,23 @@ const CaptureProvider = props => {
         fetchTasksHandler();
     };
 
+    async function selectedApiItemHandler(id) {
+
+
+        const existingNoteIndex = tasks.findIndex(item => item === id);
+
+        // const existingNoteItem = state.items[existingNoteIndex];
+
+        // let updatedItems = [...state.items];
+       
+        return  {
+            // itemIndex: existingNoteIndex
+            items: tasks,
+            itemIndex: existingNoteIndex
+
+        };
+    }
+
 
     const [captureState, dispatchCaptureAction] = useReducer(captureReducer, defaultCaptureState);
 
@@ -494,6 +511,7 @@ const CaptureProvider = props => {
         addApiItem: addApiNoteHandler,
         deleteApiItem: deleteApiNoteHandler,
         selectedItem: selectedItemHandler,
+        selectedApiItem: selectedApiItemHandler,
         setDoneItem: setDoneItemHandler,
         deleteItem: deleteNoteHandler,
         filterItem: filterNoteHandler
