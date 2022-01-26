@@ -49,7 +49,7 @@ const NoteItem = (props) => {
             // }
             
         } else {
-            notesCtx.selectedItem(props.listItem);
+            notesCtx.selectedApiItem(props.listItem.id);
 
         }
         // setTimeout(setLoadAlert(false), 3000);

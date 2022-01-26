@@ -374,6 +374,7 @@ const CaptureProvider = props => {
     const [tasks, setTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     const fetchTasksHandler = useCallback(async () => {
 
@@ -460,20 +461,17 @@ const CaptureProvider = props => {
     };
 
     async function selectedApiItemHandler(id) {
+        console.log("running select");
 
+        const existingNoteIndex = tasks.findIndex(item => item.id === id);
 
-        const existingNoteIndex = tasks.findIndex(item => item === id);
-
+        console.log(existingNoteIndex);
         // const existingNoteItem = state.items[existingNoteIndex];
 
         // let updatedItems = [...state.items];
        
-        return  {
-            // itemIndex: existingNoteIndex
-            items: tasks,
-            itemIndex: existingNoteIndex
-
-        };
+        setSelectedIndex(existingNoteIndex);
+        
     }
 
 
@@ -506,11 +504,11 @@ const CaptureProvider = props => {
     const captureContext = {
         // items: captureState.items,
         items: tasks,
-        itemIndex: captureState.itemIndex,
+        itemIndex: selectedIndex,
         addItem: addNoteHandler,
         addApiItem: addApiNoteHandler,
         deleteApiItem: deleteApiNoteHandler,
-        selectedItem: selectedItemHandler,
+        // selectedItem: selectedItemHandler,
         selectedApiItem: selectedApiItemHandler,
         setDoneItem: setDoneItemHandler,
         deleteItem: deleteNoteHandler,
