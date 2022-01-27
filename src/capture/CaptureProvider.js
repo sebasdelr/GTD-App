@@ -447,6 +447,19 @@ const CaptureProvider = props => {
         fetchTasksHandler();
     };
 
+    async function editApiNoteHandler(item) {
+        const response = await fetch('/tasks/' + item.id.toString(), {
+          method: 'PUT',
+          body: JSON.stringify(item),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        console.log(data);
+        fetchTasksHandler();
+    };
+
     async function deleteApiNoteHandler(id) {
         const response = await fetch('/tasks/' + id.toString(), {
           method: 'DELETE',
@@ -508,6 +521,7 @@ const CaptureProvider = props => {
         addItem: addNoteHandler,
         addApiItem: addApiNoteHandler,
         deleteApiItem: deleteApiNoteHandler,
+        editApiItem: editApiNoteHandler,
         // selectedItem: selectedItemHandler,
         selectedApiItem: selectedApiItemHandler,
         setDoneItem: setDoneItemHandler,

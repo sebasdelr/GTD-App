@@ -59,6 +59,7 @@ const NoteForm = () => {
     let selectedItem = notesCtx.items[notesCtx.itemIndex];
     let randomColor = Math.floor(Math.random()*16777215).toString(16);
 
+    const [newNoteFlag, setNewNoteFlag] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [getStartDate, setStartDate] = useState(new Date());
     const [dueDate, setDueDate] = useState(new Date());
@@ -91,6 +92,7 @@ const NoteForm = () => {
         if(flagCtx.flag) {
             flagCtx.setShow(true);
         } else {
+            setNewNoteFlag(true);
             document.getElementById("note-form").reset();
             setItemType(1);
             setStartDate(new Date());
@@ -150,6 +152,7 @@ const NoteForm = () => {
         if (typeof(selectedItem) === 'undefined') {
             newNote();
         } else {
+            setNewNoteFlag(false);
             setOriginalItem(selectedItem);
 
             document.getElementById("note-title").value = selectedItem.title;
@@ -315,7 +318,13 @@ const NoteForm = () => {
             // response = requests.post(BASE + "tasks", json = {"title": "Joe task", "content": "1000", "dateCreated": "01.04.2017", "startDate": "01.04.2017", "dateDue": "01.04.2017", "type": "2", "status": (None), "reviewed": (False), "color": "#5dcf5e"})
             
             // notesCtx.addItem(enteredText);
-            notesCtx.addApiItem(apiEnteredText);
+            if(newNoteFlag){
+                notesCtx.addApiItem(apiEnteredText);
+                setNewNoteFlag(false);
+
+            } else {
+                notesCtx.editApiItem(apiEnteredText);
+            }
             flagCtx.setFlag(false);
 
         } else {
