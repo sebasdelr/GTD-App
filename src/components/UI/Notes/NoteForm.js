@@ -76,7 +76,7 @@ const NoteForm = () => {
     const idRef = useRef();
     const typeRef = useRef();
 
-    const projectList = notesCtx.items.filter(item => (item.type === "2"));
+    const projectList = notesCtx.items.filter(item => (item.type === 2));
 
     const dirtyFlagHandler = () => {
         
@@ -213,7 +213,7 @@ const NoteForm = () => {
 
     const selectProjectDropdown = (type) => {
         
-        if(type === "4") {
+        if(type === 4) {
 
             // document.getElementById("inlineFormCustomSelectParent").value = parentItem;
             // setParentItem(selectedItem.parentId);

@@ -24,7 +24,7 @@ const ProjectList = () => {
 
     const notesCtx = useContext(CaptureContext);
 
-    const projectOnlyList = notesCtx.items.filter(item => (item.type === "2"));
+    const projectOnlyList = notesCtx.items.filter(item => (item.type === 2));
     
 
     const handleClose = () => setShow(false);

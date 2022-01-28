@@ -13,7 +13,7 @@ import CaptureContext from '../../../capture/capture-context';
 
 const generateTableData = (projects) => {
 
-    const projectOnlyList = projects.filter(item => (item.type === "2"));
+    const projectOnlyList = projects.filter(item => (item.type === 2));
 
     projectOnlyList.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1);
 
@@ -64,7 +64,7 @@ const generateTableData = (projects) => {
 }
 
 const generateEmptyCels = (projects) => {
-    const projectOnlyList = projects.filter(item => (item.type === "2"));
+    const projectOnlyList = projects.filter(item => (item.type === 2));
 
     if(projectOnlyList.length > 0) {
 
@@ -142,7 +142,7 @@ const setBarPosition = (amount) => {
 
 const generateBars = (projects) => {
 
-    const projectOnlyList = projects.filter(item => (item.type === "2"));
+    const projectOnlyList = projects.filter(item => (item.type === 2));
 
     projectOnlyList.sort((a, b) => (a.startDate > b.startDate) ? 1 : -1);
 
@@ -243,7 +243,7 @@ const GanttView = () => {
 
         let total = 0;
         notesCtx.items.forEach(element => {
-            if(element.type === "2"){
+            if(element.type === 2){
                 total++;
                 let childTasks = notesCtx.items.filter(project => (project.parentId === element.id));
                 if(childTasks.length > 0) {

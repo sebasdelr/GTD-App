@@ -64,8 +64,8 @@ const ActionList = () => {
 
     };
 
-    const projectList = notesCtx.items.filter(item => (item.type === "2"));
-    const actionOnlyList = notesCtx.items.filter(item => (item.type === "4"));
+    const projectList = notesCtx.items.filter(item => (item.type === 2));
+    const actionOnlyList = notesCtx.items.filter(item => (item.type === 4));
 
     const actionListOverdue = actionOnlyList.filter(item => compareDate(item.dateDue, 'OVERDUE'));
     const actionListDay = actionOnlyList.filter(item => compareDate(item.dateDue, 'DAY'));
@@ -79,7 +79,7 @@ const ActionList = () => {
                 list.map(action => {
                     const parentItems = projectList.filter(item => (item.id === action.parentId));
                     let parentTitle = '';
-                    if(action.parentId !== '') {
+                    if(action.parentId !== null) {
                         parentTitle = parentItems[0].title;
                         console.log(parentTitle);
                     };
