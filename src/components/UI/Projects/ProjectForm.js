@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import {Form, Alert, Modal, Button, Col, Row} from 'react-bootstrap/';
 
 import UnsavedContext from '../../../capture/unsaved-context';
+import CaptureContext from '../../../capture/capture-context';
 
 const checkDateDifference = (day1, day2) => {
     if(day2 > day1) {
@@ -21,7 +22,9 @@ const checkDateDifference = (day1, day2) => {
 const ProjectForm = (props) => {
 
     const flagCtx = useContext(UnsavedContext);
+    const notesCtx = useContext(CaptureContext);
 
+    const [newProjectFlag, setNewProjectFlag] = useState(false);
 	const [showAlert, setShowAlert] = useState(false);
     const [getStartDate, setStartDate] = useState(new Date());
     const [dueDate, setDueDate] = useState(new Date());
@@ -51,6 +54,7 @@ const ProjectForm = (props) => {
     const newProject = () => { 
 
         if(props.show) {
+            setNewProjectFlag(true);
             document.getElementById("project-form").reset();
             setProjectId(Math.random().toString());
             setStartDate(new Date());
@@ -97,6 +101,7 @@ const ProjectForm = (props) => {
     const handleClose = () => {
         setShowAlert(false);
         flagCtx.setFlag(false);
+        setNewProjectFlag(false);
         props.onHide();
     };
 
@@ -122,7 +127,30 @@ const ProjectForm = (props) => {
                 status: '',
             };
 
-            props.passProjectHandler(enteredText);
+            const apiEnteredText = {
+                id: projectId,
+                parentId: '', 
+                title: projectName, 
+                content: projectDescription, 
+                dateCreated: new Date().toISOString().split('T')[0],
+                startDate: getStartDate.toISOString().split('T')[0], 
+                dateDue: dueDate.toISOString().split('T')[0], 
+                type: '2',
+                status: null,
+                reviewed: false,
+                color: '#cf945d'
+
+            }
+
+            if(newProjectFlag){
+                notesCtx.addApiItem(apiEnteredText);
+
+            } else {
+                notesCtx.editApiItem(apiEnteredText);
+            }
+            
+
+            // props.passProjectHandler(enteredText);
 
             handleClose();
             
