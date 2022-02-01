@@ -129,7 +129,7 @@ const ProjectForm = (props) => {
 
             const apiEnteredText = {
                 id: projectId,
-                parentId: '', 
+                parentId: null, 
                 title: projectName, 
                 content: projectDescription, 
                 dateCreated: new Date().toISOString().split('T')[0],

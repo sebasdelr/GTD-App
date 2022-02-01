@@ -52,7 +52,7 @@ const ProjectList = () => {
     }
 
     const handleEdit = () => {
-        if(isSelected.trim().length !== 0) {
+        if(isSelected.length !== 0) {
             setIsEdit(true);
             handleShow();
         }
@@ -115,7 +115,7 @@ const ProjectList = () => {
                     <Col></Col>
                     <Col xs={6}>
                         <Button variant="light" className="" onClick={handleNew}><BiFileBlank/> New Project</Button>{' '}
-                        <Button variant="light" className="" onClick={handleEdit} disabled={(isSelected.trim().length === 0) && "disabled"}><BiEdit/> Edit Project</Button>{' '}
+                        <Button variant="light" className="" onClick={handleEdit} disabled={(isSelected.length === 0) && "disabled"}><BiEdit/> Edit Project</Button>{' '}
                         <Button variant="light" className="" onClick={handleDelete}><BiTrash/> Delete Project</Button>{' '}
                         {/* <Button  variant="light" className=""><BiSave/> Save Project</Button> */}
                     </Col>
