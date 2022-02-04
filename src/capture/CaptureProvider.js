@@ -375,6 +375,7 @@ const CaptureProvider = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [rawTasks, setRawTasks] = useState([]);
 
     const fetchTasksHandler = useCallback(async () => {
 
@@ -396,6 +397,7 @@ const CaptureProvider = props => {
 
 
         const loadedTasks = [];
+        const loadedRawTasks = []
 
         for (const key in data) {
         loadedTasks.push({
@@ -414,8 +416,26 @@ const CaptureProvider = props => {
         });
         }
 
+        for (const key in data) {
+            loadedRawTasks.push({
+                id: data[key].id,
+                parentId: data[key].parentId,
+                title: data[key].title,
+                content: data[key].content,
+                //converter is run to change date to javascript format
+                dateCreated: data[key].dateCreated,
+                startDate: data[key].startDate,
+                dateDue: data[key].dateDue,
+                type: data[key].type,
+                status: data[key].status,
+                reviewed: data[key].reviewed,
+                color: data[key].color,
+            });
+            }
+
 
         setTasks(loadedTasks);
+        setRawTasks(loadedRawTasks);
 
 
         // console.log(loadedTasks[0].startDate);
@@ -486,6 +506,32 @@ const CaptureProvider = props => {
         setSelectedIndex(existingNoteIndex);
         
     }
+    async function setApiDoneHandler(id) {
+        
+        const existingNoteIndex = rawTasks.findIndex(item => item.id === id);
+        // const existingNoteItem = state.items[existingNoteIndex];
+
+        
+
+        if(rawTasks[existingNoteIndex].status === 'done') {
+            rawTasks[existingNoteIndex].status = '';
+        }else {
+            rawTasks[existingNoteIndex].status = 'done';
+        }
+        
+        
+        const response = await fetch('/tasks/' + id.toString(), {
+            method: 'PUT',
+            body: JSON.stringify(rawTasks[existingNoteIndex]),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          const data = await response.json();
+          console.log(data);
+          fetchTasksHandler();
+
+    }
 
 
     const [captureState, dispatchCaptureAction] = useReducer(captureReducer, defaultCaptureState);
@@ -525,6 +571,7 @@ const CaptureProvider = props => {
         // selectedItem: selectedItemHandler,
         selectedApiItem: selectedApiItemHandler,
         setDoneItem: setDoneItemHandler,
+        setApiDoneItem: setApiDoneHandler,
         deleteItem: deleteNoteHandler,
         filterItem: filterNoteHandler
     };

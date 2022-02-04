@@ -16,7 +16,7 @@ const DashboardActionList = () => {
     
 
     const setStatusHandler = id => {
-        notesCtx.setDoneItem(id);
+        notesCtx.setApiDoneItem(id);
     }
     
     
