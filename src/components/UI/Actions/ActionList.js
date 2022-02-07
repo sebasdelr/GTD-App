@@ -16,7 +16,7 @@ const ActionList = () => {
     
 
     const setStatusHandler = id => {
-        notesCtx.setDoneItem(id);
+        notesCtx.setApiDoneItem(id);
     }
     
     
