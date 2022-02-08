@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import "./Items.css";
 // import "./fontawesome-all.min.css";
 import NoteItem from './NoteItem';
+import Loader from '../Layout/Loader/Loader';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -55,6 +56,7 @@ function Items(){
     
     return(
         <div className="list-items">
+            {notesCtx.loading && <Loader/>}
             <ListGroup >
             {listHandler(notesCtx.items)}
 

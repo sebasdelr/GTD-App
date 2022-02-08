@@ -2,6 +2,8 @@ import { useReducer, useEffect, useState, useCallback } from 'react';
 
 import CaptureContext from './capture-context';
 
+ 
+
 
 const DUMMY_NOTES = [
     {
@@ -379,53 +381,36 @@ const CaptureProvider = props => {
 
     const fetchTasksHandler = useCallback(async () => {
 
-    setIsLoading(true);
-    setError(null);
-    try {
-        
+        setIsLoading(true);
+        setError(null);
+        try {
+            
 
-        const response = await fetch('/tasks');
-        
-        if (!response.ok) {
-        
-        throw new Error('Something went wrong!');
-        
-        }
-        
-        const data = await response.json();
+            const response = await fetch('/tasks');
+            
+            if (!response.ok) {
+            
+            throw new Error('Something went wrong!');
+            
+            }
+            
+            const data = await response.json();
 
 
 
-        const loadedTasks = [];
-        const loadedRawTasks = []
+            const loadedTasks = [];
+            const loadedRawTasks = []
 
-        for (const key in data) {
-        loadedTasks.push({
-            id: data[key].id,
-            parentId: data[key].parentId,
-            title: data[key].title,
-            content: data[key].content,
-            //converter is run to change date to javascript format
-            dateCreated: dateConverter(data[key].dateCreated),
-            startDate: dateConverter(data[key].startDate),
-            dateDue: dateConverter(data[key].dateDue),
-            type: data[key].type,
-            status: data[key].status,
-            reviewed: data[key].reviewed,
-            color: data[key].color,
-        });
-        }
-
-        for (const key in data) {
-            loadedRawTasks.push({
+            for (const key in data) {
+            loadedTasks.push({
                 id: data[key].id,
                 parentId: data[key].parentId,
                 title: data[key].title,
                 content: data[key].content,
                 //converter is run to change date to javascript format
-                dateCreated: data[key].dateCreated,
-                startDate: data[key].startDate,
-                dateDue: data[key].dateDue,
+                dateCreated: dateConverter(data[key].dateCreated),
+                startDate: dateConverter(data[key].startDate),
+                dateDue: dateConverter(data[key].dateDue),
                 type: data[key].type,
                 status: data[key].status,
                 reviewed: data[key].reviewed,
@@ -433,23 +418,40 @@ const CaptureProvider = props => {
             });
             }
 
+            for (const key in data) {
+                loadedRawTasks.push({
+                    id: data[key].id,
+                    parentId: data[key].parentId,
+                    title: data[key].title,
+                    content: data[key].content,
+                    //converter is run to change date to javascript format
+                    dateCreated: data[key].dateCreated,
+                    startDate: data[key].startDate,
+                    dateDue: data[key].dateDue,
+                    type: data[key].type,
+                    status: data[key].status,
+                    reviewed: data[key].reviewed,
+                    color: data[key].color,
+                });
+                }
 
-        setTasks(loadedTasks);
-        setRawTasks(loadedRawTasks);
+
+            setTasks(loadedTasks);
+            setRawTasks(loadedRawTasks);
 
 
-        // console.log(loadedTasks[0].startDate);
-        // console.log(DUMMY_NOTES[0].startDate);
-        
-    } catch (error) {
-        console.log(error.message);
-        setError(error.message);
-    }
-    setIsLoading(false);
-    }, []);
+            // console.log(loadedTasks[0].startDate);
+            // console.log(DUMMY_NOTES[0].startDate);
+            
+        } catch (error) {
+            console.log(error.message);
+            setError(error.message);
+        }
+        setIsLoading(false);
+        }, []);
 
-    useEffect(() => {
-    fetchTasksHandler();
+        useEffect(() => {
+        fetchTasksHandler();
     }, [fetchTasksHandler]);
 
     //api caller code ends here
@@ -573,7 +575,8 @@ const CaptureProvider = props => {
         setDoneItem: setDoneItemHandler,
         setApiDoneItem: setApiDoneHandler,
         deleteItem: deleteNoteHandler,
-        filterItem: filterNoteHandler
+        filterItem: filterNoteHandler,
+        loading: isLoading,
     };
 
     return(
