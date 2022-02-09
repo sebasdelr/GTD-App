@@ -79,7 +79,7 @@ const ActionList = () => {
                 list.map(action => {
                     const parentItems = projectList.filter(item => (item.id === action.parentId));
                     let parentTitle = '';
-                    if(action.parentId !== null) {
+                    if(parentItems.length > 0) {
                         parentTitle = parentItems[0].title;
                         console.log(parentTitle);
                     };

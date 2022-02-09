@@ -56,7 +56,7 @@ function Items(){
     
     return(
         <div className="list-items">
-            {notesCtx.loading && <Loader/>}
+            
             <ListGroup >
             {listHandler(notesCtx.items)}
 
