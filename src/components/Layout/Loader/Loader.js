@@ -8,8 +8,8 @@ const Loader = () => {
 
 
     return (
-        <div >
-            <img src={preLoader} alt="Loading..." />
+        <div className="loader-backdrop">
+            <img src={preLoader} className="img-loader" alt="Loading..." />
         </div>
         
 

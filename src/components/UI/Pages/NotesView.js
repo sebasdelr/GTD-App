@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
+import CaptureContext from '../../../capture/capture-context';
+
+import Loader from '../../Layout/Loader/Loader';
 
 import { Row, Col } from 'react-bootstrap';
 
@@ -47,22 +50,29 @@ const NotesView = () => {
     padding: '1 px'
   };
   
+  const notesCtx = useContext(CaptureContext);
+    return (
+        <div>
+            
+            {notesCtx.loading && <Loader/>}
+            <Row >
+        
+              <Col xs={3} md={2} style={divStyle}>
+                <Items />
+              </Col>
+              <Col>
+              
+                <NoteContent />
+              </Col>
+            
+            </Row>
+        </div>
 
-  return (
-      <Row >
-        
-        <Col xs={3} md={2} style={divStyle}>
-          <Items />
-        </Col>
-        <Col>
-        
-          <NoteContent />
-        </Col>
+            
+
       
-      </Row>
-
-
   );
+
 }
 
 export default NotesView;

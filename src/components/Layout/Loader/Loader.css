@@ -6,12 +6,20 @@
     height: 100vh;
     z-index: 80;
     background: rgba(0, 0, 0, 1);
+    opacity: 0.1;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .img-loader {
-    position: absolute;
+    /* position: absolute; */
     display: block;
     margin-left: auto;
     margin-right: auto;
+  
+    width: 64px;
+    height: 64px;
     
 }
